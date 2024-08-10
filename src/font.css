@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'IranSans';
+  src: url('./font/YekanBakhFaNum-Regular.woff2') format('woff2'),
+       url('./font/YekanBakhFaNum-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+/* @font-face {
+  font-family: IranSans;
+  src: url(./font/0b0a8c345731751b990403a2cf40fbec.ttf);
+} */
+
+* {
+  font-family: IranSans;
+}
+
+
+*{
+  direction: rtl;
+}
+
+.rev-dir {
+  direction: ltr;
+}
+
+.test-color {
+  color: black;
+  background-color: aqua;
+}
+
+.header-dropdown-fix>a {
+  margin-right: 25px;
+  margin-left: 0px;
+}
+
+.fix-direction {
+  direction: rtl;
+}
+
+.test-style {
+  color: red;
+  padding: 10px;
+}
+
+.font-iran {
+  font-family: IranSans;
+}
+
+.back-fix {
+  --bs-bg-opacity:0;
+}
+
+  
