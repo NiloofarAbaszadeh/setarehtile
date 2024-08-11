@@ -112,7 +112,7 @@ const BlogStandardPostPage = (props) => {
   return (
     <div style={props.style}>
       {data && data[0].attributes.seo && <Seo data={data[0].attributes.seo} />}
-      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
           color={"#db1010"}
           loading={!data}
@@ -235,7 +235,7 @@ const BlogStandardPostPage = (props) => {
                                     />
                                   </Col>
                                   <Col md={12} sm={12} xs={12}>
-                                      <textarea value={formData.comment} className="mb-[1rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full bg-transparent border-[2px] border-solid border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder="متن پیام خود را وارد کنید" onChange={handelChange}>{formData.comment}</textarea>
+                                      <input value={formData.comment} className="mb-[1rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full bg-transparent border-[2px] border-solid border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder="متن پیام خود را وارد کنید" onChange={handelChange} />
                                   </Col>
                                   <Col>
                                       <Buttons type="submit" className={`tracking-[0.5px] btn-fill rounded-[5px] font-medium uppercase${isSubmitting ? " loading" : ""}`} themeColor="#232323" size="md" color="#fff" title="فرستادن پیام" onClick={handelSubmmit}/>

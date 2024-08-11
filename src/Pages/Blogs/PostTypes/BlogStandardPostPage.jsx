@@ -121,7 +121,7 @@ const BlogStandardPostPage = (props) => {
   }, [id, token, host])
   
   return (<>
-  {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+  {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix'>
         <ScaleLoader
           color={"#db1010"}
           loading={!loading}
@@ -144,7 +144,7 @@ const BlogStandardPostPage = (props) => {
                     <Col className="blog-details-text last:mb-0 mb-8">
                       
                       <h5 className="font-medium text-[20px] text-darkgray mb-[10px] sm:mr-[10px]">{data[0].attributes.title}</h5>
-                      <ul className="flex mb-8 xs:block mb-[2rem]">
+                      <ul className="flex mb-8 xs:block">
                         {data[0] && <li className="flex items-center justify-start inline-block align-middle">
                             <div className='ml-[5px]'><span className="feather-calendar text-fastblue mr-[10px]"></span></div>
                             <div><span>{data[0].attributes.date}</span></div>
