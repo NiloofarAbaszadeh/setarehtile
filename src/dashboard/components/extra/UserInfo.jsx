@@ -22,12 +22,8 @@ const UserInfo = () => {
               .then(res => {
                   setUserData(res.data.data[0].attributes)
                   res.data.data[0].attributes.role === "نماینده" && GetStoreData()
-                  
                   setLoading(true) 
-
               })
-               
-              
         }
         GetData()
         const GetStoreData = async () => {

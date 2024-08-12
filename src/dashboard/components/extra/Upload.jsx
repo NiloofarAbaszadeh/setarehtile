@@ -50,7 +50,6 @@ const Upload = () => {
         }).catch(res => {
           setState(false)
         })
-
     }
   
     return <div>
@@ -72,7 +71,6 @@ const Upload = () => {
             </div>
             <label className=" mb-[10px]" name="name">بارگذاری فایل</label>
             <div className="custom-form bg-white" onClick={() => document.querySelector(".input-file").click()}>
-            
                 <input
                 className="input-file"
                 type="file"

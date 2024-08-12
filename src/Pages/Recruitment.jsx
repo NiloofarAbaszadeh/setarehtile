@@ -205,7 +205,7 @@ const Recruitment = () => {
       })}
 
     return <>
-      {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 '>
           <ScaleLoader
           color={"#db1010"}
           loading={!loading}
@@ -572,7 +572,7 @@ const Recruitment = () => {
                               placeholder="یگان خدمتی"
                               onChange={handelChange}
                               value={formData.serviceUnit}
-                              className="w-[14vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>}
@@ -612,7 +612,7 @@ const Recruitment = () => {
                               placeholder="علت معافیت"
                               onChange={handelChange}
                               value={formData.remissionReason}
-                              className="w-[14vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>}
@@ -637,7 +637,7 @@ const Recruitment = () => {
                               placeholder="آخرین مدرک تحصیلی"
                               onChange={handelChange}
                               value={formData.lastEducationalCertificate}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -656,7 +656,7 @@ const Recruitment = () => {
                               placeholder="رشته تحصیلی"
                               onChange={handelChange}
                               value={formData.fieldOfStudy}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -674,7 +674,7 @@ const Recruitment = () => {
                               placeholder="دانشگاه"
                               onChange={handelChange}
                               value={formData.university}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -692,7 +692,7 @@ const Recruitment = () => {
                               placeholder="گواهینامه تخصصی"
                               onChange={handelChange}
                               value={formData.specializedCertificate}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                             /> 
                         </div>
                         <div className="flex flex-col items-start justify-center">
@@ -704,7 +704,7 @@ const Recruitment = () => {
                               placeholder="سابقه کارآموزی"
                               onChange={handelChange}
                               value={formData.internshipHistory}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                             /> 
                         </div>
                         <div className="flex flex-col items-start justify-center">
@@ -721,7 +721,7 @@ const Recruitment = () => {
                               placeholder="زبان انگلیسی، عربی، روسی و ..."
                               onChange={handelChange}
                               value={formData.language}
-                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -774,7 +774,7 @@ const Recruitment = () => {
                                           name="workExperience1company"
                                           onChange={handelChange}
                                           value={formData.workExperience1company}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         /> 
                                     </td>
@@ -784,7 +784,7 @@ const Recruitment = () => {
                                           name="workExperience1side"
                                           onChange={handelChange}
                                           value={formData.workExperience1side}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -794,7 +794,7 @@ const Recruitment = () => {
                                           name="workExperience1workExperience"
                                           onChange={handelChange}
                                           value={formData.workExperience1workExperience}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -804,7 +804,7 @@ const Recruitment = () => {
                                           name="workExperience1income"
                                           onChange={handelChange}
                                           value={formData.workExperience1income}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -814,7 +814,7 @@ const Recruitment = () => {
                                           name="workExperience1leavingReason"
                                           onChange={handelChange}
                                           value={formData.workExperience1leavingReason}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -824,7 +824,7 @@ const Recruitment = () => {
                                           name="workExperience1address"
                                           onChange={handelChange}
                                           value={formData.workExperience1address}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -834,7 +834,7 @@ const Recruitment = () => {
                                           name="workExperience1phonNumber"
                                           onChange={handelChange}
                                           value={formData.workExperience1phonNumber}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -846,7 +846,7 @@ const Recruitment = () => {
                                           name="workExperience2company"
                                           onChange={handelChange}
                                           value={formData.workExperience2company}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         /> 
                                     </td>
@@ -856,7 +856,7 @@ const Recruitment = () => {
                                           name="workExperience2side"
                                           onChange={handelChange}
                                           value={formData.workExperience2side}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -866,7 +866,7 @@ const Recruitment = () => {
                                           name="workExperience2workExperience"
                                           onChange={handelChange}
                                           value={formData.workExperience2workExperience}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -876,7 +876,7 @@ const Recruitment = () => {
                                           name="workExperience2income"
                                           onChange={handelChange}
                                           value={formData.workExperience2income}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -886,7 +886,7 @@ const Recruitment = () => {
                                           name="workExperience2leavingReason"
                                           onChange={handelChange}
                                           value={formData.workExperience2leavingReason}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -896,7 +896,7 @@ const Recruitment = () => {
                                           name="workExperience2address"
                                           onChange={handelChange}
                                           value={formData.workExperience2address}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -906,7 +906,7 @@ const Recruitment = () => {
                                           name="workExperience2phonNumber"
                                           onChange={handelChange}
                                           value={formData.workExperience2phonNumber}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -918,7 +918,7 @@ const Recruitment = () => {
                                           name="workExperience3company"
                                           onChange={handelChange}
                                           value={formData.workExperience3company}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         /> 
                                     </td>
@@ -928,7 +928,7 @@ const Recruitment = () => {
                                           name="workExperience3side"
                                           onChange={handelChange}
                                           value={formData.workExperience3side}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -938,7 +938,7 @@ const Recruitment = () => {
                                           name="workExperience3workExperience"
                                           onChange={handelChange}
                                           value={formData.workExperience3workExperience}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -948,7 +948,7 @@ const Recruitment = () => {
                                           name="workExperience3income"
                                           onChange={handelChange}
                                           value={formData.workExperience3income}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -958,7 +958,7 @@ const Recruitment = () => {
                                           name="workExperience3leavingReason"
                                           onChange={handelChange}
                                           value={formData.workExperience3leavingReason}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -968,7 +968,7 @@ const Recruitment = () => {
                                           name="workExperience3address"
                                           onChange={handelChange}
                                           value={formData.workExperience3address}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -978,7 +978,7 @@ const Recruitment = () => {
                                           name="workExperience3phonNumber"
                                           onChange={handelChange}
                                           value={formData.workExperience3phonNumber}
-                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                          className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]react-scroll-parallax border-[1px] border-solid border-[#dfdfdf]"
                                           
                                         />
                                     </td>
@@ -1001,7 +1001,7 @@ const Recruitment = () => {
                               placeholder="شغل مورد تقاضا"
                               onChange={handelChange}
                               value={formData.demandedJob}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1019,7 +1019,7 @@ const Recruitment = () => {
                               placeholder="میزان حقوق درخواستی"
                               onChange={handelChange}
                               value={formData.salaryRequested}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1031,7 +1031,7 @@ const Recruitment = () => {
                               placeholder="توضیحات"
                               onChange={handelChange}
                               value={formData.requestExtraBenefits}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1043,7 +1043,7 @@ const Recruitment = () => {
                               placeholder="شماره بیمه"
                               onChange={handelChange}
                               value={formData.insuranceNumber}
-                              className="w-[18vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[18vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1055,7 +1055,7 @@ const Recruitment = () => {
                               placeholder="محل کار"
                               onChange={handelChange}
                               value={formData.currentWorkPlace}
-                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1073,7 +1073,7 @@ const Recruitment = () => {
                               placeholder="توضیحات"
                               onChange={handelChange}
                               value={formData.acquaintanceToSetareh}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1136,7 +1136,7 @@ const Recruitment = () => {
                               placeholder="توضیحات"
                               onChange={handelChange}
                               value={formData.skillsAtWork}
-                              className="w-[34vw] xs:w-[70vw] h-[150px] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[34vw] xs:w-[70vw] h-[150px] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1164,7 +1164,7 @@ const Recruitment = () => {
                               placeholder="نام پدر"
                               onChange={handelChange}
                               value={formData.fatherName}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1182,7 +1182,7 @@ const Recruitment = () => {
                               placeholder="شغل پدر"
                               onChange={handelChange}
                               value={formData.familyfathersJob}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1200,7 +1200,7 @@ const Recruitment = () => {
                               placeholder="نام مادر"
                               onChange={handelChange}
                               value={formData.familymather}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               required
                             /> 
                         </div>
@@ -1212,7 +1212,7 @@ const Recruitment = () => {
                               placeholder="شغل مادر"
                               onChange={handelChange}
                               value={formData.familymathersJob}
-                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                             /> 
                         </div>
                         <div className="flex flex-col items-start justify-center">
@@ -1223,7 +1223,7 @@ const Recruitment = () => {
                               placeholder="نام همسر"
                               onChange={handelChange}
                               value={formData.familyspouse}
-                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1235,7 +1235,7 @@ const Recruitment = () => {
                               placeholder="شغل همسر"
                               onChange={handelChange}
                               value={formData.familyspousesJob}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1247,7 +1247,7 @@ const Recruitment = () => {
                               placeholder="تعداد خواهر"
                               onChange={handelChange}
                               value={formData.familysisters}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1259,7 +1259,7 @@ const Recruitment = () => {
                               placeholder="تعداد برادر"
                               onChange={handelChange}
                               value={formData.familybrathers}
-                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1300,7 +1300,7 @@ const Recruitment = () => {
                                   name="introduceBy1fullName"
                                   onChange={handelChange}
                                   value={formData.introduceBy1fullName}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 /> 
                             </td>
@@ -1310,7 +1310,7 @@ const Recruitment = () => {
                                   name="introduceBy1relationship"
                                   onChange={handelChange}
                                   value={formData.introduceBy1relationship}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
@@ -1320,7 +1320,7 @@ const Recruitment = () => {
                                   name="introduceBy1address"
                                   onChange={handelChange}
                                   value={formData.introduceBy1address}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
@@ -1330,7 +1330,7 @@ const Recruitment = () => {
                                   name="introduceBy1mobile"
                                   onChange={handelChange}
                                   value={formData.introduceBy1mobile}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
@@ -1342,7 +1342,7 @@ const Recruitment = () => {
                                   name="introduceBy2fullName"
                                   onChange={handelChange}
                                   value={formData.introduceBy2fullName}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 /> 
                             </td>
@@ -1352,7 +1352,7 @@ const Recruitment = () => {
                                   name="introduceBy2relationship"
                                   onChange={handelChange}
                                   value={formData.introduceBy2relationship}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
@@ -1362,7 +1362,7 @@ const Recruitment = () => {
                                   name="introduceBy2address"
                                   onChange={handelChange}
                                   value={formData.introduceBy2address}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
@@ -1372,7 +1372,7 @@ const Recruitment = () => {
                                   name="introduceBy2mobile"
                                   onChange={handelChange}
                                   value={formData.introduceBy2mobile}
-                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] w-full border-[1px] border-solid border-[#dfdfdf]"
+                                  className="w-full xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf]"
                                   
                                 />
                             </td>
