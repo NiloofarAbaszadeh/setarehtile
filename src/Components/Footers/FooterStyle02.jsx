@@ -51,7 +51,7 @@ const FooterStyle02 = (props) => {
                                 <img className='w-[65px] h-[35px]' alt="logo" src={WhiteLogo} width="220" height="120" />
                             </Link>
                             <p className="w-[80%] mb-[20px] xs:w-full text-[14px]">شرکت کاشی و سرامیک ستاره میبد در خرداد 1383 در شهر تاریخی و زیبای میبد تاسیس گردید .</p>
-                            <p className="w-[80%] mb-[8px] xs:w-full text-[14px]">شماره تماس کارخانه : 3151 - 07 - 03532372082 </p>
+                            <p className="w-[80%] mb-[8px] xs:w-full text-[14px]">شماره تماس کارخانه :<br/> 3151 - 07 - 03532372082 </p>
                             <SocialIcons theme="social-icon-style-01" className="justify-start" size="xs" iconColor={props.theme === "dark" ? "light" : "dark"} data={iconData} />
                         </Col>
                         <FooterMenu className="xl:px-[15px] md:mb-[40px] xs:mb-[25px]" data={FooterData.slice(0, 3)} lg={{ span: 2, order: 0 }} sm={{ span: 4, order: 3 }} titleClass="capitalize" />

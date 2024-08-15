@@ -18,7 +18,7 @@ const FancyTextBox = (props) => {
                     return (
                         <m.div className={`col${props.themeColor ? ` ${props.themeColor}` : ""}${props.className ? ` ${props.className}` : ""}`} key={item.id} {...{ ...props.animation, transition: { delay: item.id * props.animationDelay } }}>
                             <Col className="fancy-box-item divide-x divide-[#ffffff33] lg:divide-y z-[3]">
-                                <div className="bg-banner-image bg-cover overflow-hidden bg-center relative z-0" style={{ backgroundImage: `url(${host}${item.attributes.GroupImage.data.attributes.formats.custom.url})` }}>
+                                <div className="bg-banner-image bg-cover overflow-hidden bg-center relative z-0" style={{ backgroundImage: `url(${host}${item.attributes.GroupImage.data.attributes.url})` }}>
                                     <div className="opacity-very-light opacity-30 absolute top-0 left-0 w-full h-full "></div>
                                 </div>
                                 <div className="fancy-text-box relative overflow-hidden h-[800px] xl:h-[500px] xs:h-[250px] z-[3]">

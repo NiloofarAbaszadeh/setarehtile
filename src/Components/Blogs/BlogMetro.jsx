@@ -47,7 +47,7 @@ const BlogMetro = (props) => {
                 transition={{ duration: 0.6, ease: "easeOut" }} >
                 <div className="relative">
                 <div className="blog-post-image rounded-[5px] box-shadow  h-[300px]" style={style}>
-                  <img className="h-full" height={353} width={353} src={host + item.attributes.mainImage.data.attributes.formats.custom.url} alt="blog-post" />
+                  <img className="h-full" height={353} width={353} src={host + item.attributes.mainImage.data.attributes.url} alt="blog-post" />
                 </div>
                 <div className=" absolute bottom-2 right-6">
                   <span className="post-date">

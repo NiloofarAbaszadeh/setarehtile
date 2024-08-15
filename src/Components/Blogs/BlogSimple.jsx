@@ -19,7 +19,7 @@ const BlogSimple = (props) => {
                 whileInView={true && { opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: "easeOut" }} >
-                 <div className="blog-post-image xs:h-[250px] w-full" style={{ backgroundImage: `url(${host}${item.attributes.mainImage.data.attributes.formats.custom.url})` }} >
+                 <div className="blog-post-image xs:h-[250px] w-full" style={{ backgroundImage: `url(${host}${item.attributes.mainImage.data.attributes.url})` }} >
                   <Link aria-label="link" to={`/research/${item.attributes.title}`}></Link>
                 </div>
                 <div className="post-details">

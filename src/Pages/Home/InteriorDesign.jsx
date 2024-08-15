@@ -9,7 +9,7 @@ import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Parallax } from "react-scroll-parallax";
 import { Helmet } from 'react-helmet-async'; 
-import { fadeIn, fadeInLeft } from "../../Functions/GlobalAnimations";
+import { fadeIn } from "../../Functions/GlobalAnimations";
 import LazyLoad from 'react-lazyload'
 import CustomModal from '../../Components/CustomModal'
 import BlogSimple from "../../Components/Blogs/BlogSimple";
@@ -49,7 +49,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const GetGroupData =  () => {
-       axios.get(`${host}/api/groupss?populate=*`, {
+       axios.get(`${host}/api/groupss?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       }).then(res => {
         setgroupData(res.data.data)
@@ -57,7 +57,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const researchElements =  () => {
-       axios.get(`${host}/api/researchs?populate=*`, {
+       axios.get(`${host}/api/researchs?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=2`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       }).then(res => {
         setResearchData(res.data.data)
@@ -65,7 +65,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const newsElements =  () => {
-       axios.get(`${host}/api/news-elements?populate=*`, {
+       axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       })
       .then(res => {
@@ -104,7 +104,7 @@ const InteriorDesignPage = (props) => {
         </Container>
         <Container fluid className="px-[7%] xl:px-[2%] lg:px-[3%] sm:px-[15px] ">
           <div className='justify-center flex-colections sm:flex-col-reverse'>
-          <m.div className=" col-lg-4 col-md-6 md:mb-24 sm:mb-[50px]" {...{ ...fadeIn, transition: { delay: 0.4 } }}>
+          <m.div className=" col-lg-4 col-md-6 md:mb-24 sm:mb-[50px]">
             <p className="font-semibold mt-[55px] text-xlg text-darkgray mb-[25px] sm:mb-[15px] sm:mr-[20px]">{data.attributes.aboutUs.sideTitle}</p>
             <p className="w-[120%] xl:w-full text-[#828282] text-[15px] mb-[25px] text-justify sm:pr-[22px] sm:pl-[22px]">{data.attributes.aboutUs.summery}</p>
             <div className="flex item-center justify-start">
@@ -112,11 +112,11 @@ const InteriorDesignPage = (props) => {
               </div>
           </m.div>
 
-          <m.div className="col-lg-3 mr-[150px] sm:mr-[10px]" {...{ ...fadeIn, transition: { delay: 0.6 } }}>
+          <m.div className="col-lg-3 mr-[150px] sm:mr-[10px]">
             <div className="outside-box-bottom relative mb-[-14vw] lg:mb-0">
-                <img loading="lazy" className="relative z-[1] w-full rounded-[4px] box-shadow" src={host + data.attributes.aboutUs.image.data.attributes.formats.custom.url} alt="" />
+                <img loading="lazy" className="relative z-[1] w-full rounded-[4px] box-shadow" src={host + data.attributes.aboutUs.image.data.attributes.url} alt="" />
               {/* Modal Component Start */}
-              <LazyLoad offset={100}>
+              <LazyLoad height={200} offset={100}>
               <CustomModal.Wrapper
                 className="absolute bottom-[7px] right-[-10px] z-[1] landscape:md:!-bottom-[25px]"
                 modalBtn={
@@ -140,11 +140,11 @@ const InteriorDesignPage = (props) => {
       </section>}
       
       {data &&
-      <LazyLoad offset={100}> 
+      <LazyLoad height={200} offset={100}> 
       <section className="bg-[#f1edea] pt-[100px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
         <Container className="pt-[6%] lg:pt-0">
           <Row className="items-center">
-            <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[65px] md:pt-0 xs:p-0" {...fadeInLeft}>
+            <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[65px] md:pt-0 xs:p-0">
               <span className=" mb-[20px] block uppercase text-xlg font-medium text-fastblue">{data.attributes.ourWork.discreptionText}</span>
               <h2 className="heading-6  uppercase text-darkgray font-bold mb-[40px] md:mb-[20px]">{data.attributes.ourWork.subDiscreptionText}</h2>
               <div className="flex">
@@ -156,7 +156,7 @@ const InteriorDesignPage = (props) => {
                 </div>
               </div>
             </m.div>
-            <m.div className="col-lg-8 offset-xl-1" {...fadeInLeft}>
+            <m.div className="col-lg-8 offset-xl-1">
               <Swiper
                 className="interiordesign-icon-with-text black-move swiper-pagination-medium h-full min-w-[1170px] md:min-w-full"
                 ref={swiperRef}
@@ -200,13 +200,13 @@ const InteriorDesignPage = (props) => {
       </section>
       </LazyLoad>}
       
-      {data && <LazyLoad offset={100}>  <div className="py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] md:flex md:items-center overflow-hidden relative" {...fadeIn}>
+      {data && <LazyLoad height={200} offset={100}>  <div className="py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] md:flex md:items-center overflow-hidden relative" >
           <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-[center_center]" translateY={[-80, 80]} style={{ backgroundImage: `url(${host}${data.attributes.Parallax.image.data.attributes.url})` }}></Parallax>
           {/* <div className="absolute h-full w-full opacity-80 top-0 left-0"></div> */}
           <Container className="relative">
               <Row className="justify-center">
                   <Col xl={7} lg={8} sm={10} className="text-center text-white overflow-hidden ">
-                      <m.div {...fadeIn}>
+                      <m.div>
                           <h2 className="heading-4 font-semibold mb-[25px] sm:mb-[25px] text-fastblue">{data.attributes.Parallax.title}</h2>
                           <p className="uppercase text-[20px]">{data.attributes.Parallax.subtitle}</p>
                           <p className="uppercase mt-12 text-[16px] text-lightgray">{data.attributes.Parallax.content}</p>
@@ -219,21 +219,21 @@ const InteriorDesignPage = (props) => {
           </Container>
       </div> </LazyLoad>}
       
-      {data && <LazyLoad offset={100}>
-        <m.section className="cover-background py-[130px] lg:py-[50px] md:py-[45px] sm:py-[30px] sm:pt-[100px]" style={{ backgroundImage: "url(/assets/img/webp/home-interior-design-about-bg.webp)" }} {...fadeIn}>
+      {data && <LazyLoad height={200} offset={100}>
+        <m.section className="cover-background py-[130px] lg:py-[50px] md:py-[45px] sm:py-[30px] sm:pt-[100px]" style={{ backgroundImage: "url(/assets/img/webp/home-interior-design-about-bg.webp)" }}>
         <Container className="relative">
           <Row className="items-center justify-center ">
           <Col xs={10} lg={6} className="relative">
                 <div className="relative">
                   <Parallax className="lg-no-parallax w-[75%] mr-36" speed={0}>
-                    <img loading="lazy" width="" height="" alt="" src={host + data.attributes.newInWrold.bigImg.data.attributes.formats.custom.url} />
+                    <img loading="lazy" width="" height="" alt="" src={host + data.attributes.newInWrold.bigImg.data.attributes.url} />
                   </Parallax>
                   <Parallax className="lg-no-parallax flex justify-center items-center w-1/2 bg-no-repeat absolute bottom-24 right-[15px] lg:!left-auto lg:!top-[150px] sm:!top-[100px]" speed={20}>
-                    <img loading="lazy" width="341.25px" height="349.78px" alt="" src={host + data.attributes.newInWrold.smallImg.data.attributes.formats.custom.url} />
+                    <img loading="lazy" width="341.25px" height="349.78px" alt="" src={host + data.attributes.newInWrold.smallImg.data.attributes.url} />
                   </Parallax>
                 </div>
           </Col>
-            <m.div className="col-lg-5 offset-lg-1 col-md-10 ml-0 mr-[4%]" {...{ ...fadeIn, transition: { delay: 0.4, duration: 1 } }}>
+            <m.div className="col-lg-5 offset-lg-1 col-md-10 ml-0 mr-[4%]">
               <div className="font font-medium mb-[30px] flex">
                 <div className="flex-grow-1">
                   <span className="text-basecolor uppercase text-fastblue">{data.attributes.newInWrold.redtext}</span></div></div>
@@ -249,16 +249,16 @@ const InteriorDesignPage = (props) => {
       </LazyLoad>}
 
       {data &&
-      <LazyLoad offset={100}> 
+      <LazyLoad height={200} offset={100}> 
       <section className="py-[90px] lg:py-[60px] md:py-[45px] sm:py-[30px] relative border-t border-mediumgray overflow-hidden bg-[#f1edea]">
         <Container fluid className="px-0">
-          <m.div className="row justify-center text-center mb-[70px] lg:mb-20 md:mb-16" {...fadeIn}>
+          <m.div className="row justify-center text-center mb-[70px] lg:mb-20 md:mb-16">
             <Col xl={6} lg={7} md={8} sm={12} className=" flex flex-col items-center text-center">
               <span className="font-medium text-fastblue text-xxlg uppercase m-[10px]">{data.attributes.doneWork.mainTitle}</span>
               <h2 className="heading-5 text-xlg -tracking-[1px] text-darkgray block w-3/5 mb-0">{data.attributes.doneWork.SubTitle}</h2>
             </Col>
           </m.div>
-          <m.div className="row" {...{ ...fadeIn, transition: { delay: 0.5 } }}>
+          <m.div className="row">
             <Col className="pr-40 lg:pr-24 lg:pl-24 sm:pr-12 md:pl-0">
               <PortfolioColorful
                 grid="grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large"
@@ -278,7 +278,7 @@ const InteriorDesignPage = (props) => {
       </section>
       </LazyLoad>}
 
-      {loadingNews && newsData && loadingHome &&<LazyLoad offset={100}> 
+      {loadingNews && newsData && loadingHome &&<LazyLoad height={200} offset={100}> 
        <section className="bg-white relative border-t border-mediumgray overflow-hidden">
         <section className="pt-[90px] lg:pt-[70px] md:pt-[55px] sm:pt-[40px]  pb-[50px] md:pb-[55px] sm:pb-[40px]">
           <Container fluid>
@@ -303,22 +303,22 @@ const InteriorDesignPage = (props) => {
       </section>
       </LazyLoad>}
       
-      {loadingGroup && data &&<LazyLoad offset={100}> 
+      {loadingGroup && data &&<LazyLoad height={200} offset={100}> 
        <>
-        <m.div className="row justify-center text-center py-24 w-[100vw] bg-[#f1edea]" {...fadeIn}>
+        <m.div className="row justify-center text-center py-24 w-[100vw] bg-[#f1edea]" >
             <Col xl={6} lg={7} md={8} sm={12} className=" flex flex-col items-center text-center">
               <span className="font-medium text-fastblue text-xxlg uppercase m-[10px]">{data.attributes.groupElements.title}</span>
               <h2 className="heading-5 text-xlg -tracking-[1px] text-darkgray block w-3/5 mb-0">{data.attributes.groupElements.subtitle}</h2>
             </Col>
           </m.div>
-      <m.section className="cover-background overflow-hidden" style={{ backgroundImage: `url(${host}${data && data.attributes.groupElements.Image.data.attributes.formats.custom.url})` }} {...fadeIn}>
+      <m.section className="cover-background overflow-hidden" style={{ backgroundImage: `url(${host}${data && data.attributes.groupElements.Image.data.attributes.url})` }} >
         <Container fluid className="px-0">
            <FancyTextBox
             grid="row row-cols-1 row-cols-xl-4 row-cols-sm-2 gx-0 px-0"
             themeColor=""
             className="justify-center"
             theme="fancy-text-box-05"
-            data={groupData.slice().reverse().slice(0,4)}
+            data={groupData}
             animation={fadeIn} />
         </Container>
       </m.section>
@@ -329,15 +329,15 @@ const InteriorDesignPage = (props) => {
       </div></>
       </LazyLoad>}
 
-      {data && data.attributes.comments.item[0] && <LazyLoad offset={100}> 
+      {data && data.attributes.comments.item[0] && <LazyLoad height={200} offset={100}> 
        <section className="py-[100px] lg:py-[50px] md:py-[45px]  xs:py-[30px]">
         <Container>
           <Row className="items-center justify-center overflow-hidden">
-            <m.div className="col-lg-4 col-sm-8 lg:text-start md:mb-20 md:text-center px-[15px] mb-[45px]" {...fadeIn}>
+            <m.div className="col-lg-4 col-sm-8 lg:text-start md:mb-20 md:text-center px-[15px] mb-[45px]">
               <span className="font-medium text-basecolor uppercase block text-fastblue text-xlg mb-[15px]">{data.attributes.comments.mainTitle}</span>
               <h2 className="heading-5 font-bold uppercase text-darkgray -tracking-[1px] m-0">{data.attributes.comments.SubTitle}</h2>
             </m.div>
-            <m.div className="col-xl-7 col-lg-8 offset-xl-1" {...fadeInLeft}>
+            <m.div className="col-xl-7 col-lg-8 offset-xl-1">
               <TestimonialsCarousel05
                 data={data.attributes.comments.item}
                 className="overflow-hidden"
@@ -353,7 +353,7 @@ const InteriorDesignPage = (props) => {
       </section>
       </LazyLoad>}
 
-      {loadingHome && <LazyLoad offset={100}> 
+      {loadingHome && <LazyLoad height={200} offset={100}> 
        <section className="py-[90px] lg:py-[70px] md:py-[55px]  xs:py-[40px] relative bg-[#f1edea]">
         <Container fluid>
           <Row className="justify-center text-center ">
@@ -366,7 +366,7 @@ const InteriorDesignPage = (props) => {
         {loadingResearch && <Container fluid className="px-[6%]">
           <Row className="justify-center">
             <Col xl={12} lg={12} sm={10} className="interiordesign-blog">
-              <BlogSimple overlay="#374162" pagination={false} grid="grid grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large" data={researchData.slice().reverse().slice(0,2)} />
+              <BlogSimple overlay="#374162" pagination={false} grid="grid grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-double-extra-large" data={researchData} />
             </Col>
           </Row>
           <Row className="flex-fix">
@@ -378,7 +378,7 @@ const InteriorDesignPage = (props) => {
       </section>
       </LazyLoad>}
       
-      {loadingHome && <LazyLoad offset={100}>  <section className="bg-cover relative bg-center bg-no-repeat realtive overflow-hidden py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px]" style={{ backgroundImage: `url('${loginImage}')` }}>
+      {loadingHome && <LazyLoad height={200} offset={100}>  <section className="bg-cover relative bg-center bg-no-repeat realtive overflow-hidden py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px]" style={{ backgroundImage: `url('${loginImage}')` }}>
         <div className="opacity-50 bg-darkgray absolute top-0 left-0 w-full h-full"></div>
         <Container>
           <Row className="items-center justify-center">

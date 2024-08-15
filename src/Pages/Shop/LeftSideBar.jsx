@@ -17,7 +17,7 @@ const LeftSidebar = (props) => {
     // get data
     useEffect(() => {
         const GetData = () => {
-          axios.get(`${host}/api/collectionss?populate=deep`, {
+          axios.get(`${host}/api/collectionss?populate=deep&sort[0]=id:desc`, {
               headers: { Authorization: `Bearer ${token}` }
             })
           .then(res => {

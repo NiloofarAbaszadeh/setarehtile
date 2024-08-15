@@ -10,7 +10,6 @@ export default function ProductsPage() {
       <Helmet>
         <title> محصولات | کاشی و سرامیک ستاره  </title>
       </Helmet>
-
       <ProductsView />
     </>
   );

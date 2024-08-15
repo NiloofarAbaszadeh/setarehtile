@@ -16,7 +16,7 @@ const LeftSideBarGroups = (props) => {
     // get data
     useEffect(() => {
         const GetData = () => {
-            axios.get(`${host}/api/groupss?populate=deep`, {
+            axios.get(`${host}/api/groupss?populate=deep&sort[0]=id:desc`, {
                     headers: { Authorization: `Bearer ${token}` }
                   })
                 .then(res => {

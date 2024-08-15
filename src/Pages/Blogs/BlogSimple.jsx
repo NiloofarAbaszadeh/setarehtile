@@ -33,11 +33,11 @@ const BlogSimplePage = () => {
   
   useEffect(() => {
     const researchElements = () => {
-      axios.get(`${host}/api/researchs?populate=deep`, {
+      axios.get(`${host}/api/researchs?populate=deep&sort[0]=id:desc`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        setCurrentItems(res.data.data.slice().reverse())
+        setCurrentItems(res.data.data.slice())
         const maxPage = res.data.data.length % itemsPerPage !== 0 ? res.data.data.length / itemsPerPage + 1 : res.data.data.length / itemsPerPage
         setMaxPageNumber(maxPage.toFixed(0))
         InitialPageNumber(maxPage.toFixed(0))

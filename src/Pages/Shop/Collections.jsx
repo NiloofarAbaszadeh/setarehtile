@@ -163,7 +163,7 @@ const Collections = (props) => {
                             </div>
                             <PortfolioBoxed
                                 grid="grid grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
-                                data={filteredData.slice().reverse()}
+                                data={filteredData}
                               />
                         </Col>
                         <m.aside className="col col-lg-3 col-md-4 shopping-sidebar inline-block order-md-1 order-2" {...fadeIn}>

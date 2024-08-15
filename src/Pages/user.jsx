@@ -39,7 +39,6 @@ export default function UserPage() {
       <Helmet>
         <title> کاربران | کاشی و سرامیک ستاره  </title>
       </Helmet>
-
       {data && <UserView data={data}/>}
     </>
   );

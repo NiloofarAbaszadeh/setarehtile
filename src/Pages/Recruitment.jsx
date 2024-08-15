@@ -752,7 +752,7 @@ const Recruitment = () => {
                 {/* سوابق کاری */}
                 <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-bag text-red ml-2"></span>سوابق کاری</p>
                 <div className="mx-24 flex flex-col items-center justify-center ">
-                    <div className="flex flex-col items-start xs:items-center justify-start bg-white boarder-2 box-shadow w-full pb-12 pt-6 w-max rounded-[5px] w-[80vw] px-20">
+                    <div className="flex flex-col items-start xs:items-center justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
                         <div>
                             <p className="xl:hidden xs:block "><span className="text-[#fb4f58]"> * </span>جهت پر کردن بهتر جدول، گوشی خود را بچرخانید </p>
                         </div>

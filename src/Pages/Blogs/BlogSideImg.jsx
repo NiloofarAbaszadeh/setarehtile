@@ -33,11 +33,11 @@ const BlogSideImgPage = () => {
 
   useEffect(() => {
     const newsElements = () => {
-        axios.get(`${host}/api/news-elements?populate=deep`, {
+        axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => {
-          setCurrentItems(res.data.data.slice().reverse())
+          setCurrentItems(res.data.data.slice())
           const maxPage = res.data.data.length % itemsPerPage !== 0 ? res.data.data.length / itemsPerPage + 1 : res.data.data.length / itemsPerPage
           setMaxPageNumber(maxPage.toFixed(0))
           InitialPageNumber(maxPage.toFixed(0))

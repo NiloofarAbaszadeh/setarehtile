@@ -33,7 +33,7 @@ const StartupPageBannerSlider = (props) => {
                         return (
                             // <LazyLoad >
                             <SwiperSlide key={item.id} className="overflow-hidden">
-                                <m.div initial={{ scale: 1.2 }} animate={{ scale: activeSlide === i ? 1 : 1.2 }} transition={{ duration: 1.7, ease: "easeInOut" }} style={{ backgroundImage: `url(${host}${item.image.data.attributes.formats.custom.url})` }} className="overflow-hidden absolute h-full w-full top-0 left-0 cover-background"> </m.div>
+                                <m.div initial={{ scale: 1.2 }} animate={{ scale: activeSlide === i ? 1 : 1.2 }} transition={{ duration: 1.7, ease: "easeInOut" }} style={{ backgroundImage: `url(${host}${item.image.data.attributes.url})` }} className="overflow-hidden absolute h-full w-full top-0 left-0 cover-background"> </m.div>
                                 <m.div className="opacity-30 absolute h-full w-full top-0 left-0 bg-darkgray"></m.div>
                                 <div className="text-center">
                                     <Row className="full-screen items-center w-[150%] md:landscape:h-[500px]">
