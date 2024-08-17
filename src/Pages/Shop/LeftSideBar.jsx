@@ -34,7 +34,7 @@ const LeftSidebar = (props) => {
     
 
     return (<>
-        {!iniData && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+        {!iniData && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
         color={"#db1010"}
         loading={!iniData}

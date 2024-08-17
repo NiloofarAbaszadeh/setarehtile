@@ -38,7 +38,7 @@ const ImageGalleryPage = () => {
       <Helmet>
         <title> گواهی های داخلی | کاشی و سرامیک ستاره  </title>
       </Helmet>
-      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
           color={"#db1010"}
           loading={!data}

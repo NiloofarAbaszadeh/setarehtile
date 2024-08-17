@@ -232,7 +232,7 @@ const Recruitment = () => {
                 <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-user text-red ml-2"></span>مشخصات متقاضی</p>
                 <div className="mx-24 xs:mx-4 flex flex-col items-center justify-center">
                     {/* مشخصات متقاضی */}
-                    <div className="flex xs:flex-col items-start xs:items-center justify-center bg-white boarder-2 box-shadow w-full pb-12 pt-6 w-max rounded-[5px]">
+                    <div className="flex xs:flex-col items-start xs:items-center justify-center bg-white boarder-2 box-shadow w-full pb-12 pt-6 rounded-[5px]">
                         {/* right side */}
                         <div className="w-[40vw] xs:w-[80vw] flex items-start justify-center">  
                             <div>

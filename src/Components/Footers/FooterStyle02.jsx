@@ -30,7 +30,7 @@ const FooterStyle02 = (props) => {
     useEffect(()=>{
         setLoading(false)
         const LoadData = async () => {
-            await axios.get(`${host}/api/news-elements?populate=deep`, {
+            await axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=2`, {
                 headers: { Authorization: `Bearer ${token}` }
               })
               .then(res => {
@@ -58,7 +58,7 @@ const FooterStyle02 = (props) => {
                         <Col className='sm:hidden' lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 2 }}>
                             <span className="font-medium block text-themecolor mb-[30px] md:mb-[15px]">جدیدترین خبر ها</span>
                             <ul>
-                                {loading && latestNewsData.reverse().slice(0,2).map(item => {
+                                {loading && latestNewsData.map(item => {
                                     return (<li className="flex mb-[25px]" key={item.id}>
                                             <Link aria-label="link" to={`/news/${item.attributes.title}`} className="w-[75px] ml-[15px] shrink-0">
                                                 <img src={host + item.attributes.mainImage.data.attributes.formats.xsmall.url} alt="footer" width={75} height={53} />
@@ -75,7 +75,7 @@ const FooterStyle02 = (props) => {
             <div className="footer-bottom py-[15px] border-t border-[#ffffff1a]">
                 <Container>
                     <Row>
-                        <Col md={6} className="text-right sm:text-center sm:text-right">
+                        <Col md={6} className="text-right sm:text-center">
                             <span className="inline-block xs:text-md">&copy; تمام حقوق این سایت متعلق به <a aria-label="setarehtiles" rel="noreferrer" href="./" target="_blank" className="text-themecolor underline underline-offset-4"> شرکت کاشی و سرامیک ستاره میبد </a> می باشد. </span>
                         </Col>
                         <Col md={6} className="md:mb-[0.75rem] xs:mb-[15px] flex justify-end sm:justify-start sm:text-right">

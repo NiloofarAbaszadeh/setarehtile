@@ -69,7 +69,7 @@ const InteriorDesignPage = (props) => {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       })
       .then(res => {
-        setNewsData(res.data.data.slice().reverse().slice(0,4))
+        setNewsData(res.data.data)
         setLoadingNews(true)
       })
     }
