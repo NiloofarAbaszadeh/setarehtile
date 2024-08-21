@@ -624,7 +624,7 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar inline-block align-middle pl-[17px] pr-[80px] text-[17px] leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-search-iconbar inline-block align-middle px-[10px] pr-[80px] text-[17px] leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
         <i className={`feather-search px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
       </Link>
@@ -694,7 +694,7 @@ export const SearchBar = memo((props) => {
 /* HeaderLanguage Component Start */
 export const HeaderLanguage = (props) => {
   return (
-    <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
         <i className={`feather-globe py-[27px] px-0 inline-block ${props.className}`}></i>
       </Link>
@@ -741,7 +741,7 @@ export const HeaderCart = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="/login" aria-label="language" target="-blank">
-      <div className="image-hover pt-[1px]"></div>
+      <div className="image-hover m-[8px]"></div>
       </Link>
     </div>
   );

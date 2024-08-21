@@ -279,15 +279,6 @@
   border-radius: 5px;
 }
 
-
-.custom-bg {
-  background-image: url("https://www.pngkey.com/png/detail/48-483820_background-png-patterns-transparent-pattern-background-png.png");
-  background-repeat: no-repeat;
-  background-position: left top;
-  margin-right: 200px;
-  background-attachment: fixed;
-}
-
 .wrapper{
   display: flex;
   justify-content: center;

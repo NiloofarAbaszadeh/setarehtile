@@ -93,12 +93,14 @@ const InteriorDesignPage = (props) => {
         data-testid="loader"/></div>}
       {loadingHome && data.attributes.seo && <Seo data={data.attributes.seo} />}
       {loadingHome && data.attributes.Slider && <StartupPageBannerSlider data={data.attributes.Slider} />}
+
+      <LazyLoad height={-100}>
       {loadingHome && <section className="bg-white relative py-[100px] lg:py-[80px] md:py-[55px] sm:py-[30px] xs:py-[20px] sm:border-t border-[#dee2e6]">
       <Container>
           <Row className="justify-center">
             <Col lg={6} className="text-center mb-8 sm:mb-6">
               <span className="font-medium text-fastblue text-xxlg block mb-[5px] uppercase">{data.attributes.aboutUs.mainTitle}</span>
-              <h6 className="text-basecolor text-xlg hover:text-darkgray font-medium">{data.attributes.aboutUs.linkText}</h6>
+              <h3 className="text-basecolor text-xlg hover:text-darkgray font-medium">{data.attributes.aboutUs.linkText}</h3>
             </Col>
           </Row>
         </Container>
@@ -106,15 +108,15 @@ const InteriorDesignPage = (props) => {
           <div className='justify-center flex-colections sm:flex-col-reverse'>
           <m.div className=" col-lg-4 col-md-6 md:mb-24 sm:mb-[50px]">
             <p className="font-semibold mt-[55px] text-xlg text-darkgray mb-[25px] sm:mb-[15px] sm:mr-[20px]">{data.attributes.aboutUs.sideTitle}</p>
-            <p className="w-[120%] xl:w-full text-[#828282] text-[15px] mb-[25px] text-justify sm:pr-[22px] sm:pl-[22px]">{data.attributes.aboutUs.summery}</p>
+            <p className="lg:w-full text-[#828282] text-[15px] mb-[25px] text-justify sm:pr-[22px] sm:pl-[22px]">{data.attributes.aboutUs.summery}</p>
             <div className="flex item-center justify-start">
-                <Link to={'./about-us'}><button className="button-custom w-auto mt-[35px]"> درباره شرکت ما</button></Link>
-              </div>
+              <Link to={'./about-us'}><button className="button-custom w-auto mt-[35px]"> درباره شرکت ما</button></Link>
+            </div>
           </m.div>
 
           <m.div className="col-lg-3 mr-[150px] sm:mr-[10px]">
             <div className="outside-box-bottom relative mb-[-14vw] lg:mb-0">
-                <img loading="lazy" className="relative z-[1] w-full rounded-[4px] box-shadow" src={host + data.attributes.aboutUs.image.data.attributes.url} alt="" />
+                <img loading="lazy" width={1920} height={2468} className="relative z-[1] w-full rounded-[4px] box-shadow" src={host + data.attributes.aboutUs.image.data.attributes.url} alt="" />
               {/* Modal Component Start */}
               <LazyLoad height={200} offset={100}>
               <CustomModal.Wrapper
@@ -138,9 +140,9 @@ const InteriorDesignPage = (props) => {
           </div>
         </Container>
       </section>}
+      </LazyLoad>
       
-      {data &&
-      <LazyLoad height={200} offset={100}> 
+      {data && <LazyLoad height={200} offset={100}>
       <section className="bg-[#f1edea] pt-[100px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
         <Container className="pt-[6%] lg:pt-0">
           <Row className="items-center">
@@ -174,25 +176,25 @@ const InteriorDesignPage = (props) => {
                   enabled: true,
                   onlyInViewport: true
                 }}
-                breakpoints={{ 992: { slidesPerView: 3 }, 768: { slidesPerView: 2 } }}><>
+                breakpoints={{ 992: { slidesPerView: 3 }, 768: { slidesPerView: 2 } }}>
                   <Row className={`${props.grid} md:justify-center`}>
                     {data.attributes.ourWork.boxs.map((item, i) => {
-                        return (
-                          <SwiperSlide key={i}>
-                            <m.div className="feature-box-bg-white-hover border-[1px] rounded-0 border-[#0000001a] overflow-hidden" {...{ ...props.animation, transition: { delay: 0.2 * i } }}>
-                              <div className="feature-box-move-bottom-top py-12 px-16 md:py-8 md:px-10 sm:py-12 sm:px-[4.5rem] xs:pt-16">
-                                <h2 className="heading-4  font-medium text-temp mb-[20px] -tracking-[2px]">{`${i <= 9 ? "0" : ""}${i + 1}`}</h2>
-                                <div className="feature-box-content">
-                                  {item.title && <span className="font-semibold text-darkgray title  uppercase text-xlg mb-[10px] inline-block">{item.title}</span>}
-                                  {item.discraption && <p className='text-xmd text-justify'>{item.discraption}</p>}
-                                </div>
-                                <div className="move-bottom-top w-full flex justify-start mt-[15px] xs:mt-0">
-                                  {(item.linkTitle || item.link) && <Buttons ariaLabel="swiper btn" className="font-medium uppercase btn-link after:h-[2px] md:text-md md:mb-[15px] after:bg-basecolor hover:text-basecolor text-fastblue" to={item.link} title={"اطلاعات بیشتر"} />}
-                                </div>
+                      return (
+                        <SwiperSlide key={i}>
+                          <m.div className="feature-box-bg-white-hover border-[1px] rounded-0 border-[#0000001a] overflow-hidden" {...{ ...props.animation, transition: { delay: 0.2 * i } }}>
+                            <div className="feature-box-move-bottom-top py-12 px-16 md:py-8 md:px-10 sm:py-12 sm:px-[4.5rem] xs:pt-16">
+                              <h2 className="heading-4  font-medium text-temp mb-[20px] -tracking-[2px]">{`${i <= 9 ? "0" : ""}${i + 1}`}</h2>
+                              <div className="feature-box-content">
+                                {item.title && <span className="font-semibold text-darkgray title  uppercase text-xlg mb-[10px] inline-block">{item.title}</span>}
+                                {item.discraption && <p className='text-xmd text-justify'>{item.discraption}</p>}
                               </div>
-                            </m.div>
-                          </SwiperSlide>)})}
-                  </Row></>
+                              <div className="move-bottom-top w-full flex justify-start mt-[15px] xs:mt-0">
+                                {(item.linkTitle || item.link) && <Buttons ariaLabel="swiper btn" className="font-medium uppercase btn-link after:h-[2px] md:text-md md:mb-[15px] after:bg-basecolor hover:text-basecolor text-fastblue" to={item.link} title={"اطلاعات بیشتر"} />}
+                              </div>
+                            </div>
+                          </m.div>
+                        </SwiperSlide>)})}
+                  </Row>
               </Swiper>
             </m.div>
           </Row>
@@ -201,46 +203,45 @@ const InteriorDesignPage = (props) => {
       </LazyLoad>}
       
       {data && <LazyLoad height={200} offset={100}>  <div className="py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] md:flex md:items-center overflow-hidden relative" >
-          <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-[center_center]" translateY={[-80, 80]} style={{ backgroundImage: `url(${host}${data.attributes.Parallax.image.data.attributes.url})` }}></Parallax>
-          {/* <div className="absolute h-full w-full opacity-80 top-0 left-0"></div> */}
-          <Container className="relative">
-              <Row className="justify-center">
-                  <Col xl={7} lg={8} sm={10} className="text-center text-white overflow-hidden ">
-                      <m.div>
-                          <h2 className="heading-4 font-semibold mb-[25px] sm:mb-[25px] text-fastblue">{data.attributes.Parallax.title}</h2>
-                          <p className="uppercase text-[20px]">{data.attributes.Parallax.subtitle}</p>
-                          <p className="uppercase mt-12 text-[16px] text-lightgray">{data.attributes.Parallax.content}</p>
-                      </m.div>
-                      <m.div className="flex item-center justify-center">
-                        <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px]">{data.attributes.Parallax.button}</button></Link>
-                      </m.div>
-                  </Col>
-              </Row>
-          </Container>
+        <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-[center_center]" translateY={[-80, 80]} style={{ backgroundImage: `url(${host}${data.attributes.Parallax.image.data.attributes.url})` }}></Parallax>
+        <Container className="relative">
+          <Row className="justify-center">
+            <Col xl={7} lg={8} sm={10} className="text-center text-white overflow-hidden ">
+              <m.div>
+                <h2 className="heading-4 font-semibold mb-[25px] sm:mb-[25px] text-fastblue">{data.attributes.Parallax.title}</h2>
+                <p className="uppercase text-[20px]">{data.attributes.Parallax.subtitle}</p>
+                <p className="uppercase mt-12 text-[16px] text-lightgray">{data.attributes.Parallax.content}</p>
+              </m.div>
+              <m.div className="flex item-center justify-center">
+                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px]">{data.attributes.Parallax.button}</button></Link>
+              </m.div>
+            </Col>
+          </Row>
+        </Container>
       </div> </LazyLoad>}
       
       {data && <LazyLoad height={200} offset={100}>
         <m.section className="cover-background py-[130px] lg:py-[50px] md:py-[45px] sm:py-[30px] sm:pt-[100px]" style={{ backgroundImage: "url(/assets/img/webp/home-interior-design-about-bg.webp)" }}>
         <Container className="relative">
           <Row className="items-center justify-center ">
-          <Col xs={10} lg={6} className="relative">
-                <div className="relative">
-                  <Parallax className="lg-no-parallax w-[75%] mr-36" speed={0}>
-                    <img loading="lazy" width="" height="" alt="" src={host + data.attributes.newInWrold.bigImg.data.attributes.url} />
-                  </Parallax>
-                  <Parallax className="lg-no-parallax flex justify-center items-center w-1/2 bg-no-repeat absolute bottom-24 right-[15px] lg:!left-auto lg:!top-[150px] sm:!top-[100px]" speed={20}>
-                    <img loading="lazy" width="341.25px" height="349.78px" alt="" src={host + data.attributes.newInWrold.smallImg.data.attributes.url} />
-                  </Parallax>
-                </div>
-          </Col>
+            <Col xs={10} lg={6} className="relative">
+              <div className="relative">
+                <Parallax className="lg-no-parallax w-[75%] mr-36" speed={0}>
+                  <img loading="lazy" width="" height="" alt="" src={host + data.attributes.newInWrold.bigImg.data.attributes.url} />
+                </Parallax>
+                <Parallax className="lg-no-parallax flex justify-center items-center w-1/2 bg-no-repeat absolute bottom-24 right-[15px] lg:!left-auto lg:!top-[150px] sm:!top-[100px]" speed={20}>
+                  <img loading="lazy" width="341.25px" height="349.78px" alt="" src={host + data.attributes.newInWrold.smallImg.data.attributes.url} />
+                </Parallax>
+              </div>
+            </Col>
             <m.div className="col-lg-5 offset-lg-1 col-md-10 ml-0 mr-[4%]">
-              <div className="font font-medium mb-[30px] flex">
+              <div className="font font-medium mb-[30px] sm:mb-4 flex sm:mt-24">
                 <div className="flex-grow-1">
                   <span className="text-basecolor uppercase text-fastblue">{data.attributes.newInWrold.redtext}</span></div></div>
-              <h2 className="heading-5  uppercase text-darkgray font-bold w-[85%] mb-[30px] xl:w-full">{data.attributes.newInWrold.title}</h2>
-              <p className="w-[75%] xl:w-full mb-[25px] text-[15px] text-justify">{data.attributes.newInWrold.discraption}</p>
-              <div className="flex item-center justify-start">
-                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px]">اطلاعات بیشتر</button></Link>
+                  <h2 className="heading-5  uppercase text-darkgray font-bold w-[85%] mb-[30px] xl:w-full">{data.attributes.newInWrold.title}</h2>
+                  <p className="w-[75%] xl:w-full mb-[25px] text-[15px] text-justify pl-6 pr-2">{data.attributes.newInWrold.discraption}</p>
+                <div className="flex item-center justify-start">
+                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px] sm:mt-4">اطلاعات بیشتر</button></Link>
               </div>
             </m.div>
           </Row>
@@ -305,28 +306,28 @@ const InteriorDesignPage = (props) => {
       
       {loadingGroup && data &&<LazyLoad height={200} offset={100}> 
        <>
-        <m.div className="row justify-center text-center py-24 w-[100vw] bg-[#f1edea]" >
-            <Col xl={6} lg={7} md={8} sm={12} className=" flex flex-col items-center text-center">
-              <span className="font-medium text-fastblue text-xxlg uppercase m-[10px]">{data.attributes.groupElements.title}</span>
-              <h2 className="heading-5 text-xlg -tracking-[1px] text-darkgray block w-3/5 mb-0">{data.attributes.groupElements.subtitle}</h2>
-            </Col>
-          </m.div>
-      <m.section className="cover-background overflow-hidden" style={{ backgroundImage: `url(${host}${data && data.attributes.groupElements.Image.data.attributes.url})` }} >
-        <Container fluid className="px-0">
-           <FancyTextBox
-            grid="row row-cols-1 row-cols-xl-4 row-cols-sm-2 gx-0 px-0"
-            themeColor=""
-            className="justify-center"
-            theme="fancy-text-box-05"
-            data={groupData}
-            animation={fadeIn} />
-        </Container>
-      </m.section>
-      <div className="flex-fix py-12 bg-[#f1edea]">
-          <div className="flex item-center justify-center">
-            <Link to={'./product-groups'}><button className="button-custom w-auto mt-[35px]">مشاهده همه</button></Link>
-          </div>
-      </div></>
+        <m.div className="flex items-center justify-center text-center py-24 w-full bg-[#f1edea]" >
+          <Col xl={6} lg={7} md={8} sm={12} className=" flex flex-col items-center text-center">
+            <span className="font-medium text-fastblue text-xxlg uppercase m-[10px]">{data.attributes.groupElements.title}</span>
+            <h2 className="heading-5 text-xlg -tracking-[1px] text-darkgray block w-3/5 mb-0">{data.attributes.groupElements.subtitle}</h2>
+          </Col>
+        </m.div>
+        <m.section className="cover-background overflow-hidden" style={{ backgroundImage: `url(${host}${data && data.attributes.groupElements.Image.data.attributes.url})` }} >
+          <Container fluid className="px-0">
+             <FancyTextBox
+              grid="row row-cols-1 row-cols-xl-4 row-cols-sm-2 gx-0 px-0"
+              themeColor=""
+              className="justify-center"
+              theme="fancy-text-box-05"
+              data={groupData}
+              animation={fadeIn} />
+          </Container>
+        </m.section>
+        <div className="flex-fix py-12 pt-2 bg-[#f1edea]">
+            <div className="flex item-center justify-center">
+              <Link to={'./product-groups'}><button className="button-custom w-auto mt-[35px]">مشاهده همه</button></Link>
+            </div>
+        </div></>
       </LazyLoad>}
 
       {data && data.attributes.comments.item[0] && <LazyLoad height={200} offset={100}> 

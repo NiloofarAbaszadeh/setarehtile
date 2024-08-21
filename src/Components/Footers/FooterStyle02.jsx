@@ -34,7 +34,6 @@ const FooterStyle02 = (props) => {
                 headers: { Authorization: `Bearer ${token}` }
               })
               .then(res => {
-                // console.log(res.data.data[0].attributes.mainImage.data.attributes.formats.thumbnail.url)
                 setLatestNewsData(res.data.data)
             })
               setLoading(true)}
@@ -42,13 +41,13 @@ const FooterStyle02 = (props) => {
     },[host, token])
     return ( <>
         {loading && 
-            <Footer theme={props.theme} className={`${props.className ? ` ${props.className}` : ""}`}>
+            <Footer theme="dark" className={`text-slateblue bg-[#262b35] w-full`}>
             <div className="py-[4%] lg:py-[4%] md:pb-0 xs:py-[4%]">
                 <Container>
                     <Row className="md:text-start justify-start">
                         <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 1 }} className="md:mb-[50px] xs:mb-[25px]">
                             <Link aria-label="link" to="/" className="mb-[20px] block">
-                                <img className='w-[65px] h-[35px]' alt="logo" src={WhiteLogo} width="220" height="120" />
+                                <img className='w-[85px]' alt="logo" src={WhiteLogo} width="220" height="120" />
                             </Link>
                             <p className="w-[80%] mb-[20px] xs:w-full text-[14px]">شرکت کاشی و سرامیک ستاره میبد در خرداد 1383 در شهر تاریخی و زیبای میبد تاسیس گردید .</p>
                             <p className="w-[80%] mb-[8px] xs:w-full text-[14px]">شماره تماس کارخانه :<br/> 3151 - 07 - 03532372082 </p>

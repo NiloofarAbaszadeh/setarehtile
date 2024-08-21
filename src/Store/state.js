@@ -14,21 +14,8 @@ export const stateSlice = createSlice({
     },
 
   },
-  reducers: {
-    // actions
-    loginUser: (state, action) => {
-      state.userState = "login"
-      state.activeUser.username = action.payload;
-      state.activeUser.password = 2;
-    },
-    logoutUser: (state) => {
-      state.userState = "logout"
-      state.activeUser.username = "";
-      state.activeUser.password = "";
-    }
-  }
+  
 })
 
-export const { loginUser, logoutUser} = stateSlice.actions
 
 export default stateSlice.reducer;

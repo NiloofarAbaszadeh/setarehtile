@@ -39,8 +39,8 @@ const BlogMetro = (props) => {
         <li className="grid-sizer"></li>
         {props.data.map((item, i) => {
           return (
-            <li key={i} className={`grid-item${item.double_col ? " grid-item-double" : ""} `} >
-              <m.div className="blog-metro "
+            <li key={i} className={`grid-item${item.double_col ? " grid-item-double" : ""}`} >
+              <m.div className="blog-metro box-shadow"
                 initial={{ opacity: 0 }}
                 whileInView={!loading && { opacity: 1 }}
                 viewport={{ once: true }}

@@ -8,7 +8,7 @@ import logo from '../../Assets/images/logo.png'
 const WhiteHeaderPage = (props) => {
   const location = useLocation()
   const [loading, setLoading] = useState(false)
-  // const [loadingScreen, setLoadingScreen] = useState(false)
+  const [loadingScreen, setLoadingScreen] = useState(false)
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
   const scrollToTop = () => {
@@ -19,14 +19,14 @@ const WhiteHeaderPage = (props) => {
     setLoading(false)
     scrollToTop()
     setLoading(true)
-    // setLoadingScreen(false)
-    // setTimeout(() => {
-    //   setLoadingScreen(true)
-    // }, 2000)
+    setLoadingScreen(false)
+    setTimeout(() => {
+      setLoadingScreen(true)
+    }, 500)
   },[location.pathname, host, token])
 
   return (<>
-    <div className='z-10'>
+    <div className='z-10 w-full'>
       {loading && <Header topSpace={{ desktop: true }} type="reverse-scroll "> 
         <HeaderNav theme="light" bg="light-gray" menu="light" expand="lg" className="px-[15px] py-[0px] lg:px-[15px] md:px-0 " containerClass="sm:px-0">
           <Col className="col-3 col-sm-6 col-lg-1 me-auto ps-lg-0">
@@ -57,6 +57,6 @@ const WhiteHeaderPage = (props) => {
         </HeaderNav>
       </Header>}
       <Outlet />
-    <FooterStyle02 theme="dark" className="text-slateblue bg-[#262b35]" />
+    {loadingScreen && <FooterStyle02/>}
   </div></>)}
 export default WhiteHeaderPage

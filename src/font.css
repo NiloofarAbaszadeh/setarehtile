@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'IranSans';
+  font-display: swap;
   src: url('./font/YekanBakhFaNum-Regular.woff2') format('woff2'),
        url('./font/YekanBakhFaNum-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 /* @font-face {
@@ -14,10 +14,6 @@
 
 * {
   font-family: IranSans;
-}
-
-
-*{
   direction: rtl;
 }
 
