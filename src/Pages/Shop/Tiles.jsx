@@ -18,7 +18,6 @@ const tileGlazeType = ["براق", "مات"]
 const tileUsePlace = ["داخلی", "بیرونی"]
 
 const Tiles = (props) => {
-    
     const [filteredData, setFilteredData] = useState(props.data)
     
     const [dataType, setDataType] = useState("tiles")
@@ -265,11 +264,9 @@ const Tiles = (props) => {
         return (<Navigate to="/product-groups" replace={true} />)
     }
     return (<>
-    
         {props.data && <section className="shopping-right-left-sidebar pt-0 py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
                 <Container>
                     <Row>
-                        
                         <Col lg={9} md={8} className="pl-[55px] md:pl-[15px] sm:mb-[30px] order-md-2 order-1 sm:px-0">
                             <div className='flex justfy-start items-center text-black text-xlg mb-4'>
                                 <div className='p-[3px]'>
@@ -286,7 +283,6 @@ const Tiles = (props) => {
                                   <option value="collections">کلکسیون ها</option>
                                   <option value="groups">گروه ها</option>
                                   <option value="tiles">کاشی ها</option>
-
                                 </select>
                                 </div>
                             </div>

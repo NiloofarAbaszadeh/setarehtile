@@ -25,7 +25,7 @@ const BlogSideImage03 = (props) => {
         setData(res.data.data[0])
         setTimeout(() => {
           setLoading(true)
-        }, 3000)
+        }, 1000)
       })
     }
     GetData()
@@ -42,7 +42,7 @@ const BlogSideImage03 = (props) => {
         size={50}
         aria-label="Loading Spinner"
         data-testid="loader"/></div>}
-    {data && <div className="h-[300px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative">
+    {data && loading && <div className="h-[300px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative">
         <div className='absolute top-0 left-0 w-full h-full bg-darkgray opacity-70 z-[1]'></div>
         <Parallax className="lg-no-parallax bg-cover absolute -top-[50px] left-0 w-full h-[100vh] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px]" translateY={[-40, 40]} style={{ backgroundImage: `url(${host}${data.attributes.boardImage.data.attributes.formats.custom.url})` }}></Parallax>
         <Container className="h-full relative z-[2]">

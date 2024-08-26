@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 const PortfolioBoxed02 = (props) => {
 
     const host = useSelector(state => state.State.host)
+    
+    console.log(props.data[0].attributes)
     return (
         <div className='custom-grid'>
             {props.data.map((item, i) => {

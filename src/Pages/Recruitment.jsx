@@ -224,15 +224,15 @@ const Recruitment = () => {
           </Container>
       </div>
 
-            <div className="flex items-center justify-center mt-24">
-              <p className="text-[30px]">فرم درخواست کار کاشی و سرامیک ستاره میبد</p>
+            <div className="flex items-center justify-center mt-24 mx-24">
+              <p className="text-[30px] text-center">فرم درخواست کار کاشی و سرامیک ستاره میبد</p>
             </div>
             <form onSubmit={handelSubmmit}>
                 {/*  for cols in responsive uI/uX */}
                 <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-user text-red ml-2"></span>مشخصات متقاضی</p>
                 <div className="mx-24 xs:mx-4 flex flex-col items-center justify-center">
                     {/* مشخصات متقاضی */}
-                    <div className="flex xs:flex-col items-start xs:items-center justify-center bg-white boarder-2 box-shadow w-full pb-12 pt-6 rounded-[5px]">
+                    <div className="flex xs:flex-col items-start xs:items-center w-[80vw] justify-center bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px]">
                         {/* right side */}
                         <div className="w-[40vw] xs:w-[80vw] flex items-start justify-center">  
                             <div>
@@ -1043,7 +1043,7 @@ const Recruitment = () => {
                               placeholder="شماره بیمه"
                               onChange={handelChange}
                               value={formData.insuranceNumber}
-                              className="w-[18vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[18vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1055,7 +1055,7 @@ const Recruitment = () => {
                               placeholder="محل کار"
                               onChange={handelChange}
                               value={formData.currentWorkPlace}
-                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
                         </div>
@@ -1212,7 +1212,7 @@ const Recruitment = () => {
                               placeholder="شغل مادر"
                               onChange={handelChange}
                               value={formData.familymathersJob}
-                              className="w-[14vw] xs:w-[38vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                              className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                             /> 
                         </div>
                         <div className="flex flex-col items-start justify-center">
@@ -1395,7 +1395,7 @@ const Recruitment = () => {
                       placeholder="توضیحات"
                       onChange={handelChange}
                       value={formData.acquaintancesInfo}
-                      className="w-full h-[18vh] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial]  border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
+                      className="w-full h-[18vh] xs:w-[60vw] py-[13px] px-[15px] text-md leading-[initial]  border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                       required
                     /> 
                 </div>
