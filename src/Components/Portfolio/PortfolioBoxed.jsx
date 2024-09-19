@@ -1,4 +1,4 @@
-import React, { memo} from 'react'
+import React, { memo } from 'react'
 import { m } from "framer-motion"
 import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router-dom'

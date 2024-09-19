@@ -985,7 +985,6 @@ const Recruitment = () => {
                                   </tr> 
                               </tbody>
                             </table>
-                        
                         <div className="grid xl:grid-cols-4 xs:grid-cols-2 gap-8 items-center justify-start ">
                     <div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px]">شغل مورد تقاضا<span className="text-[#fb4f58]"> * </span></label>

@@ -33,22 +33,21 @@ const BlogSideImgPage = () => {
 
   useEffect(() => {
     const newsElements = () => {
-        axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(res => {
-          setCurrentItems(res.data.data.slice())
-          const maxPage = res.data.data.length % itemsPerPage !== 0 ? res.data.data.length / itemsPerPage + 1 : res.data.data.length / itemsPerPage
-          setMaxPageNumber(maxPage.toFixed(0))
-          InitialPageNumber(maxPage.toFixed(0))
-        })
-        axios.get(`${host}/api/news-page?populate=deep`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(res => {
-          setData(res.data.data)
-        })
-      
+      axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        setCurrentItems(res.data.data.slice())
+        const maxPage = res.data.data.length % itemsPerPage !== 0 ? res.data.data.length / itemsPerPage + 1 : res.data.data.length / itemsPerPage
+        setMaxPageNumber(maxPage.toFixed(0))
+        InitialPageNumber(maxPage.toFixed(0))
+      })
+      axios.get(`${host}/api/news-page?populate=*`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        setData(res.data.data)
+      })
     }
     newsElements()
     // eslint-disable-next-line
@@ -133,7 +132,7 @@ const BlogSideImgPage = () => {
             </Col>
           </Row>
         </Container>
-        {/* Pagination Start */}
+      {/* Pagination Start */}
       {data && (
         <div className="flex justify-center mt-[7.5rem] md:mt-20">
           <ul className="pagination pagination-style-01 font-sans font-medium items-center">

@@ -60,7 +60,7 @@ const FooterStyle02 = (props) => {
                                 {loading && latestNewsData.map(item => {
                                     return (<li className="flex mb-[25px]" key={item.id}>
                                             <Link aria-label="link" to={`/news/${item.attributes.title}`} className="w-[75px] ml-[15px] shrink-0">
-                                                <img src={host + item.attributes.mainImage.data.attributes.formats.xsmall.url} alt="footer" width={75} />
+                                                <img src={host + item.attributes.mainImage.data.attributes.formats.xsmall.url} alt="footer" width={75} height={30}/>
                                             </Link>
                                             <div>
                                                 <Link aria-label="link" to={`/news/${item.attributes.title}`}><span className='text-[14px]'>{item.attributes.title}</span></Link>

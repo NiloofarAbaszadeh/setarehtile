@@ -150,7 +150,6 @@ const Tiles = (props) => {
     }
 
     useEffect(() => {
-
         if (colorTheme.length + bakeType.length + glazeType.length + specialTypes.length + usePlaces.length + filterType.length + filterSize.length + filterDesign.length + filterShape.length >= 1) {
             // eslint-disable-next-line
             setFilteredData(FilterUsePlaces(FilterGlaze(FilterBake(FilterSpecial(FilterColor(FilterShape(FilterDesign(FilterSize(filteredData)))))))))}
@@ -264,7 +263,7 @@ const Tiles = (props) => {
         return (<Navigate to="/product-groups" replace={true} />)
     }
     return (<>
-        {props.data && <section className="shopping-right-left-sidebar pt-0 py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
+            {props.data && <section className="shopping-right-left-sidebar pt-0 py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
                 <Container>
                     <Row>
                         <Col lg={9} md={8} className="pl-[55px] md:pl-[15px] sm:mb-[30px] order-md-2 order-1 sm:px-0">
