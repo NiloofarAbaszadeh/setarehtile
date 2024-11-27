@@ -85,4 +85,92 @@ const HeaderData = [
     }
 ]
 
+const HeaderDataEn = [
+    {
+        title: 'Home',
+        link: '/',
+    },
+    {
+        title: 'About Us',
+        link: '/about-us',
+    },
+    {
+        title: 'News & Articles',
+        dropdown: [
+            {
+                title: 'Researches',
+                link: './research',
+            },
+            {
+                title: 'News',
+                link: '/news',
+            },
+            {
+                title: 'Visits',
+                link: '/visits',
+            },
+        ],
+    },
+    {
+        title: 'Certificate',
+        dropdown: [
+            {
+                title: 'Internal CE',
+                link: './certificate/internal-ce',
+            },
+            {
+                title: 'External CE',
+                link: './certificate/external-ce',
+            },
+            {
+                title: 'Honors',
+                link: './certificate/honors',
+            },
+        ],
+    },
+    {
+        title: 'Product',
+        dropdown: [
+            {
+                title: 'Collections',
+                link: './product-collection',
+            },
+            {
+                title: 'Groups',
+                link: '/product-groups',
+            },
+            {
+                title: 'Tiles',
+                link: '/product-tilse',
+            },
+        ],
+    },
+    {
+        title: 'Catalogs',
+        link: '/catalog',
+    },
+    {
+        title: 'Egents',
+        dropdown: [
+            {
+                title: 'Internal Egents',
+                link: './agent/internal-agent',
+            },
+            {
+                title: 'External Egents',
+                link: './agent/external-agent',
+            },
+        ],
+    },
+    // {
+    //     title: 'Recruitment',
+    //     link: '/recruitment',
+    // },
+    {
+        title: 'Contact Us',
+        link: '/contact-us'
+    }
+]
+
+export {HeaderDataEn};
 export default HeaderData

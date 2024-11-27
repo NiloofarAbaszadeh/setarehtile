@@ -11,6 +11,8 @@ const BlogSideImgPage = () => {
   const location = useLocation()
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
+
   const [data, setData] = useState(null)
 
   // page number
@@ -33,7 +35,7 @@ const BlogSideImgPage = () => {
 
   useEffect(() => {
     const newsElements = () => {
-      axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc`, {
+      axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
@@ -42,7 +44,7 @@ const BlogSideImgPage = () => {
         setMaxPageNumber(maxPage.toFixed(0))
         InitialPageNumber(maxPage.toFixed(0))
       })
-      axios.get(`${host}/api/news-page?populate=*`, {
+      axios.get(`${host}/api/news-page?populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
@@ -51,7 +53,7 @@ const BlogSideImgPage = () => {
     }
     newsElements()
     // eslint-disable-next-line
-  }, [host, token])
+  }, [host, token, language])
 
   const SetErea = (action) => {
     if (action === "next") {
@@ -101,7 +103,7 @@ const BlogSideImgPage = () => {
 }
 
   return (<><Helmet>
-        <title> اخبار | کاشی و سرامیک ستاره  </title>
+        <title>{language === "fa-IR" ? "اخبار | کاشی ستاره میبد" : language === "en" ? "News | Setareh Meybod Tile & Ceramic" : ""}</title>
       </Helmet>
       {!data && !currentItems && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
@@ -137,15 +139,15 @@ const BlogSideImgPage = () => {
         <div className="flex justify-center mt-[7.5rem] md:mt-20">
           <ul className="pagination pagination-style-01 font-sans font-medium items-center">
             <li className="page-item">
-                <button className="feather-arrow-right text-lg page-link" onClick={handelPageChange} value={"per"}></button>
+                <button className={`feather-arrow-${language === "fa-IR" ? "right" : language === "en" ? "left" : ""} text-lg page-link`} onClick={handelPageChange} value={"per"}></button>
             </li>
             {pageCounter.map((item, id) => {
               return <li className="page-item" onClick={handelPageChange}>
-              <button className="page-link" value={id + 1}> {id + 1} </button>
+              <button className="page-link " value={id + 1}> {id + 1} </button>
             </li>
             })}
             <li className="page-item">
-                <button className="feather-arrow-left text-lg page-link" onClick={handelPageChange} value={"next"}></button>
+                <button className={`feather-arrow-${language === "fa-IR" ? "left" : language === "en" ? "right" : ""} text-lg page-link`} onClick={handelPageChange} value={"next"}></button>
             </li>
           </ul>
         </div>

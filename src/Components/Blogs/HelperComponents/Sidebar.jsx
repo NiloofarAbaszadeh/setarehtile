@@ -42,6 +42,7 @@ const SocialIconsData = [
 const Sidebar = (props) => {
     const token = useSelector(state => state.State.readToken)
     const host = useSelector(state => state.State.host)
+    const language = useSelector(state => state.State.language)
 
     const navigate = useNavigate();
     const [authorInfo, setAuthorInfo] = useState(null)
@@ -64,7 +65,7 @@ const Sidebar = (props) => {
     return (
         <aside className="col-12 col-xl-3 offset-xl-1 col-lg-4 col-md-7 md:pl-[15px]">
             <div className='inline-block w-full mb-20'>
-                <span className='mb-[25px] font-medium text-darkgray text-lg block'>جست و جو</span>
+                <span className='mb-[25px] font-medium text-darkgray text-lg block'>{language === "fa-IR" ? "جست و جو" : language === "en" ? "Search" : ""}</span>
                 <div className="relative">
                     <Formik
                         initialValues={{ search: '' }}
@@ -79,8 +80,8 @@ const Sidebar = (props) => {
                             <div className="relative">
                                 <Form className="relative">
                                     
-                                    <Input showErrorMsg={false} type="text" name="search" className="border-[1px] py-[15px] px-[20px] w-full rounded-[5px] border-solidborder-transparent" placeholder="عبارت مورد نظر را وارد کنید..." />
-                                    <button type="submit" className={`text-xs tracking-[1px] text-fastblue py-[15px] !absolute top-[8%] left-0 px-[20px] uppercase${isSubmitting ? " loading" : ""}`}><i className="feather-search"></i></button>
+                                    <Input showErrorMsg={false} type="text" name="search" className="border-[1px] py-[15px] px-[20px] w-full rounded-[5px] border-solidborder-transparent" placeholder={language === "fa-IR" ? "عبارت مورد نظر را وارد کنید..." : language === "en" ? "Enter text..." : ""} />
+                                    <button type="submit" className={`text-xs tracking-[1px] text-fastblue py-[15px] !absolute top-[8%] ${language === "fa-IR" ? "left" : language === "en" ? "right" : ""}-0 px-[20px] uppercase${isSubmitting ? " loading" : ""}`}><i className="feather-search"></i></button>
                                 </Form>
                             </div>
                         )}
@@ -104,7 +105,7 @@ const Sidebar = (props) => {
             </div>
             
             <m.div className='visible mb-20 md:w-[90%] sm:w-full' {...fadeIn}>
-                <span className='mb-[35px] font-medium text-darkgray text-xlg block'>تگ ها</span>
+                <span className='mb-[35px] font-medium text-darkgray text-xlg block'>{language === "fa-IR" ? "تگ ها" : language === "en" ? "Tags" : ""}</span>
                 {authorInfo && props.data[0].attributes.tags.data.map(tag => {
                     return (
                         <div  className='inline-block text-center text-sm mt-0 ml-[6px] mb-[10px] mr-0 pt-[5px] px-[18px] pb-[6px] rounded-[4px] border-mediumgray border hover:text-[#828282] hover:shadow-[0_0_15px_rgba(0,0,0,0.1)]'>{tag.attributes.tagName}</div>

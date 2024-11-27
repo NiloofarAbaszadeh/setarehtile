@@ -18,22 +18,24 @@ import { ScaleLoader } from 'react-spinners';
 const AboutUsPage = (props) => {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
+
   const [data, setData] = useState()
   useEffect(() => {
     const getData = () => {
-      axios.get(`${host}/api/about?populate=deep`, {
+      axios.get(`${host}/api/about?populate=deep&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
         setData(res.data.data)})
       }
     getData()
-  },[host, token])
+  },[host, token, language])
 
   return (
     <div style={props.style}>
       <Helmet>
-        <title> درباره ما | کاشی و سرامیک ستاره  </title>
+        <title>{language === "fa-IR" ? " درباره ما | کاشی و سرامیک ستاره" : language === "en" ? "About us | Setareh Meybod Tile & Ceramic" : ""}</title>
       </Helmet>
       {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 '>
         <ScaleLoader
@@ -49,7 +51,7 @@ const AboutUsPage = (props) => {
         <Parallax className="lg-no-parallax bg-cover absolute -top-[50px] left-0 w-full h-[100vh] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px]" translateY={[-40, 40]} style={{ backgroundImage: `url(${host}${data.attributes.boardImage.data.attributes.formats.custom.url})` }}></Parallax>
         <Container className="h-full relative z-[2]">
           <Row className="justify-center h-full">
-            <Col xl={6} lg={7} md={8} className="relative font-serif text-center flex justify-center flex-col">
+            <Col xl={6} lg={7} md={8} className="relative text-center flex justify-center flex-col">
               <h2 className="text-white font-medium -tracking-[1px] mb-0 text-[50px] sm:text-[24px]">{data.attributes.boardTitle}</h2>
               <ScrollTo to="about" offset={0} delay={0} spy={true} smooth={true} duration={800} className="absolute bottom-[50px] left-1/2 -translate-x-1/2 cursor-pointer">
                 <i className="ti-mouse text-[28px] text-white up-down-ani"></i>
@@ -130,7 +132,7 @@ const AboutUsPage = (props) => {
           <Row className="lg:mx-[15px]">
             <Overlap className="bg-white p-16 shadow-[0_0_15px_rgba(0,0,0,0.1)] mb-[130px] md:mb-[80px] sm:shadow-none sm:border-b sm:mb-[50px]">
               <Counter
-                theme="counter-style-05"
+                theme={`${language === "fa-IR" ? "counter-style-05" : language === "en" ? "counter-style-06" : ""}`}
                 grid="row-cols-1 row-cols-md-3 text-center gap-y-10"
                 className="text-black"
                 duration={2}
@@ -142,8 +144,13 @@ const AboutUsPage = (props) => {
         <Container>
           <Row className="justify-center">
             <m.div className="col-md-6  text-center mb-[2.5rem] sm:mb-8" {...fadeIn}>
+            {language === "fa-IR" ? <>
               <span className="text-fastblue text-xxlg ">معرفی افراد</span>
               <h5 className="text-darkgray font-medium text-[17px]">با ما آشنا شوید</h5>
+            </> : language === "en" ? <>
+              <span className="text-fastblue text-xxlg ">Introduction</span>
+              <h5 className="text-darkgray font-medium text-[17px]">Get to know us</h5>
+            </> : <></>}  
             </m.div>
           </Row>
           <Team

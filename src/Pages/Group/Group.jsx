@@ -19,6 +19,7 @@ const Group = () => {
 
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
 
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -30,12 +31,12 @@ const Group = () => {
     const base = [
       baseInfo.bakeType.data !== null && {
         img: host + baseInfo.bakeType.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع پخت",
+        title: language === "fa-IR" ? `نوع پخت` : language === "en" ? `Bake` : "",
         name: baseInfo.bakeType.data.attributes.bakeType
       },
       baseInfo.bodyColor.data !== null && {
         img: host + baseInfo.bodyColor.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "رنگ بدنه",
+        title: language === "fa-IR" ? `رنگ بدنه` : language === "en" ? `Body Color` : "",
         name: baseInfo.bodyColor.data.attributes.color
       },
       baseInfo.color_themes.data[0] !== undefined && {
@@ -45,31 +46,31 @@ const Group = () => {
             name: item.attributes.color
           }
         }),
-        title: "تم رنگی",
+        title: language === "fa-IR" ? `تم رنگی` : language === "en" ? `Color Theme` : "",
       },
       baseInfo.design.data !== null && {
         img: host + baseInfo.design.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع طرح",
+        title: language === "fa-IR" ? `نوع طراحی` : language === "en" ? `Design` : "",
         name: baseInfo.design.data.attributes.design
       },
       baseInfo.galeb.data !== null && {
         img: host + baseInfo.galeb.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع قالب",
+        title: language === "fa-IR" ? `نوع قالب` : language === "en" ? `Template` : "",
         name: baseInfo.galeb.data.attributes.molde
       },
       baseInfo.glazeType.data !== null && {
         img: host + baseInfo.glazeType.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع لعاب",
+        title: language === "fa-IR" ? `نوع لعاب` : language === "en" ? `Glaze` : "",
         name: baseInfo.glazeType.data.attributes.glaze
       },
       baseInfo.shape.data !== null && {
         img: host + baseInfo.shape.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع شکل",
+        title: language === "fa-IR" ? `نوع شکل` : language === "en" ? `Shape` : "",
         name: baseInfo.shape.data.attributes.shape
       },
       baseInfo.size.data !== null && {
         img: host + baseInfo.size.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "ابعاد",
+        title: language === "fa-IR" ? `ابعاد` : language === "en" ? `Size` : "",
         name: baseInfo.size.data.attributes.size
       },
       baseInfo.special_types.data[0] !== undefined && {
@@ -79,11 +80,11 @@ const Group = () => {
             name: item.attributes.feature
           }
         }),
-        title: "ویژگی خاص",
+        title: language === "fa-IR" ? `ویژگی های خاص` : language === "en" ? `Special features` : "",
       },
       baseInfo.stamp.data !== null && {
         img: host + baseInfo.stamp.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع چاپ",
+        title: language === "fa-IR" ? `نوع چاپ` : language === "en" ? `Stamp` : "",
         name: baseInfo.stamp.data.attributes.stamp
       },
       baseInfo.type.data[0] !== undefined && {
@@ -93,7 +94,7 @@ const Group = () => {
             name: item.attributes.type
           }
         }),
-        title: "نوع محصول",
+        title: language === "fa-IR" ? `نوع محصول` : language === "en" ? `Product Type` : "",
       },
       baseInfo.use_places.data[0] !== undefined && {
         sideimg: baseInfo.use_places.data.map(item => {
@@ -102,9 +103,8 @@ const Group = () => {
             name: item.attributes.place
           }
         }),
-        title: "مکان استفاده",
+        title: language === "fa-IR" ? `مکان استفاده` : language === "en" ? `Use place` : "",
       },
-
     ]
     setIconWithTextData(base)
 
@@ -114,28 +114,25 @@ const Group = () => {
   useEffect(() => {
     const GetData = async () => {
       // eslint-disable-next-line
-      await axios.get(`${host}/api/groupss?filters\[name]=${id}&populate=deep`, {
+      await axios.get(`${host}/api/groupss?filters\[name]=${id}&populate=deep&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(res.data.data)
         Set(res.data.data)
-      })
-      
-        
+      })  
     }
     const Set = async (data) => {
       await setTailsData(data[0].attributes.tiles.data)
       await SetBaseInfo(data[0].attributes.tiles.data[0].attributes.baseInfo)
-      
-    setLoading(true)
+      setLoading(true)
     }
     GetData()
     // eslint-disable-next-line
-  }, [host, token])
+  }, [host, token, language])
  
   return (
     <>
-      {!loading && !data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!loading && !data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
         color={"#db1010"}
         loading={!loading}
@@ -143,14 +140,12 @@ const Group = () => {
         aria-label="Loading Spinner"
         data-testid="loader"/></div>}
       <Helmet>
-        {loading && <title> {data[0].attributes.name} | کاشی و سرامیک ستاره  </title>}
+        {loading && <title>{language === "fa-IR" ? `${data[0].attributes.name} | کاشی و سرامیک ستاره  ` : language === "en" ? `${data[0].attributes.name} | Setareh Meybod Tile & Ceramic` : ""}</title>}
       </Helmet>
       {loading && data[0].attributes.seo && <Seo data={data[0].attributes.seo} />}
       {loading && 
       <m.section className="relative rev-dir bg-cover h-[92vh]" style={{ backgroundImage: `url(${host}${data[0].attributes.GroupImage.data.attributes.formats.large.url})` }} {...fadeIn}>
-      
-        
-        <div className="w-[100vw] h-[100vh] relative">
+        <div className="w-[99.4vw] h-[100vh] relative">
           <img className="w-full h-[92vh]" src={host + "/uploads/Layer_2_a777b8a13e.png"} alt=""></img>
           <div className="absolute top-[35vh] right-[135px] sm:right-[55px] flex flex-col items-start justify-start">
             <p className="text-white text-[40px] mb-8">{data[0].attributes.name}</p>
@@ -158,13 +153,11 @@ const Group = () => {
           </div>
         </div>
         <ScrollTo to="about" offset={0} delay={0} spy={true} smooth={true} duration={800} className="absolute bottom-[50px] left-1/2 -translate-x-1/2 cursor-pointer">
-                <i className="ti-mouse text-[28px] text-white up-down-ani"></i>
-              </ScrollTo>
-    </m.section>
-    }
-      
+          <i className="ti-mouse text-[28px] text-white up-down-ani"></i>
+        </ScrollTo>
+      </m.section>}
 
-      {loading && <section className="pt-8 bg-white overflow-hidden relative px-[11%] pb-[30px] lg:px-0 lg:pb-[20px] md:pb-[15px] sm:pb-[10px] bg-lightgray">
+      {loading && <section className="pt-8 bg-white overflow-hidden relative px-[11%] pb-[30px] lg:px-0 lg:pb-[20px] md:pb-[15px] sm:pb-[10px] dir-rtl">
         <Container>
           <Row className="justify-center">
             <Col xl={10} sm={9} md={12} className="">
@@ -178,7 +171,7 @@ const Group = () => {
         <Container>
           <Row className="justify-center">
             <Col lg={6} sm={8} className="text-center mb-4 md:mb-4 xs:mb-4">
-              <m.h2 className="heading-5 font-medium text-xxlg tracking-[-1px]" {...fadeIn}>اطلاعات پایه</m.h2>
+              <m.h2 className="heading-5 font-medium text-xxlg tracking-[-1px]" {...fadeIn}>{language === "fa-IR" ? `اطلاعات پایه` : language === "en" ? `BaseInfo` : ""}</m.h2>
             </Col>
           </Row>
           <IconWithText03 grid="row-cols-3 row-cols-lg-6 row-cols-sm-4 text-center" data2={"group"} theme="icon-with-text-03" data={IconWithTextData} animation={fadeIn} animationDelay={0.3} />

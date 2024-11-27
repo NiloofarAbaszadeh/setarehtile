@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Filter from "../Portfolio/Filter";
 
 const BlogGrid = (props) => {
+  const language = useSelector(state => state.State.language)
   const blogWrapper = useRef();
   const [loading, setLoading] = useState(true);
 
@@ -50,7 +51,7 @@ const BlogGrid = (props) => {
                   <Link aria-label="link"
                     to={`../../product-collection`}
                     className="blog-grid-catagory bg-red text-white text-md uppercase px-[13px] py-[6px] rounded-[2px] absolute top-[23px] right-[23px]">
-                    <span>کلکسیون </span>
+                    <span>{language === "fa-IR" ? "کلکسیون" : language === "en" ? "Collection" : ""}</span>
                   </Link>
                 </div>
                 <div className="px-12 py-10 bg-white sm:px-8 xs:px-12">
@@ -58,7 +59,7 @@ const BlogGrid = (props) => {
                   <p className="mb-[25px] md:mb-[20px] sm:mb-[15px]"> {item.attributes.discraption} </p>
                   <div className="flex items-center">
                   <span className=" text-sm mr-auto">
-                  نوشته شده توسط  <span className="text-red">ادمین ستاره</span>
+                    {language === "fa-IR" ? "نوشته شده توسط " : language === "en" ? "Written by" : ""} <span className="text-red">{language === "fa-IR" ? "ادمین ستاره" : language === "en" ? "Setareh admin" : ""}</span>
                   </span>     
                   </div>
                 </div>
@@ -82,7 +83,7 @@ const BlogGrid = (props) => {
                   <Link aria-label="link"
                     to={`../../product-groups`}
                     className="blog-grid-catagory bg-red text-white text-md uppercase px-[13px] py-[6px] rounded-[2px] absolute top-[23px] right-[23px]">
-                    <span>گروه </span>
+                    <span>{language === "fa-IR" ? "گروه" : language === "en" ? "Groups" : ""}</span>
                   </Link>
                 </div>
                 <div className="px-12 py-10 bg-white sm:px-8 xs:px-12">
@@ -90,7 +91,7 @@ const BlogGrid = (props) => {
                   <p className="mb-[25px] md:mb-[20px] sm:mb-[15px]"> {item.attributes.discraption} </p>
                   <div className="flex items-center">
                   <span className=" text-sm mr-auto">
-                  نوشته شده توسط  <span className="text-red">ادمین ستاره</span>
+                    {language === "fa-IR" ? "نوشته شده توسط " : language === "en" ? "Written by" : ""} <span className="text-red">{language === "fa-IR" ? "ادمین ستاره" : language === "en" ? "Setareh admin" : ""}</span>
                   </span>     
                   </div>
                 </div>
@@ -114,7 +115,7 @@ const BlogGrid = (props) => {
                   <Link aria-label="link"
                     to={`../../product-tilse`}
                     className="blog-grid-catagory bg-red text-white text-md uppercase px-[13px] py-[6px] rounded-[2px] absolute top-[23px] right-[23px]">
-                    <span>کاشی</span>
+                    <span>{language === "fa-IR" ? "کاشی" : language === "en" ? "Tile" : ""}</span>
                   </Link>
                 </div>
                 <div className="px-12 py-10 bg-white sm:px-8 xs:px-12">
@@ -122,7 +123,7 @@ const BlogGrid = (props) => {
                   <p className="mb-[25px] md:mb-[20px] sm:mb-[15px]"> {item.attributes.discraption}  </p>
                   <div className="flex items-center">
                   <span className=" text-sm mr-auto">
-                  نوشته شده توسط  <span className="text-red">ادمین ستاره</span>
+                    {language === "fa-IR" ? "نوشته شده توسط " : language === "en" ? "Written by" : ""} <span className="text-red">{language === "fa-IR" ? "ادمین ستاره" : language === "en" ? "Setareh admin" : ""}</span>
                   </span>     
                   </div>
                 </div>

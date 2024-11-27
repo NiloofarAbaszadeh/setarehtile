@@ -12,6 +12,7 @@ const BlogSideImg2 = () => {
   const location = useLocation()
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
   const [data, setData] = useState(null)
 
   // page number
@@ -34,7 +35,7 @@ const BlogSideImg2 = () => {
 
   useEffect(() => {
     const newsElements = () => {
-        axios.get(`${host}/api/visits?populate=deep`, {
+        axios.get(`${host}/api/visits?populate=deep&locale=${language}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => {
@@ -44,7 +45,7 @@ const BlogSideImg2 = () => {
           InitialPageNumber(maxPage.toFixed(0))
         })
         // visit-page
-        axios.get(`${host}/api/visit-page?populate=deep`, {
+        axios.get(`${host}/api/visit-page?populate=deep&locale=${language}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => {
@@ -53,7 +54,7 @@ const BlogSideImg2 = () => {
     }
     newsElements()
     // eslint-disable-next-line
-  }, [host, token])
+  }, [host, token, language])
 
   const SetErea = (action) => {
     if (action === "next") {
@@ -105,9 +106,9 @@ const BlogSideImg2 = () => {
   return (
     <>     
       {location.pathname === "/news" ? <Helmet>
-        <title> اخبار | کاشی و سرامیک ستاره  </title>
+        <title>{language === "fa-IR" ? `اخبار | کاشی و سرامیک ستاره` : language === "en" ? `News | Setareh Meybod Tile & Ceramic` : ""}</title>
       </Helmet> : <Helmet>
-        <title> بازدید ها | کاشی و سرامیک ستاره  </title>
+        <title>{language === "fa-IR" ? `بازدید ها | کاشی و سرامیک ستاره` : language === "en" ? `Visits | Setareh Meybod Tile & Ceramic` : ""}</title>
       </Helmet>}
       {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
@@ -144,25 +145,25 @@ const BlogSideImg2 = () => {
         <div className="flex justify-center mt-[7.5rem] md:mt-20">
           <ul className="pagination pagination-style-01 font-sans font-medium items-center">
             <li className="page-item">
-                <button className="feather-arrow-right text-lg page-link" onClick={handelPageChange} value={"per"}></button>
+                <button className={`feather-arrow-${language === "fa-IR" ? `right` : language === "en" ? `left` : ""} text-lg page-link`} onClick={handelPageChange} value={"per"}></button>
             </li>
             {!pageCounter[0] ? <li className="page-item" onClick={handelPageChange}>
               <button className="page-link" value={1}> 1 </button>
             </li>: pageCounter.map((item, id) => {
               return <li className="page-item" onClick={handelPageChange}>
-              <button className="page-link" value={id + 1}> {id + 1} </button>
+              <button className="page-link " value={id + 1}> {id + 1} </button>
             </li>
             })}
             
             <li className="page-item">
-                <button className="feather-arrow-left text-lg page-link" onClick={handelPageChange} value={"next"}></button>
+                <button className={`feather-arrow-${language === "fa-IR" ? `left` : language === "en" ? `right` : ""} text-lg page-link`} onClick={handelPageChange} value={"next"}></button>
             </li>
           </ul>
         </div>
       )}
       {/* Pagination End */}
       </section> : <div className="flex items-center justify-center my-28 ">
-        <p className="text-[34px] text-fastblue mb-[26px]">موردی جهت نمایش وجود ندارد</p>
+        <p className="text-[34px] text-fastblue mb-[26px]">${language === "fa-IR" ? `موردی جهت نمایش وجود ندارد ` : language === "en" ? `No search results` : ""}</p>
         </div>}
       {/* Section Start */}
     </>

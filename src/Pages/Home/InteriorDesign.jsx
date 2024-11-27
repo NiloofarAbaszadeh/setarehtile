@@ -26,6 +26,8 @@ import loginImage from "../../Assets/images/one-person.jpg"
 const InteriorDesignPage = (props) => {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
+
   const swiperRef = React.useRef(null)
   const [data, setData] = useState(null)
   const [loadingHome, setLoadingHome] = useState(false)
@@ -35,13 +37,13 @@ const InteriorDesignPage = (props) => {
   const [loadingGroup, setLoadingGroup] = useState(false)
   const [newsData, setNewsData] = useState(null)
   const [loadingNews, setLoadingNews] = useState(false)
-  
+  // console.log(language)
   useEffect(() => {
     setLoadingGroup(false)
     setLoadingHome(false)
     setLoadingResearch(false)
     const GetHomeData =  () => {
-       axios.get(`${host}/api/home-page?populate=deep`, {
+       axios.get(`${host}/api/home-page?populate=deep&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(res.data.data)
@@ -49,7 +51,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const GetGroupData =  () => {
-       axios.get(`${host}/api/groupss?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4`, {
+       axios.get(`${host}/api/groupss?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       }).then(res => {
         setgroupData(res.data.data)
@@ -57,7 +59,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const researchElements =  () => {
-       axios.get(`${host}/api/researchs?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=2`, {
+       axios.get(`${host}/api/researchs?populate=*&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=2&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       }).then(res => {
         setResearchData(res.data.data)
@@ -65,7 +67,7 @@ const InteriorDesignPage = (props) => {
       })
     }
     const newsElements =  () => {
-       axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4`, {
+       axios.get(`${host}/api/news-elements?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}`, withCredentials: false, }
       })
       .then(res => {
@@ -77,12 +79,12 @@ const InteriorDesignPage = (props) => {
     GetHomeData()
     GetGroupData()
     researchElements()
-  },[host, token])
+  },[host, token, language])
 
   return (
       <div className="interior-design" style={props.style}>
       <Helmet>
-        <title>  وب سایت رسمی کاشی ستاره میبد  </title>
+        <title> {language === "fa-IR" ? "وب سایت رسمی کاشی ستاره میبد" : language === "en" ? "Setareh Meybod Tile & Ceramic" : ""} </title>
       </Helmet>
       {!loadingHome && !data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
@@ -92,6 +94,26 @@ const InteriorDesignPage = (props) => {
         aria-label="Loading Spinner"
         data-testid="loader"/></div>}
       {loadingHome && data.attributes.seo && <Seo data={data.attributes.seo} />}
+
+      {/* Section Start */}
+      {language === "fa-IR" && <m.section className="py-[50px] relative bg-cover bg-fixed bg-center overflow-hidden md:py-[65px] sm:py-[50px] xs:py-[40px]"{...fadeIn}>
+        <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-center" translateY={[-80, 80]} style={{ backgroundImage: `url()` }}></Parallax>
+        <div className="absolute top-0 left-0 h-full w-full bg-darkgray opacity-[.75]"></div>
+        <Container>
+          <Row className="justify-center items-center">
+            <Col xl={7} md={8} sm={10} className="relative text-right sm:mb-[30px] sm:text-right flex flex-col items-start justify-start">
+              <p className="text-[22px] text-white mb-2">قابل توجه کلیه خریداران محترم</p>
+              <p className="text-[16px] text-white mb-2">به استحضار می رساندبا توجه به سوء استفاده برخی افراد سودجو از نام تجاری شرکت کاشی ستاره، خواهشمند است محصولات این شرکت اعم از برند و غیره را تنها از نمایندگی های مجاز درج شده در سایت تهیه فرمایید.</p>
+              <p className="text-[16px] text-lightgray mb-2">شرکت کاشی و سرامیک ستاره میبد</p>
+            </Col>
+            <Col xl={5} md={4} className="text-center text-md-end flex items-center justify-end sm:justify-center">
+              <Buttons ariaLabel="link for company" to="/agent/internal-agent" className="rounded-[4px] font-medium uppercase hover:text-white btn-slide-filling-left bg-gradient-to-r from-[#fff] to-[#fff] text-darkgray" size="xl" color="#000" themeColor="#BF0D19" title="نمایندگان ما" />
+            </Col>
+          </Row>
+        </Container>
+      </m.section>}
+      {/* Section End */}
+
       {loadingHome && data.attributes.Slider && <StartupPageBannerSlider data={data.attributes.Slider} />}
 
       <LazyLoad height={-100}>
@@ -105,12 +127,12 @@ const InteriorDesignPage = (props) => {
           </Row>
         </Container>
         <Container fluid className="px-[7%] xl:px-[2%] lg:px-[3%] sm:px-[15px] ">
-          <div className='justify-center flex-colections sm:flex-col-reverse'>
+        {language === "fa-IR" ? <div className='justify-center flex-colections sm:flex-col-reverse'>
           <m.div className=" col-lg-4 col-md-6 md:mb-24 sm:mb-[50px]">
             <p className="font-semibold mt-[55px] text-xlg text-darkgray mb-[25px] sm:mb-[15px] sm:mr-[20px]">{data.attributes.aboutUs.sideTitle}</p>
             <p className="lg:w-full text-[#828282] text-[15px] mb-[25px] text-justify sm:pr-[22px] sm:pl-[22px]">{data.attributes.aboutUs.summery}</p>
             <div className="flex item-center justify-start">
-              <Link to={'./about-us'}><button className="button-custom w-auto mt-[35px]"> درباره شرکت ما</button></Link>
+              <Link to={'./about-us'}><button className="button-custom w-auto mt-[35px]">{language === "fa-IR" ? "درباره شرکت ما" : language === "en" ? "Read More" : <></>}</button></Link>
             </div>
           </m.div>
 
@@ -137,7 +159,38 @@ const InteriorDesignPage = (props) => {
               {/* Modal Component End */}
               </div>
             </m.div>
-          </div>
+          </div> : language === "en" ? <div className='justify-center flex-colections sm:flex-col-reverse'>
+          <m.div className="col-lg-3 mr-[150px] sm:mr-[10px]">
+            <div className="outside-box-bottom relative mb-[-14vw] lg:mb-0">
+                <img loading="lazy" width={1920} height={2468} className="relative z-[1] w-full rounded-[4px] box-shadow" src={host + data.attributes.aboutUs.image.data.attributes.url} alt="" />
+              {/* Modal Component Start */}
+              <LazyLoad height={200} offset={100}>
+              <CustomModal.Wrapper
+                className="absolute bottom-[7px] right-[-10px] z-[1] landscape:md:!-bottom-[25px]"
+                modalBtn={
+                  <div className="relative flex items-center p-[25px] right-0 bg-[#f1edea] bottom-[-25px] z-[2] lg:p-[25px] lg:bottom-0 w-[86%] ml-auto cursor-pointer">
+                    <span className="flex-1  relative ml-3 video-icon-text text-darkgray text-md font-semibold w-[120%]">{data.attributes.aboutUs.videoTitle}</span>
+                    <Buttons ariaLabel="modal btn" type="submit" className="relative btn-sonar border-0" themeColor="#000" color="#fff" size="md" title={<i className="icon-control-play m-0 pl-[4px]" />} />
+                  </div>
+                } >
+                {data.attributes.aboutUs.video && <div className="w-[1020px] max-w-full relative rounded mx-auto">
+                  <div className="fit-video">
+                    <video width="100%" height="100%" className="shadow-[0_0_8px_rgba(0,0,0,0.06)]" controls src={host + data.attributes.aboutUs.video.data.attributes.url} title="دستاورد های شرکت کاشی و سرامیک ستاره میبد" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen autoPlay />
+                  </div>
+                </div>}
+              </CustomModal.Wrapper>
+              </LazyLoad>
+              {/* Modal Component End */}
+              </div>
+            </m.div>
+            <m.div className=" col-lg-4 col-md-6 md:mb-24 sm:mb-[50px]">
+            <p className="font-semibold mt-[55px] text-xlg text-darkgray mb-[25px] sm:mb-[15px] sm:mr-[20px]">{data.attributes.aboutUs.sideTitle}</p>
+            <p className="lg:w-full text-[#828282] text-[15px] mb-[25px] text-justify sm:pr-[22px] sm:pl-[22px]">{data.attributes.aboutUs.summery}</p>
+            <div className="flex item-center justify-start">
+              <Link to={'./about-us'}><button className="button-custom w-auto mt-[35px]">{language === "fa-IR" ? "درباره شرکت ما" : language === "en" ? "Read More" : <></>}</button></Link>
+            </div>
+          </m.div>
+          </div> : <></>}
         </Container>
       </section>}
       </LazyLoad>
@@ -151,10 +204,10 @@ const InteriorDesignPage = (props) => {
               <h2 className="heading-6  uppercase text-darkgray font-bold mb-[40px] md:mb-[20px]">{data.attributes.ourWork.subDiscreptionText}</h2>
               <div className="flex">
                 <div onClick={() => swiperRef.current.swiper.slidePrev()} className="btn-slider-next ml-8 text-[40px] text-[#828282] hover:text-black transition-default leading-[40px] w-auto h-[40px] mr-[25px]" >
-                  <button aria-label="swiper next" className=""><i className="line-icon-Arrow-OutRight"></i></button>
+                  <button aria-label="swiper next" className=""><i className={`line-icon-Arrow-Out${language === "fa-IR" ? "Right" : language === "en" ? "Left" : <></>}`}></i></button>
                 </div>
                 <div onClick={() => swiperRef.current.swiper.slideNext()} className="btn-slider-prev text-[40px] text-[#828282] hover:text-black transition-default leading-[40px] w-auto h-[40px]" >
-                  <button aria-label="swiper prev" className=""><i className="line-icon-Arrow-OutLeft"></i></button>
+                  <button aria-label="swiper prev" className=""><i className={`line-icon-Arrow-Out${language === "fa-IR" ? "Left" : language === "en" ? "Right" : <></>}`}></i></button>
                 </div>
               </div>
             </m.div>
@@ -241,7 +294,7 @@ const InteriorDesignPage = (props) => {
                   <h2 className="heading-5  uppercase text-darkgray font-bold w-[85%] mb-[30px] xl:w-full">{data.attributes.newInWrold.title}</h2>
                   <p className="w-[75%] xl:w-full mb-[25px] text-[15px] text-justify pl-6 pr-2">{data.attributes.newInWrold.discraption}</p>
                 <div className="flex item-center justify-start">
-                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px] sm:mt-4">اطلاعات بیشتر</button></Link>
+                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px] sm:mt-4">{language === "fa-IR" ? "اطلاعات بیشتر" : language === "en" ? "Read More" : <></>}</button></Link>
               </div>
             </m.div>
           </Row>
@@ -285,8 +338,8 @@ const InteriorDesignPage = (props) => {
           <Container fluid>
             <Row className="justify-center">
               <Col lg={6} className="text-center mb-8 sm:mb-6">
-                <span className="font-medium text-fastblue text-xxlg block mb-[5px] uppercase">اخبار</span>
-                <h6 className=" text-darkgray text-xlg  uppercase">جدید ترین اخبار </h6>
+                <span className="font-medium text-fastblue text-xxlg block mb-[5px] uppercase">{language === "fa-IR" ? "اخبار" : language === "en" ? "News" : <></>}</span>
+                <h6 className=" text-darkgray text-xlg  uppercase">{language === "fa-IR" ? "جدیدترین اخبار" : language === "en" ? "Letest News" : <></>}</h6>
               </Col>
             </Row>
             <Row>
@@ -296,7 +349,7 @@ const InteriorDesignPage = (props) => {
             </Row>
             <Row className="flex-fix">
               <div className="flex item-center justify-center">
-                <Link to={'./news'}><button className="button-custom w-auto mt-[35px]">مشاهده همه</button></Link>
+                <Link to={'./news'}><button className="button-custom w-auto mt-[35px]">{language === "fa-IR" ? "مشاهده همه" : language === "en" ? "Read All" : <></>}</button></Link>
               </div>
             </Row>
           </Container>
@@ -325,7 +378,7 @@ const InteriorDesignPage = (props) => {
         </m.section>
         <div className="flex-fix py-12 pt-2 bg-[#f1edea]">
             <div className="flex item-center justify-center">
-              <Link to={'./product-groups'}><button className="button-custom w-auto mt-[35px]">مشاهده همه</button></Link>
+              <Link to={'./product-groups'}><button className="button-custom w-auto mt-[35px]">{language === "fa-IR" ? "مشاهده همه" : language === "en" ? "See All" : <></>}</button></Link>
             </div>
         </div></>
       </LazyLoad>}
@@ -372,7 +425,7 @@ const InteriorDesignPage = (props) => {
           </Row>
           <Row className="flex-fix">
             <div className="flex item-center justify-center">
-              <Link to={'./research'}><button className="button-custom w-auto mt-[35px]">مشاهده همه</button></Link>
+              <Link to={'./research'}><button className="button-custom w-auto mt-[35px]">{language === "fa-IR" ? "مشاهده همه" : language === "en" ? "Read All" : <></>}</button></Link>
             </div>
           </Row>
         </Container>}
@@ -384,10 +437,13 @@ const InteriorDesignPage = (props) => {
         <Container>
           <Row className="items-center justify-center">
             <Col className="text-center relative">
-              <h2 className="heading-6 text-xlg md:text-lg xs:text-lg font-semibold text-[#fff] uppercase mb-0">جهت ورود به سایت بر روی کلمه  &nbsp;
+              {language === "fa-IR" ? <h2 className="heading-6 text-xlg md:text-lg xs:text-lg font-semibold text-[#fff] uppercase mb-0">جهت ورود به سایت بر روی کلمه  &nbsp;
                 <a aria-label="button" href="/login" className="font-semibold text-xlg pt-0 uppercase text-decoration-line-bottom md:text-lg md:leading-[26px] text-[#fff] hover:text-white">ورود </a>
                  کلیک کنید 
-              </h2>
+              </h2> : language === "en" ? <h2 className="heading-6 text-xlg md:text-lg xs:text-lg font-semibold text-[#fff] uppercase mb-0">Click  &nbsp;
+                <a aria-label="button" href="/login" className="font-semibold text-xlg pt-0 uppercase text-decoration-line-bottom md:text-lg md:leading-[26px] text-[#fff] hover:text-white">Here</a> &nbsp;
+                  to enter the site.
+              </h2> : <></>}
             </Col>
           </Row>
         </Container>

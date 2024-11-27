@@ -26,6 +26,7 @@ const SingleProduct = (props) => {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
   const send = useSelector(state => state.State.sendToken)
+  const language = useSelector(state => state.State.language)
   const prams = useParams()
   const [photoIndex, setPhotoIndex] = useState(0)
   const swiperRef = React.useRef(null)
@@ -55,7 +56,7 @@ const SingleProduct = (props) => {
   const addtoWishList = async (e) => {
     e.preventDefault()
     if (user) {
-      alert('کاشی به لیست علاقه مندی ها اضافه شد. هم اکنون می توانید آن را از داخل داشبورد خود ببینید')
+      alert(language === "fa-IR" ? 'کاشی به لیست علاقه مندی ها اضافه شد. هم اکنون می توانید آن را از داخل داشبورد خود ببینید' : language === "en" ? "Tile was added to the list of favorites. Now you can see it from inside your dashboard" : "")
       // eslint-disable-next-line
       await axios.get(`${host}/api/karbrans?filters\[username]=${user}&populate=deep`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -71,7 +72,7 @@ const SingleProduct = (props) => {
         })  
       })
     } else {
-      alert('برای استفاده از این بخش ابتدا باید وارد سایت شوید')
+      alert(language === "fa-IR" ? 'برای استفاده از این بخش ابتدا باید وارد سایت شوید' : language === "en" ? `To use this section, you must first log in to the site.` : "")
       return <Navigate to={"../../login"} />
     }
   }
@@ -116,12 +117,12 @@ const SingleProduct = (props) => {
     const base = [
       baseInfo.bakeType.data !== null && {
         img: host + baseInfo.bakeType.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع پخت",
+        title: language === "fa-IR" ? `نوع پخت` : language === "en" ? `Bake` : "",
         name: baseInfo.bakeType.data.attributes.bakeType
       },
       baseInfo.bodyColor.data !== null && {
         img: host + baseInfo.bodyColor.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "رنگ بدنه",
+        title: language === "fa-IR" ? `رنگ بدنه` : language === "en" ? `Body Color` : "",
         name: baseInfo.bodyColor.data.attributes.color
       },
       baseInfo.color_themes.data !== null && {
@@ -131,31 +132,31 @@ const SingleProduct = (props) => {
             name: item.attributes.color
           }
         }),
-        title: "تم رنگی",
+        title: language === "fa-IR" ? `تم رنگی` : language === "en" ? `Color Theme` : "",
       },
       baseInfo.design.data !== null && {
         img: host + baseInfo.design.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع طرح",
+        title: language === "fa-IR" ? `نوع طراحی` : language === "en" ? `Design` : "",
         name: baseInfo.design.data.attributes.design
       },
       baseInfo.galeb.data !== null && {
         img: host + baseInfo.galeb.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع قالب",
+        title: language === "fa-IR" ? `نوع قالب` : language === "en" ? `Template` : "",
         name: baseInfo.galeb.data.attributes.molde
       },
       baseInfo.glazeType.data !== null && {
         img: host + baseInfo.glazeType.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع لعاب",
+        title: language === "fa-IR" ? `نوع لعاب` : language === "en" ? `Glaze` : "",
         name: baseInfo.glazeType.data.attributes.glaze
       },
       baseInfo.shape.data !== null && {
         img: host + baseInfo.shape.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع شکل",
+        title: language === "fa-IR" ? `نوع شکل` : language === "en" ? `Shape` : "",
         name: baseInfo.shape.data.attributes.shape
       },
       baseInfo.size.data !== null && {
         img: host + baseInfo.size.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "ابعاد",
+        title: language === "fa-IR" ? `ابعاد` : language === "en" ? `Size` : "",
         name: baseInfo.size.data.attributes.size
       },
       baseInfo.special_types.data !== null && {
@@ -166,11 +167,11 @@ const SingleProduct = (props) => {
 
           }
         }),
-        title: "ویژگی خاص",
+        title: language === "fa-IR" ? `ویژگی های خاص` : language === "en" ? `Special features` : "",
       },
       baseInfo.stamp.data !== null && {
         img: host + baseInfo.stamp.data.attributes.icon.data.attributes.formats.custom.url,
-        title: "نوع چاپ",
+        title: language === "fa-IR" ? `نوع چاپ` : language === "en" ? `Stamp` : "",
         name: baseInfo.stamp.data.attributes.stamp
       },
       baseInfo.type.data[0] !== undefined && {
@@ -180,7 +181,7 @@ const SingleProduct = (props) => {
             name: item.attributes.type
           }
         }),
-        title: "نوع محصول",
+        title: language === "fa-IR" ? `نوع محصول` : language === "en" ? `Product Type` : "",
       },
       baseInfo.use_places.data !== null && {
         sideimg: baseInfo.use_places.data.map(item => {
@@ -189,7 +190,7 @@ const SingleProduct = (props) => {
             name: item.attributes.place
           }
         }),
-        title: "مکان استفاده",
+        title: language === "fa-IR" ? `مکان استفاده` : language === "en" ? `Use place` : "",
       },
     ]
     setIconWithTextData(base)
@@ -198,7 +199,7 @@ const SingleProduct = (props) => {
   useEffect(() => {
     const GetData = async () => {
       // eslint-disable-next-line
-      await axios.get(`${host}/api/products?filters\[name]=${prams.id}&populate=deep`, {
+      await axios.get(`${host}/api/products?filters\[name]=${prams.id}&populate=deep&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setLoading(false)
@@ -270,12 +271,12 @@ const SingleProduct = (props) => {
     }
     GetData()
     // eslint-disable-next-line
-  },[prams.id,host,token])
+  },[prams.id,host,token, language])
 
 
   return (
     <div className="single-product" style={props.style} >
-      {(!loading || !data) && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {(!loading || !data) && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
         color={"#db1010"}
         loading={!loading}
@@ -284,7 +285,7 @@ const SingleProduct = (props) => {
         data-testid="loader"/></div>}
       {loading && data.seo && <Seo data={data.seo} />}
       {loading && <Helmet>
-        <title> {data.tileName} | کاشی و سرامیک ستاره  </title>
+        <title> {data.tileName} | {language === "fa-IR" ? `کاشی و سرامیک ستاره  ` : language === "en" ? `Setareh Meybod Tile & Ceramic` : ""}</title>
       </Helmet>}
       <SideButtons />
       {/* Section Start */}
@@ -295,19 +296,19 @@ const SingleProduct = (props) => {
               <div className="breadcrumb text-sm p-0 mb-0 flex-colections">
                   <div>
                     <ul>
-                      <li><Link aria-label="homepage-link" to="/"><span className='text-[15px] text-gray'>خانه</span></Link></li>
-                      <li><Link aria-label="shop-link" to={`/product-collection/${data.collectionName}`}><span className='text-[15px] text-gray'>{data.collectionName}</span></Link></li>
-                      <li><Link aria-label="shop-link" to={`/product-groups/${data.groupName}`}><span className='text-[15px] text-gray'>{data.groupName}</span></Link></li>
-                      <li><span className='text-[15px] text-[#555] text-red'>{data.tileName}</span></li>
+                      <li><Link aria-label="homepage-link" to="/"><span className='text-[15px] text-gray font-sans'>{language === "fa-IR" ? `خانه` : language === "en" ? `Home` : ""}</span></Link></li>
+                      <li><Link aria-label="shop-link" to={`/product-collection/${data.collectionName}`}><span className='text-[15px] text-gray font-sans'>{data.collectionName}</span></Link></li>
+                      <li><Link aria-label="shop-link" to={`/product-groups/${data.groupName}`}><span className='text-[15px] text-gray font-sans'>{data.groupName}</span></Link></li>
+                      <li><span className='text-[15px] text-red font-sans'>{data.tileName}</span></li>
                     </ul>
                   </div>
                 </div>  
             </Col>
             <Col className="col-12 flex flex-column flex-lg-row align-items-md-start" >
-            <div className="w-[40%] md:w-full product-summary pl-28 lg:pl-20 md:pl-0 pt-12">
+            <div className={`w-[40%] md:w-full product-summary ${language === "fa-IR" ? "pl-28" : language === "en" ? "pr-28" : ""} lg:pl-20 md:pl-0 pt-12`}>
                 <div className="flex items-center my-14 md:my-6">
                   <div className="flex-grow">
-                    <div className="text-darkgray font-semibold font-medium text-[25px] mb-[5px]">{data.tileName}</div>
+                    <div className="text-darkgray font-semibold text-[25px] mb-[5px]">{data.tileName}</div>
                   </div>
                   <div className="text-end leading-[30px]">
                     <div><Link to="#" className="tracking-[3px]" aria-label="product-rating">
@@ -324,52 +325,52 @@ const SingleProduct = (props) => {
                 </p>
                 <div className="mt-12">
                   <div className="mb-[20px] flex items-center">
-                    <label className="text-darkgray text-xmd  uppercase w-[60px] mr-[3px]">رنگ</label>
+                    <label className="text-darkgray text-xmd  uppercase w-[60px] mr-[3px]">{language === "fa-IR" ? `خانه` : language === "en" ? `Color Theme` : ""}</label>
                     <ul className=" flex shop-color">
-                      {data.tileData.baseInfo.colorTheme.includes("خاکستری") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("خاکستری" || "Gray") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color" disabled/>
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#b6c4b6" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("زرد") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("زرد" || "Yellow") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#fff78a" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("زیتونی") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("زیتونی" || "Olive") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#897f21" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("سفید") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("سفید" || "White") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#fbf6ff" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("صورتی") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("صورتی" || "Pink") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#ffc0d9" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("فیروزه ای") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("فیروزه ای" || "Turquoise") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#86b6f6" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("قهوه ای") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("قهوه ای" || "Brown") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#994d1c" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("مشکی") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("مشکی" || "Black") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#191919" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("آبی") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("آبی" || "Blue") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#1716b8" }}></span></label>
                       </li> : <></>}
-                      {data.tileData.baseInfo.colorTheme.includes("کرم") ? <li>
+                      {data.tileData.baseInfo.colorTheme.includes("کرم" || "Cerem") ? <li>
                         <input className="hidden" type="radio" id="color-1" value="1" name="color"  />
                         <label htmlFor="color-1"><span className="after:text-white after:z-[12] after:text-[500px] border" style={{ backgroundColor: "#ead196" }}></span></label>
                       </li> : <></>}
                     </ul>
                   </div>
                   <div className="mb-8 flex items-center">
-                    <div className="text-darkgray text-xmd uppercase w-[60px] mr-[3px]">ابعاد</div>
+                    <div className="text-darkgray text-xmd uppercase w-[60px] mr-[3px]">{language === "fa-IR" ? `ابعاد` : language === "en" ? `Size` : ""}</div>
                     <ul className="text-xmd flex">
                       <li className='mr-[12px]'>
                         <span>{data.tileData.baseInfo.size}</span>
@@ -477,13 +478,13 @@ const SingleProduct = (props) => {
                   <div className="flex flex-wrap mt-8 ">
                     
                     <div className=" w-full">
-                      <button aria-label="add-to-wishlist" onClick={addtoWishList} className="uppercase text-[13px] font-medium custom-box"><i className="feather-heart align-middle ml-[5px]"></i>افزوردن به علاقه مندی ها </button>
+                      <button aria-label="add-to-wishlist" onClick={addtoWishList} className="uppercase text-[13px] font-medium custom-box"><i className="feather-heart align-middle ml-[5px]"></i>{language === "fa-IR" ? `افزوردن به علاقه مندی ها ` : language === "en" ? `Add to favorite` : ""}</button>
                     </div>
                   </div>
                   <div className="flex  mt-1 items-center">
                     <div className="flex-grow">
-                      <span className="uppercase text-xmd font-medium text-darkgray block">تگ ها: 
-                        <Link to="#" aria-label="product" className="font-normal text-[#828282] ml-[5px]">فعلا محتوا ندارد</Link>
+                      <span className="uppercase text-xmd font-medium text-darkgray block">{language === "fa-IR" ? `تگ ها:` : language === "en" ? `Tags:` : ""} 
+                        <Link to="#" aria-label="product" className="font-normal text-[#828282] ml-[5px]">{language === "fa-IR" ? `فعلا محتوا ندارد` : language === "en" ? `No content yet` : ""}</Link>
                       </span>
                     </div>
                     {/* <SocialIcons theme="social-icon-style-01" className="justify-center" size="xs" iconColor="dark" data={SocialIconsData} /> */}
@@ -562,7 +563,7 @@ const SingleProduct = (props) => {
                   
                 </Row>
               </div>
-              <div className='m-[25px]'></div>
+              {language === "fa-IR" && <div className='m-[25px]'></div>}
             </Col>
           </Row>
         </Container>
@@ -579,13 +580,13 @@ const SingleProduct = (props) => {
                   <Col lg={12} className="p-0">
                     <Nav className="justify-center uppercase font-medium text-center cursor-pointer border-b border-t border-solid border-mediumgray mb-12 md:flex-nowrap md:mb-[72px] sm:mb-[66px] sm:border-b-0 xs:mb-[35px]">
                       <Nav.Item>
-                        <Nav.Link className="block text-darkgray border-b-[3px] border-solid border-transparent py-[30px] px-[40px] mb-0" eventKey={0} ><span className='text-xlg text-balck'>اطلاعات پایه</span></Nav.Link>
+                        <Nav.Link className="block text-darkgray border-b-[3px] border-solid border-transparent py-[30px] px-[40px] mb-0" eventKey={0} ><span className='text-xlg text-balck'>{language === "fa-IR" ? `اطلاعات پایه` : language === "en" ? `Base Info` : ""}</span></Nav.Link>
                       </Nav.Item>
                       {/* <Nav.Item>
                         <Nav.Link className="block text-darkgray border-b-[3px] border-solid border-transparent py-[30px] px-[40px] mb-0" eventKey={1} ><span className='text-xlg text-balck'>توضیحات</span></Nav.Link>
                       </Nav.Item> */}
                       <Nav.Item>
-                        <Nav.Link className="block text-darkgray border-b-[3px] border-solid border-transparent py-[30px] px-[40px] mb-0" eventKey={1} ><span className='text-xlg text-balck'>دیدگاه ها {comments.length !== 0 && <>({comments.length})</>}</span></Nav.Link>
+                        <Nav.Link className="block text-darkgray border-b-[3px] border-solid border-transparent py-[30px] px-[40px] mb-0" eventKey={1} ><span className='text-xlg text-balck'>{language === "fa-IR" ? `دیدگاه ها ` : language === "en" ? `Comments` : ""}{comments.length !== 0 && <>({comments.length})</>}</span></Nav.Link>
                       </Nav.Item>
                     </Nav>
                   </Col>
@@ -644,8 +645,8 @@ const SingleProduct = (props) => {
                             <div className='custom-border rounded-[10px] box-shadow bg-white py-12 md:px-12'>
                             <Row className="justify-center">
                               <Col lg={10} className="mb-8">
-                                <h6 className=" text-balck font-medium mb-[5px] text-[18px]">نظرات خود را با ما به اشتراک بگذارید</h6>
-                                <div className="mb-[5px] text-darkgray">ایمیل شما نشان داده نخواهد شد. بخش های مورد نیاز علامت گذاری شده اند
+                                <h6 className=" text-balck font-medium mb-[5px] text-[18px]">{language === "fa-IR" ? `نظرات خود را با ما به اشتراک بگذارید` : language === "en" ? `Share your thoughts with us` : ""}</h6>
+                                <div className="mb-[5px] text-darkgray">{language === "fa-IR" ? `ایمیل شما نشان داده نخواهد شد. بخش های مورد نیاز علامت گذاری شده اند` : language === "en" ? `Your email will not be shown. Required sections are marked` : ""}
                                   <span className="text-[#fb4f58]">*</span></div>
                               </Col>
                             </Row>
@@ -664,7 +665,7 @@ const SingleProduct = (props) => {
                                       <input
                                             type="text"
                                             name="fullName"
-                                            placeholder="نام و نام خانوادگی"
+                                            placeholder={language === "fa-IR" ? `نام و نام خانوادگی` : language === "en" ? `Full name` : ""}
                                             onChange={handelChange}
                                             value={formData.fullName}
                                             className="rounded-[5px] py-[15px] px-[20px] w-full border-[1px] border-solid border-[#dfdfdf] sm:mb-8"
@@ -674,25 +675,24 @@ const SingleProduct = (props) => {
                                       <input
                                             type="text"
                                             name="email"
-                                            placeholder="ایمیل"
+                                            placeholder={language === "fa-IR" ? `ایمیل` : language === "en" ? `Email` : ""}
                                             onChange={handelChange}
                                             value={formData.email}
                                             className="rounded-[5px] py-[15px] px-[20px] w-full border-[1px] border-solid border-[#dfdfdf]"
                                           />
                                       </Col>
                                       <Col md={12} sm={12} xs={12}>
-                                        <textarea className="mt-[25px] mb-[1.5rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full border border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder="متن خود را وارد کنید" onChange={handelChange}></textarea>
+                                        <textarea className="mt-[25px] mb-[1.5rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full border border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder={language === "fa-IR" ? `متن خود را وارد کنید` : language === "en" ? `Enter comment...` : ""} onChange={handelChange}></textarea>
                                       </Col>
                                       <Col>
-                                        <Buttons type="submit" className={`tracking-[0.5px] btn-fill rounded-[2px] font-medium uppercase${isSubmitting ? " loading" : ""}`} themeColor="#232323" size="md" color="#fff" title="ارسال" onClick={handelSubmmit} />
+                                        <Buttons type="submit" className={`tracking-[0.5px] btn-fill rounded-[2px] font-medium uppercase${isSubmitting ? " loading" : ""}`} themeColor="#232323" size="md" color="#fff" title={language === "fa-IR" ? `ارسال` : language === "en" ? `Send` : ""} onClick={handelSubmmit} />
                                         {commentSend !== null ?
-                                              commentSend === "OK" ? 
-                                                <span className='mr-4'>نظر شما با موفقیت ارسال شد !</span>
-                                               :
-                                                <span className='mr-4'>مشکلی در هنگام ارسال پیش آمد، لطفا بعدا دوباره تلاش کنید</span>
-                                                
-                                            : <></>}
-                                        {err ? <span className='mr-4 c-c-red'>لطفا همه بخش های مورد نیاز را کامل کنید</span> : <></>}    
+                                      commentSend === "OK" ? 
+                                        <span className='mr-4'>{language === "fa-IR" ? "نظر شما با موفقیت ارسال شد !" : language === "en" ? "Your comment has been sent successfully!" : ""}</span>
+                                       :
+                                        <span className='mr-4'>{language === "fa-IR" ? "مشکلی در هنگام ارسال پیش آمد، لطفا بعدا دوباره تلاش کنید" : language === "en" ? "There was a problem sending, please try again later." : ""}</span>
+                                    : <></>}                                          
+                                    {err ? <span className='mr-4 c-c-red'>{language === "fa-IR" ? "لطفا همه بخش های مورد نیاز را کامل کنید" : language === "en" ? "Please complete all required sections" : ""}</span> : <></>}      
                                       </Col>
                                       <AnimatePresence>
                                         {status && <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><MessageBox className="mt-[20px] text-center py-[10px]" theme="message-box01" variant="success" message="پیام شما با موفقیت ارسال شد !" /></m.div>}
@@ -717,12 +717,12 @@ const SingleProduct = (props) => {
       </section>}
       {/* Section End */}
       {/* Section Start */}
-      {loading && <section className="border-t border-mediumgray py-[90px] lg:py-[75px] md:py-[55px] sm:py-[30px]">
+      {loading && data.tileData.similar[0] && <section className="border-t border-mediumgray py-[90px] lg:py-[75px] md:py-[55px] sm:py-[30px]">
         <Container>
           <Row className="row justify-center">
             <Col lg={5} md={6} className=" font-medium text-center">
-              <span className="uppercase text-[28px] inline-block mb-[5px]">شاید خوشتان بیاید</span>
-              <h5 className="text-red -tracking-[.5px] ">کاشی های مشابه</h5>
+              <span className="uppercase text-[28px] inline-block mb-[5px]">{language === "fa-IR" ? `شاید خوشتان بیاید` : language === "en" ? `You may like` : ""}</span>
+              <h5 className="text-red -tracking-[.5px] ">{language === "fa-IR" ? `کاشی های مشابه` : language === "en" ? `Similar tiles` : ""}</h5>
             </Col>
           </Row>
           <Row>

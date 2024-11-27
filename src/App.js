@@ -2,15 +2,14 @@ import React, { Suspense, useState, lazy } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Provider } from "react-redux";
 import GlobalContext from "./Context/Context";
 import ScrollToTopButton from "./Components/ScrollToTop"
+import { useSelector } from "react-redux";
 import { 
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom'
-import Store from "./Store/Store";
 import { InventoryLoader } from "./dashboard/components/extra/Inventory";
 import { MassagesLoader } from "./dashboard/components/extra/Massages";
 import { CommentsLoader } from "./dashboard/components/extra/Comments";
@@ -86,33 +85,33 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
           <Route path="profile/edit-profile-info" element={<ChangeProfileInfo />} />
     </Route>
     <Route element={<WhiteHeaderPage />} >
-      <Route path="/" element={<InteriorDesignPage style={{ "--base-color": "#181616" }} />}/> {/* */}
-      <Route path="/about-us" element={<AboutUsPage />} /> {/* */}
+      <Route path="/" element={<InteriorDesignPage style={{ "--base-color": "#181616" }} />}/>
+      <Route path="/about-us" element={<AboutUsPage />} />
       <Route path="certificate" >
-        <Route path="internal-ce" element={<ImageGalleryPage />} /> {/* */}
-        <Route path="external-ce" element={<ImageGalleryPage02 />} /> {/* */}
-        <Route path="honors" element={<ImageGalleryPage03 />} /> {/* */}
+        <Route path="internal-ce" element={<ImageGalleryPage />} />
+        <Route path="external-ce" element={<ImageGalleryPage02 />} />
+        <Route path="honors" element={<ImageGalleryPage03 />} />
       </Route>  
-      <Route path="news" element={<BlogSideImPage />} /> {/* */}
-      <Route path="news/:id" element={<BlogStandardPostPage style={{ "--base-color": "#C80C0C" }} />} /> {/* */}
-      <Route path="visits" element={<BlogSideImg2 />} /> {/* */}
-      <Route path="visits/:id" element={<BlogStandardPostPage style={{ "--base-color": "#C80C0C" }} />} /> {/* */}
+      <Route path="news" element={<BlogSideImPage />} />
+      <Route path="news/:id" element={<BlogStandardPostPage style={{ "--base-color": "#C80C0C" }} />} />
+      <Route path="visits" element={<BlogSideImg2 />} />
+      <Route path="visits/:id" element={<BlogStandardPostPage style={{ "--base-color": "#C80C0C" }} />} />
       <Route path="product-collection" element={<LeftSidebar />} />
       <Route path="product-groups" element={<LeftSideBarGroups />} />
       <Route path="product-tilse" element={<LeftSideBarTilse />} />
-      <Route path="product-collection/:id" element={<Collection />} /> 
-      <Route path="product-groups/:id" element={<Group />} /> 
+      <Route path="product-collection/:id" element={<Collection />} />
+      <Route path="product-groups/:id" element={<Group />} />
       <Route path="product-tilse/:id" element={<SingleProduct />} />
-      <Route path="catalog" element={<BlogSideImage03 />} /> 
-      <Route path="research" element={<BlogSimplePage />} /> {/* */}
-      <Route path="research/:id" element={<BlogStandardPostPage02 style={{ "--base-color": "#C80C0C" }} />} />  {/* */}
+      <Route path="catalog" element={<BlogSideImage03 />} />
+      <Route path="research" element={<BlogSimplePage />} />
+      <Route path="research/:id" element={<BlogStandardPostPage02 style={{ "--base-color": "#C80C0C" }} />} /> 
       <Route path="agent"> 
         <Route path="internal-agent" element={<Internal />} />
         <Route path="external-agent" element={<External />} />
       </Route>
       <Route path="contact-us" element={<ContactUsClassicPage />} />
-      <Route path="recruitment" element={<Recruitment />} />
-      <Route path="search-result/:searched" element={<SearchResultPage />} /> {/* */}
+      <Route path="recruitment" element={<Recruitment />} /> {/* */}
+      <Route path="search-result/:searched" element={<SearchResultPage />} />
     </Route>
     <Route path="*" element={<>404 not found</>} />
   </>
@@ -126,6 +125,7 @@ function App() {
     el: null,
     isOpen: false
   })
+  const language = useSelector(state => state.State.language)
   return (
     <GlobalContext.Provider
       value={{
@@ -137,18 +137,16 @@ function App() {
         setIsModalOpen,
         customModal,
         setCustomModal,}}>
-      <div className="App relative" style={{ "--header-height": `${headerHeight}px` }}>
+      <div className={`App relative ${language === "fa-IR" ? "dir-rtl iran-sans" : "dir-ltr mulish"} `} style={{ "--header-height": `${headerHeight}px` }}>
         {<main className="relative" style={{ marginTop: headerHeight, marginBottom: footerHeight }}>
             <ScrollToTopButton />
             <AnimatePresence exitBeforeEnter>
               <ThemeProvider>
-              <HelmetProvider>
-              <Suspense fallback={<></>}>
-                <Provider store={Store}>
-                  <RouterProvider router={router} />
-                </Provider>
-              </Suspense>
-              </HelmetProvider>
+                <HelmetProvider>
+                  <Suspense fallback={<></>}>
+                    <RouterProvider router={router} />
+                  </Suspense>
+                </HelmetProvider>
               </ThemeProvider>
             </AnimatePresence>
           </main>}

@@ -209,7 +209,8 @@ header {
 
   .nav-item {
     position: relative;
-    font-family: var(--alt-font);
+    font-weight: 50;
+    // font-family: var(--alt-font);
     font-size: 14px;
     line-height: 20px;
 
@@ -268,7 +269,7 @@ header {
       transition: none;
 
       li {
-        padding: 9px 0 9px 35px;
+        padding: 9px 0 9px 28px;
         position: relative;
         display: block;
 

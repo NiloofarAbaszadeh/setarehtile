@@ -49,7 +49,7 @@ const BlogMetro = (props) => {
                 <div className="blog-post-image rounded-[5px] box-shadow  h-[300px]" style={style}>
                   <img className="h-full" height={353} width={353} src={host + item.attributes.mainImage.data.attributes.url} alt="blog-post" />
                 </div>
-                <div className=" absolute bottom-2 right-6">
+                <div className=" absolute bottom-2 right-6 left-6">
                   <span className="post-date">
                     <p className="text-lightgray">{item.attributes.date}</p>
                   </span>

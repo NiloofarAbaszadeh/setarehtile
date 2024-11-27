@@ -12,11 +12,13 @@ import { ScaleLoader } from 'react-spinners'
 const ImageGalleryPage03 = () => {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
+
   const [data, setData] = useState(null)
   const [tempData, setTempData] = useState(null)
   useEffect(() => {
     const GetData = () => {
-      axios.get(`${host}/api/aftkharats?populate=deep`, {
+      axios.get(`${host}/api/aftkharats?populate=deep&locale=${language}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
       .then(res => {
@@ -31,12 +33,12 @@ const ImageGalleryPage03 = () => {
       })
     }
     GetData()
-  },[token, host])
+  },[token, host, language])
 
   return (<><Helmet>
-        <title> افتخارات | کاشی و سرامیک ستاره  </title>
+        <title> {language === "fa-IR" ? "افتخارات | کاشی و سرامیک ستاره میبد" : language === "en" ? "Honors | Setareh Meybod Tile & Ceramic" : ""}</title>
       </Helmet>
-      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
         <ScaleLoader
           color={"#db1010"}
           loading={!data}
@@ -50,7 +52,7 @@ const ImageGalleryPage03 = () => {
       <Parallax className="lg-no-parallax bg-cover absolute -top-[50px] left-0 w-full h-[100vh] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px]" translateY={[-40, 40]} style={{ backgroundImage: `url(${host}${data[0].attributes.boardImage.data.attributes.formats.medium.url})` }}></Parallax>
       <Container className="h-full relative z-[2]">
         <Row className="justify-center h-full">
-          <Col xl={6} lg={7} md={8} className="relative font-serif text-center flex justify-center flex-col">
+          <Col xl={6} lg={7} md={8} className="relative text-center flex justify-center flex-col">
             <h2 className="text-white font-medium -tracking-[1px] mb-0 text-[50px]">{data[0].attributes.title}</h2>
           </Col>
         </Row>

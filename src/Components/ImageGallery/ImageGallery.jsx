@@ -25,7 +25,7 @@ const ImageGallery = (props) => {
                     onMovePrevRequest={() => setPhotoIndex((photoIndex + props.data.length - 1) % props.data.length)}
                     onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % props.data.length)}
                 /> : <Lightbox
-                imageCaption={<p className='text-xxlg'>{props.data[photoIndex].title}</p>}
+                imageCaption={<p className='text-xxlg mb-8'>{props.data[photoIndex].title}</p>}
                 mainSrc={props.data[photoIndex].src}
                 onCloseRequest={() => setIsOpen(false)}
                 nextSrc={props.data[(photoIndex + 1) % props.data.length].src}

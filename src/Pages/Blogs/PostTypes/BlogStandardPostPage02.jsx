@@ -41,6 +41,7 @@ const SocialIconsData = [
 const BlogStandardPostPage = (props) => {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
 
   // fetch the query param
   const param = useParams();
@@ -93,13 +94,13 @@ const BlogStandardPostPage = (props) => {
 
   useEffect(() => {
     const newsElements = () => {
-      axios.get(`${host}/api/researchs?populate=*`, {
+      axios.get(`${host}/api/researchs?populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
         setData(res.data.data.filter((item) => item.attributes.title === id))
       })
-      axios.get(`${host}/api/all-comments?populate=*`, {
+      axios.get(`${host}/api/all-comments?populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
@@ -107,7 +108,7 @@ const BlogStandardPostPage = (props) => {
       })
     }
     newsElements()
-  }, [id, token, host])
+  }, [id, token, host, language])
 
   return (
     <div style={props.style}>
@@ -121,7 +122,7 @@ const BlogStandardPostPage = (props) => {
           data-testid="loader"/></div>}
       {data && <>
       <Helmet>
-        <title> {data[0].attributes.title} | کاشی و سرامیک ستاره  </title>
+        <title>{language === "fa-IR" ? `${data[0].attributes.title} | کاشی و سرامیک ستاره  ` : language === "en" ? `${data[0].attributes.title} | Setareh Meybod Tile & Ceramic` : ""}</title>
       </Helmet>
           <section className="py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
             <Container>
@@ -130,12 +131,12 @@ const BlogStandardPostPage = (props) => {
                   <Row>
                     <Col className="blog-details-text last:mb-0 mb-8">
                       <ul className="flex mb-8 xs:block">
-                        {data[0] && <li className="flex items-center justify-start inline-block align-middle">
+                        {data[0] && <li className="flex items-center justify-start align-middle">
                             <div className='ml-[5px]'><span className="feather-calendar text-fastblue mr-[10px]"></span></div>
-                            <div><span>{data[0].attributes.date}</span></div>
+                            <div><span className=''>{data[0].attributes.date}</span></div>
                           </li>}
                         {data[0] && (
-                            <li className="inline-block align-middle"><i className="feather-user text-fastblue mr-[10px] ml-[5px]"></i>نوشته شده توسط {data[0].attributes.author.data.attributes.fullName}</li>
+                            <li className="inline-block align-middle"><i className="feather-user text-fastblue mr-[10px] ml-[5px]"></i>{language === "fa-IR" ? "نوشته شده توسط" : language === "en" ? "Written by" : ""} {data[0].attributes.author.data.attributes.fullName}</li>
                           )}
                       </ul>
                       <h5 className="font-medium text-darkgray text-[24px] mb-[1.5rem]">{data[0].attributes.title}</h5>
@@ -171,7 +172,7 @@ const BlogStandardPostPage = (props) => {
                         data[0].attributes.likes && (
                           <div className="text-center md:text-end px-0 flex justify-end sm:justify-center">
                             <Link aria-label="link" className="uppercase text-darkgray text-xs w-auto font-medium inline-block border border-mediumgray rounded pt-[5px] pb-[6px] px-[18px] leading-[20px] hover:text-black transition-default hover:shadow-[0_0_10px_rgba(23,23,23,0.10)] " to="#">
-                              <span>{data[0].attributes.likes} لایک</span>
+                              <span className=''>{data[0].attributes.likes} {language === "fa-IR" ? "لایک" : language === "en" ? "Likes" : ""}</span>
                               <i className="far fa-heart mr-2 text-[#fa5c47]">
                               </i>
                             </Link>
@@ -198,10 +199,10 @@ const BlogStandardPostPage = (props) => {
                 <Container className='flex justify-center'>
                   <div className='box-shadow rounded-[10px] bg-white w-max'>
                     <Row className="justify-center">
-                        <Col lg={9} className="mb-8 sm:mb-8 pt-12">
-                            <h6 className="text-darkgray font-medium mb-[5px]">نوشتن پیام</h6>
-                            <div className="mb-[5px]">ایمیل شما منتشر نخواهد شد. قسمت های مورد نیاز علامت زده شده اند <span className="text-[#fb4f58]">*</span></div>
-                        </Col>
+                    <Col lg={9} className="my-8 sm:mb-8">
+                      <h6 className="text-darkgray font-medium mb-[5px]">{language === "fa-IR" ? "نوشتن پیام" : language === "en" ? "Add comment" : ""}</h6>
+                      <div className="mb-[5px]">{language === "fa-IR" ? "ایمیل شما منتشر نخواهد شد. قسمت های مورد نیاز علامت زده شده اند." : language === "en" ? "Your email will not be published. The required parts are marked." : ""}<span className="text-red">*</span></div>
+                    </Col>
                     </Row>
                     <Row className="justify-center">
                         <Col lg={9}>
@@ -214,42 +215,42 @@ const BlogStandardPostPage = (props) => {
                             }}>
                             {({ isSubmitting, status }) => (
                               <Form className="row mb-[30px]">
-                                  <Col md={6} sm={12} xs={12}>
+                                <Col md={6} sm={12} xs={12}>
+                                <input
+                                  type="text"
+                                  name="fullName"
+                                  placeholder={language === "fa-IR" ? "نام و نام خانوادگی" : language === "en" ? "Full name" : ""}
+                                  onChange={handelChange}
+                                  value={formData.fullName}
+                                  className="py-[12px] px-[20px] w-full text-xxmd border-[2px] border-solid border-[#dfdfdf] mb-[26px] rounded-[4px]"
+                                />
+                                </Col>
+                                <Col md={6} sm={12} xs={12}>
                                   <input
-                                    type="text"
-                                    name="fullName"
-                                    placeholder="نام و نام خانوادگی"
+                                    type="email"
+                                    name="email"
+                                    placeholder={language === "fa-IR" ? "ایمیل" : language === "en" ? "Email" : ""}
                                     onChange={handelChange}
-                                    value={formData.fullName}
+                                    value={formData.email}
                                     className="py-[12px] px-[20px] w-full text-xxmd border-[2px] border-solid border-[#dfdfdf] mb-[26px] rounded-[4px]"
                                   />
-                                  </Col>
-                                  <Col md={6} sm={12} xs={12}>
-                                    <input
-                                      type="text"
-                                      name="email"
-                                      placeholder="ایمیل"
-                                      onChange={handelChange}
-                                      value={formData.email}
-                                      className="py-[12px] px-[20px] w-full text-xxmd border-[2px] border-solid border-[#dfdfdf] mb-[26px] rounded-[4px]"
-                                    />
-                                  </Col>
-                                  <Col md={12} sm={12} xs={12}>
-                                      <input value={formData.comment} className="mb-[1rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full bg-transparent border-[2px] border-solid border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder="متن پیام خود را وارد کنید" onChange={handelChange} />
-                                  </Col>
-                                  <Col>
-                                      <Buttons type="submit" className={`tracking-[0.5px] btn-fill rounded-[5px] font-medium uppercase${isSubmitting ? " loading" : ""}`} themeColor="#232323" size="md" color="#fff" title="فرستادن پیام" onClick={handelSubmmit}/>
-                                      {commentSend !== null ?
-                                        commentSend === "OK" ? 
-                                          <span className='mr-4'>نظر شما با موفقیت ارسال شد !</span>
-                                         :
-                                          <span className='mr-4'>مشکلی در هنگام ارسال پیش آمد، لطفا بعدا دوباره تلاش کنید</span>
-                                      : <></>}
-                                      {err ? <span className='mr-4 c-c-red'>لطفا همه بخش های مورد نیاز را کامل کنید</span> : <></>}
-                                  </Col>
-                                  <AnimatePresence>
-                                      {status && <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><MessageBox className="mt-[20px] py-[10px]" theme="message-box01" variant="success" message="پیام شما با موفقیت ارسال شد!" /></m.div>}
-                                  </AnimatePresence>
+                                </Col>
+                                <Col md={12} sm={12} xs={12}>
+                                    <input value={formData.comment} className="mb-[1rem] rounded-[4px] py-[15px] px-[20px] h-[120px] w-full bg-transparent border-[2px] border-solid border-[#dfdfdf] text-md resize-none" rows="6" name="comment" placeholder={language === "fa-IR" ? "متن پیام خود را وارد کنید" : language === "en" ? "Comment section" : ""} onChange={handelChange} />
+                                </Col>
+                                <Col>
+                                    <Buttons type="submit" className={`tracking-[0.5px] btn-fill rounded-[5px] font-medium uppercase${isSubmitting ? " loading" : ""}`} themeColor="#232323" size="md" color="#fff" title={language === "fa-IR" ? "فرستادن پیام" : language === "en" ? "Send" : ""} onClick={handelSubmmit}/>
+                                    {commentSend !== null ?
+                                      commentSend === "OK" ? 
+                                        <span className='mr-4'>{language === "fa-IR" ? "نظر شما با موفقیت ارسال شد !" : language === "en" ? "Your comment has been sent successfully!" : ""}</span>
+                                       :
+                                        <span className='mr-4'>{language === "fa-IR" ? "مشکلی در هنگام ارسال پیش آمد، لطفا بعدا دوباره تلاش کنید" : language === "en" ? "There was a problem sending, please try again later." : ""}</span>
+                                    : <></>}                                          
+                                    {err ? <span className='mr-4 c-c-red'>{language === "fa-IR" ? "لطفا همه بخش های مورد نیاز را کامل کنید" : language === "en" ? "Please complete all required sections" : ""}</span> : <></>}   
+                                </Col>
+                                <AnimatePresence>
+                                    {status && <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><MessageBox className="mt-[20px] py-[10px]" theme="message-box01" variant="success" message="پیام شما با موفقیت ارسال شد!" /></m.div>}
+                                </AnimatePresence>
                               </Form>)}
                             </Formik>
                         </Col>

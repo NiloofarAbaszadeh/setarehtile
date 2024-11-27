@@ -7,12 +7,13 @@ import { Col, Container, Row } from 'react-bootstrap'
 import image from "../Assets/images/recruitment image.png"
 import { ScaleLoader } from 'react-spinners'; 
 
-const TABLE_HEAD = ["شرکت", "سمت", "سابقه کار", "حقوق دریافتی (به ریال)", "علت ترک کار", "آدرس", "شماره تلفن"];
+const TABLE_HEAD = ["شرکت", "سمت", "سابقه کار (به ماه)", "حقوق دریافتی (به ریال)", "علت ترک کار", "آدرس", "شماره تلفن"];
 
 const Recruitment = () => {
     const host = useSelector(state => state.State.host)
     const [state, setState] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [heightCheck, setHeightCheck] = useState(false)
     const [formData, setFormData] = useState(
         {
             fullName: "",
@@ -30,6 +31,7 @@ const Recruitment = () => {
             addressState: "",
             phone: "",
             mobile: "",
+            sex: "",
 
             militaryService: "",
             serviceUnit: "",
@@ -106,13 +108,17 @@ const Recruitment = () => {
 
     const handelChange = (event) => {
     const { name, value } = event.target
+    if (formData.height >= 270 || formData.height <= 100) {
+      setHeightCheck(true)
+    } else {
+      setHeightCheck(false)
+    }
     setFormData(pervFormData => {
         return {
           ...pervFormData,
           [name]: value
     }})}
     useEffect(() => {
-      
       setTimeout(() => {
         setLoading(true)
       }, 1500)
@@ -120,6 +126,7 @@ const Recruitment = () => {
 
   const handelSubmmit = async (event) => {
     event.preventDefault()
+    if (!heightCheck) {
       await axios.post(`${host}/api/recruitment-forms`, {
         data: {
           acquaintanceToSetareh: formData.acquaintanceToSetareh,
@@ -202,9 +209,12 @@ const Recruitment = () => {
         setState(true)
       }).catch(res => {
         setState(false)
-      })}
+      })
+    }
+      
+    }
 
-    return <>
+    return <div className="dir-rtl">
       {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 '>
           <ScaleLoader
           color={"#db1010"}
@@ -292,7 +302,25 @@ const Recruitment = () => {
                                       required
                                     /> 
                                 </div>
-
+                                <div className="flex flex-col items-start justify-center">
+                                    <label className="mt-[18px] mb-[10px]">جنسیت<span className="text-[#fb4f58]"> * </span></label>
+                                    <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
+                                    <select name="sex" id="sex"
+                                    // onInvalid={() => {
+                                    //   document
+                                    //     .getElementById("sex")
+                                    //     .setCustomValidity("لطفا این بخش را کامل کنید");
+                                    // }}
+                                    onChange={handelChange}
+                                    value={formData.sex}
+                                    className="py-[13px] px-[15px] text-md leading-[initial] w-full"
+                                    required>
+                                        <option className="text-[14px]" value=""></option>
+                                        <option className="text-[14px]" value="مرد">مرد</option>
+                                        <option className="text-[14px]" value="زن">زن</option>
+                                    </select>
+                                    </div>
+                                </div>
                                 <div className="flex flex-col items-start justify-center">
                                     <label className="mt-[18px] mb-[10px]">وزن<span className="text-[#fb4f58]"> * </span></label>
                                     <input
@@ -312,26 +340,7 @@ const Recruitment = () => {
                                     /> 
                                 </div>
 
-                                <div className="flex flex-col items-start justify-center ">
-                                    <label className="mt-[18px] mb-[10px]">وضعیت تاهل<span className="text-[#fb4f58]"> * </span></label>   
-                                    <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
-                                    <select name="maritalStatus" id="maritalStatus" 
-                                    // onInvalid={() => {
-                                    //   document
-                                    //     .getElementById("maritalStatus")
-                                    //     .setCustomValidity("لطفا این بخش را کامل کنید");
-                                    // }}
-                                    onChange={handelChange}
-                                    value={formData.maritalStatus}
-                                    className="py-[13px] px-[15px] text-md leading-[initial] w-full "
-                                    required
-                                    placeholder="وضعیت تاهل">
-                                        <option className="text-[14px]" value=""></option>
-                                        <option className="text-[14px]" value="مجرد">مجرد</option>
-                                        <option className="text-[14px]" value="متاهل">متاهل</option>
-                                    </select>
-                                    </div>
-                                </div>
+                                
                             </div>
                     
                             <div className="mr-12">
@@ -406,26 +415,27 @@ const Recruitment = () => {
                                       required
                                     /> 
                                 </div> 
-
-                                <div className="flex flex-col items-start justify-center">
-                                    <label className="mt-[18px] mb-[10px]">تعداد فرزندان<span className="text-[#fb4f58]"> * </span></label>
-                                    <input
-                                      // onInvalid={() => {
-                                      //   document
-                                      //     .getElementById("children")
-                                      //     .setCustomValidity("لطفا این بخش را کامل کنید");
-                                      // }}
-                                      // onInput="this.setCustomValidity('')"
-                                      id="children"
-                                      type="text"
-                                      name="children"
-                                      placeholder="تعداد فرزندان"
-                                      onChange={handelChange}
-                                      value={formData.children}
-                                      className="w-[14vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]  border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
-                                      required
-                                    /> 
-                                </div> 
+                                <div className="flex flex-col items-start justify-center ">
+                                    <label className="mt-[18px] mb-[10px]">وضعیت تاهل<span className="text-[#fb4f58]"> * </span></label>   
+                                    <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
+                                    <select name="maritalStatus" id="maritalStatus" 
+                                    // onInvalid={() => {
+                                    //   document
+                                    //     .getElementById("maritalStatus")
+                                    //     .setCustomValidity("لطفا این بخش را کامل کنید");
+                                    // }}
+                                    onChange={handelChange}
+                                    value={formData.maritalStatus}
+                                    className="py-[13px] px-[15px] text-md leading-[initial] w-full "
+                                    required
+                                    placeholder="وضعیت تاهل">
+                                        <option className="text-[14px]" value=""></option>
+                                        <option className="text-[14px]" value="مجرد">مجرد</option>
+                                        <option className="text-[14px]" value="متاهل">متاهل</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
 
@@ -434,7 +444,7 @@ const Recruitment = () => {
                             <div className="flex items-center justify-center">
                                 <div className="flex flex-col items-start justify-center">
                                     <label className="mt-[18px] mb-[10px]">وضعیت جسمانی<span className="text-[#fb4f58]"> * </span></label>
-                                    <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
+                                    <div className="w-[15vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
                                     <select name="physicalCondition" id="physicalCondition"
                                     // onInvalid={() => {
                                     //   document
@@ -453,7 +463,7 @@ const Recruitment = () => {
                                 </div>
                                 <div className="flex flex-col items-start justify-center mr-24 xs:mr-12">
                                     <label className="mt-[18px] mb-[10px]">وضعیت مسکن<span className="text-[#fb4f58]"> * </span></label>
-                                    <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
+                                    <div className="w-[15vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
                                     <select name="addressState" id="addressState"
                                     // onInvalid={() => {
                                     //   document
@@ -472,7 +482,30 @@ const Recruitment = () => {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="flex flex-col items-start justify-center">
+                                    <label className="mt-[18px] mb-[10px]">تعداد فرزندان<span className="text-[#fb4f58]"> * </span></label>
+                                    <div className="w-[15vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
+                                    <select name="children" id="children"
+                                    // onInvalid={() => {
+                                    //   document
+                                    //     .getElementById("physicalCondition")
+                                    //     .setCustomValidity("لطفا این بخش را کامل کنید");
+                                    // }}
+                                    onChange={handelChange}
+                                    value={formData.children}
+                                    className="py-[13px] px-[15px] text-md leading-[initial] w-full"
+                                    required>
+                                        <option className="text-[14px]" value=""></option>
+                                        <option className="text-[14px]" value="بدون فرزند">بدون فرزند</option>
+                                        <option className="text-[14px]" value="1">1</option>
+                                        <option className="text-[14px]" value="2">2</option>
+                                        <option className="text-[14px]" value="3">3</option>
+                                        <option className="text-[14px]" value="4">4</option>
+                                        <option className="text-[14px]" value="بیشتر از 4 فرزند">بیشتر از 4 فرزند</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            
                             <div className="flex flex-col items-start justify-start">
                                 <label className="mt-[18px] mb-[10px]">نشانی کامل محل سکونت فعلی<span className="text-[#fb4f58]"> * </span></label>
                                 <input
@@ -534,12 +567,12 @@ const Recruitment = () => {
                     </div>
                 </div>
 
-                <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-id-badge text-red ml-2"></span>وضعیت سربازی</p>
+                {formData.sex === "مرد" && <> <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-id-badge text-red ml-2"></span>وضعیت سربازی</p>
                 {/* وضعیت نظام وضیفه */}
                 <div className="mx-24 flex flex-col items-center justify-center ">
-                <div className="grid xl:grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
+                <div className="grid grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
                         <div className="flex flex-col items-start justify-center">
-                        <label className="mt-[18px] mb-[10px]">وضعیت سربازی<span className="text-[#fb4f58]"> * برای آقایان</span></label>
+                        <label className="mt-[18px] mb-[10px]">وضعیت سربازی<span className="text-[#fb4f58]"> * </span></label>
                         <div className="w-[14vw] xs:w-[25vw] border-[1px] border-solid border-[#dfdfdf] rounded-[2px] pl-[7px]">
                         <select name="militaryService" id="militaryService"
                         // onInvalid={() => {
@@ -550,6 +583,7 @@ const Recruitment = () => {
                         onChange={handelChange}
                         value={formData.militaryService}
                         className="py-[13px] px-[15px] text-md leading-[initial] w-full"
+                        required  
                         >
                             <option className="text-[14px]" value=""></option>
                             <option className="text-[14px]" value="پایان خدمت">پایان خدمت</option>
@@ -599,7 +633,7 @@ const Recruitment = () => {
                         </div>}
 
                         {formData.militaryService === "معاف" && <div className="flex flex-col items-start justify-center mr-12">
-                            <label className="mt-[18px] mb-[10px]">علت معافیت پزشکی و غیره<span className="text-[#fb4f58]"> * </span></label>
+                            <label className="mt-[18px] mb-[10px]">توضیحات اضافه</label>
                             <input
                               id="remissionReason"
                               // onInvalid={() => {
@@ -613,16 +647,16 @@ const Recruitment = () => {
                               onChange={handelChange}
                               value={formData.remissionReason}
                               className="w-[14vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
-                              required
                             /> 
                         </div>}
                     </div>
                 </div>
+                </>}
 
                 {/* وضعیت تحصیلی */}
                 <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-write text-red ml-2"></span>وضعیت تحصیلی</p>
                 <div className="mx-24 flex flex-col items-center justify-center ">
-                    <div className="grid xl:grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
+                    <div className="grid grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
                         <div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px]">آخرین مدرک تحصیلی<span className="text-[#fb4f58]"> * </span></label>
                             <input
@@ -985,7 +1019,7 @@ const Recruitment = () => {
                                   </tr> 
                               </tbody>
                             </table>
-                        <div className="grid xl:grid-cols-4 xs:grid-cols-2 gap-8 items-center justify-start ">
+                        <div className="grid grid-cols-4 xs:grid-cols-2 gap-8 items-center justify-start ">
                     <div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px]">شغل مورد تقاضا<span className="text-[#fb4f58]"> * </span></label>
                             <input
@@ -1147,7 +1181,7 @@ const Recruitment = () => {
                 {/* اطلاعات اعضای خانواده */}
                 <p className="mr-[12vw] mt-12 mb-4 text-[20px]"><span className="ti-bag text-red ml-2"></span>اطلاعات اعضای خانواده</p>
                 <div className="mx-24 flex flex-col items-center justify-center ">
-                    <div className="grid xl:grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
+                    <div className="grid grid-cols-4 xs:grid-cols-2 gap-8 items-start justify-start bg-white boarder-2 box-shadow pb-12 pt-6 rounded-[5px] w-[80vw] px-20">
                         
                         <div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px]">نام پدر<span className="text-[#fb4f58]"> * </span></label>
@@ -1214,7 +1248,7 @@ const Recruitment = () => {
                               className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                             /> 
                         </div>
-                        <div className="flex flex-col items-start justify-center">
+                        {formData.maritalStatus === "متاهل" && <><div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px] text-[12px]">نام همسر</label>
                             <input
                               type="text"
@@ -1237,7 +1271,7 @@ const Recruitment = () => {
                               className="w-[14vw] xs:w-[30vw] py-[13px] px-[15px] text-md leading-[initial] border-[1px] border-solid border-[#dfdfdf] rounded-[2px]"
                               
                             /> 
-                        </div>
+                        </div></>}
                         <div className="flex flex-col items-start justify-center">
                             <label className="mt-[18px] mb-[10px] text-[12px]">تعداد خواهر</label>
                             <input
@@ -1403,11 +1437,12 @@ const Recruitment = () => {
               
               <div className="flex flex-col itams-center justify-start mx-[10vw] mt-8 mb-24">
                 <p className="text-[12px]"><span className="text-[#fb4f58]"> * </span>لطفا قبل از ارسال از درستی اطلاعات وارد شده اطمینان حاصل کنید. پش از ارسال امکان ویرایش وجود ندارد.</p>
+                {heightCheck ? <p className="text-[#fb4f58]">لطفا قد خود را با دقت و به سانتی‌متر وارد نمایید. </p> : <></>}
                 {state === true ? <p className="text-[13px] mt-8">اطلاعات با موفقیت ارسال شد. با تشکر از وقت شما</p> : state === false ?  <p className="text-[13px] text-red mt-8">مشکلی در ارسال فرم پیش آمد. لطفا پس از بررسی بخش های مورد نیاز، دوباره جهت ارسال اقدام کنید.</p> : <></>}
                 <input className="button-custom w-min mt-4" type="submit" value="ارسال" placeholder="ارسال" />
               </div>
             </form>
-    </>
+    </div>
 }
 
 export default Recruitment

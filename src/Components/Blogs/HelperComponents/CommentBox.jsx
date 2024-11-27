@@ -5,8 +5,10 @@ import { m } from 'framer-motion'
 import { fadeIn } from '../../../Functions/GlobalAnimations'
 import moment from 'jalali-moment'
 import userIcon from "../../../Assets/images/user-icon.png"
+import { useSelector } from 'react-redux'
 
 const CommentBox = (props) => {
+    const language = useSelector(state => state.State.language)
     
     const Comments = () => {
         const elements = props.data.map(item => {
@@ -45,7 +47,7 @@ const CommentBox = (props) => {
                 <Container>
                     <Row className="justify-center">
                         <Col md={6} className="text-center mb-4">
-                            <h6 className="text-darkgray text-[28px] font-medium">کامنت ها</h6>
+                            <h6 className="text-darkgray text-[28px] font-medium">{language === "fa-IR" ? "کامنت ها" : language === "en" ? "Comments" : ""}</h6>
                         </Col>
                     </Row>
                     <Row>

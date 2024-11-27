@@ -11,6 +11,7 @@ import "../../Assets/scss/components/_fancytextbox.scss"
 
 const FancyTextBox = (props) => {
     const host = useSelector(state => state.State.host)
+    const language = useSelector(state => state.State.language)
     return (
         <Row className={`${props.theme}${props.grid ? ` ${props.grid}` : ""}`}>
             {
@@ -29,7 +30,7 @@ const FancyTextBox = (props) => {
                                                 <p className="m-0 self-center w-[75%] text-[#fff] opacity-60 line-clamp-2 ">{item.attributes.discraption}</p>
                                                 <span className="self-center text-center ml-auto mr-[20px]">
                                                     <Link aria-label="link" to={`./product-groups/${item.attributes.name}`} className="inline-flex justify-center items-center leading-10 rounded-full bg-white h-[40px] w-[40px]">
-                                                        <i className="feather-arrow-left text-[#000]"></i></Link>
+                                                        <i className={`feather-arrow-${language === "fa-IR" ? "left" : language === "en" ? "right" : <></>} text-[#000]`}></i></Link>
                                                 </span>
                                             </div>
                                         </div>

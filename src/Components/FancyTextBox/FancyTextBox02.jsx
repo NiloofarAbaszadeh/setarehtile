@@ -21,9 +21,9 @@ const FancyTextBoxSwitch = (item) => {
                 <div className="text-box-content">
                     <div className="text-box-wrapper h-[180px]">
                         {item.icon.class && <i className={item.icon.class}></i>}
-                        {item.title && <span className='font-IranSans text-xlg text-black'>{item.title}</span>}
+                        {item.title && <span className='text-xlg text-black'>{item.title}</span>}
                         {(item.link || item.linkTitle) && <a aria-label="fancytextbox" href={item.link}><u>{item.linkTitle}</u></a>}
-                        {item.description && <p>{item.description}</p>}
+                        {item.description && <p className=''>{item.description}</p>}
                     </div>
                 </div>
             )

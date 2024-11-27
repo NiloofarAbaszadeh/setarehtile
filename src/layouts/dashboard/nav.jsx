@@ -75,7 +75,8 @@ export default function Nav({ openNav, onCloseNav }) {
       })
     }
 
-    const Initialize = async (role, seen, id) => {
+    const Initialize = async (id) => {
+      console.log(id)
       await axios.put(`${host}/api/karbrans/${id}`, {
         data: {
           seen: {
@@ -93,6 +94,7 @@ export default function Nav({ openNav, onCloseNav }) {
       const Update = (url, id, data, seen) => {
         const seened = data.map(item => {return item.id})
         if (url === "/dashboard/inventory") {
+          console.log(id)
           axios.put(`${host}/api/karbrans/${id}`, {
             data: {
               seen: {

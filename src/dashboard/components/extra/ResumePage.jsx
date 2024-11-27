@@ -21,7 +21,7 @@ const ResumePage = () => {
     const [data, setData] = useState()
     const contentToPrint = useRef(null);
     const handlePrint = useReactToPrint({
-      documentTitle: "Print This Document",
+      documentTitle: data && data.fullName,
     //   onBeforePrint: () => console.log("before printing..."),
     //   onAfterPrint: () => console.log("after printing..."),
       removeAfterPrint: true,
@@ -37,7 +37,6 @@ const ResumePage = () => {
         }
         GetData()
     }, [host, token, url])
-    // console.log(data)
 
     return <div className="ml-24">
         <div className="flex items-center justify-between mx-8">
@@ -54,7 +53,7 @@ const ResumePage = () => {
                 <span className="ti ti-printer py-[5px]"></span>
             </button>
         </div>
-        {data && <><div ref={contentToPrint} className="p-8 pt-0">
+        {data && <><div ref={contentToPrint} className="p-8 pt-0 dir-rtl">
             <div className="flex items-center justify-between border-[3px] px-12">
                 <div className="w-[75px] py-2">
                     <img src={logo} alt="Logo" />
@@ -123,41 +122,49 @@ const ResumePage = () => {
                 <p className="pt-2">آشنایی با زبان: {data.language}</p>
                 <p className="pt-2">میزان تسلط: {data.languageState}</p>
             </div>
-            <div className="bg-[#ffabab] border-[3px] border-t-0">
+            <div className="bg-[#ffabab] border-[3px] border-t-0 border-b-0">
                 <p className="pr-4">سوابق کاری</p>
             </div> 
-            <div className="border-[3px] border-t-0 border-b-0 grid grid-cols-7 items-center justify-center">
-                <p className="border-[3px] border-t-0 border-r-0 p-2">شرکت</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">سمت</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">سابقه کار </p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2 text-[10px]">حقوق دریافتی «ریال» </p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">علت ترک کار</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">آدرس </p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">شماره تلفن </p>
+            <div className="border-b-2 border-r-3">
+                <div className="grid grid-cols-7 items-center justify-center divide-x-2 divide-y-2" >
+                <p className="w-full h-full p-2 border-2 border-b-0">شرکت</p>
+                <p className="w-full h-full p-2">سمت</p>
+                <p className="w-full h-full p-2">سابقه کار </p>
+                <p className="w-full h-full p-2">حقوق دریافتی «ریال» </p>
+                <p className="w-full h-full p-2">علت ترک کار</p>
+                <p className="w-full h-full p-2">آدرس </p>
+                <p className="w-full h-full p-2">شماره تلفن </p>
+                </div>
 
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1company}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1side}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1workExperience}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1income}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1leavingReason}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience1address}</p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">{data.workExperience1phonNumber}</p>
+                <div className="grid grid-cols-7 items-center justify-center divide-x-2 divide-y-2" >
+                <p className="w-full h-full p-2  border-2 border-b-0">{data.workExperience1company}</p>
+                <p className="w-full h-full p-2">{data.workExperience1side}</p>
+                <p className="w-full h-full p-2">{data.workExperience1workExperience}</p>
+                <p className="w-full h-full p-2">{data.workExperience1income}</p>
+                <p className="w-full h-full p-2">{data.workExperience1leavingReason}</p>
+                <p className="w-full h-full p-2">{data.workExperience1address}</p>
+                <p className="w-full h-full p-2">{data.workExperience1phonNumber}</p>
+                </div>
 
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2company}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2side}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2workExperience}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2income}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2leavingReason}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience2address}</p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">{data.workExperience2phonNumber}</p>
+                <div className="grid grid-cols-7 items-center justify-center divide-x-2 divide-y-2" >
+                <p className="w-full h-full p-2  border-2 border-b-0">{data.workExperience2company}</p>
+                <p className="w-full h-full p-2">{data.workExperience2side}</p>
+                <p className="w-full h-full p-2">{data.workExperience2workExperience}</p>
+                <p className="w-full h-full p-2">{data.workExperience2income}</p>
+                <p className="w-full h-full p-2">{data.workExperience2leavingReason}</p>
+                <p className="w-full h-full p-2">{data.workExperience2address}</p>
+                <p className="w-full h-full p-2">{data.workExperience2phonNumber}</p>
+                </div>
 
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3company}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3side}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3workExperience}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3income}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3leavingReason}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.workExperience3address}</p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">{data.workExperience3phonNumber}</p>
+                <div className="grid grid-cols-7 items-center justify-center divide-x-2 divide-y-2" >
+                <p className="w-full h-full p-2  border-2 border-b-0">{data.workExperience3company}</p>
+                <p className="w-full h-full p-2">{data.workExperience3side}</p>
+                <p className="w-full h-full p-2">{data.workExperience3workExperience}</p>
+                <p className="w-full h-full p-2">{data.workExperience3income}</p>
+                <p className="w-full h-full p-2">{data.workExperience3leavingReason}</p>
+                <p className="w-full h-full p-2">{data.workExperience3address}</p>
+                <p className="w-full h-full p-2">{data.workExperience3phonNumber}</p>
+                </div>
             </div>
             <div className="border-[3px] border-t-0 border-b-0 grid grid-cols-3 p-2 py-0">
                 <p className="pt-2">شغل مورد تقاضا: {data.demandedJob}</p>
@@ -198,24 +205,30 @@ const ResumePage = () => {
                     <p>تعداد خواهر: {data.familysisters}</p>
                 </div>
             </div>
-            <div className="bg-[#ffabab] border-[3px] border-t-0">
+            <div className="bg-[#ffabab] border-x-[3px]">
                 <p className="pr-4">مشخصات معرفین</p>
             </div> 
-            <div className="border-[3px] border-t-0 border-b-0 grid grid-cols-4 items-center justify-center">
-                <p className="border-[3px] border-t-0 border-r-0 p-2">نام و نام خانوادگی معرف</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">نسبت معرف</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">آدرس </p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">تلفن </p>
+            <div className="border-b-[2px] items-center justify-center">
+                <div className="grid grid-cols-4 divide-x-2 divide-y-2">
+                <p className="p-2 border-2 border-b-0">نام و نام خانوادگی معرف</p>
+                <p className="p-2">نسبت معرف</p>
+                <p className="p-2">آدرس </p>
+                <p className="p-2">تلفن </p>
+                </div>
 
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy1fullName}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy1relationship}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy1address}</p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">{data.introduceBy1mobile}</p>
+                <div className="grid grid-cols-4 divide-x-2 divide-y-2">
+                <p className="p-2 border-2 border-b-0">{data.introduceBy1fullName}</p>
+                <p className="p-2">{data.introduceBy1relationship}</p>
+                <p className="p-2">{data.introduceBy1address}</p>
+                <p className="p-2">{data.introduceBy1mobile}</p>
+                </div>
 
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy2fullName}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy2relationship}</p>
-                <p className="border-[3px] border-t-0 border-r-0 p-2">{data.introduceBy2address}</p>
-                <p className="border-[3px] border-t-0 border-r-0 border-l-0 p-2">{data.introduceBy2mobile}</p>
+                <div className="grid grid-cols-4 divide-x-2 divide-y-2">
+                <p className="p-2 border-2 border-b-0">{data.introduceBy2fullName}</p>
+                <p className="p-2">{data.introduceBy2relationship}</p>
+                <p className="p-2">{data.introduceBy2address}</p>
+                <p className="p-2">{data.introduceBy2mobile}</p>
+                </div>
             </div>
             <div className="border-[3px] border-t-0 border-b-0 grid grid-cols-1 items-center justify-center">
                 <p className="p-2">نام یک نفر از دوستان و یا آشنایان خود را باذکر دقیق مشخصات «آدرس، تلفن همراه و محل کار» را ذکر نمایید تا در صورت لزوم بتوان از طریق آنان به شما دسترسی پیدا کرد.</p>    

@@ -18,6 +18,7 @@ const Collection = () => {
 
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
 
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -27,7 +28,7 @@ const Collection = () => {
   useEffect(() => {
     const GetData = async () => {
       // eslint-disable-next-line
-      await axios.get(`${host}/api/collectionss?filters\[name]=${id}&populate=deep`, {
+      await axios.get(`${host}/api/collectionss?filters\[name]=${id}&populate=deep&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(res.data.data)
@@ -35,11 +36,11 @@ const Collection = () => {
       })
     }
     GetData()
-  }, [host, id, token])
+  }, [host, id, token, language])
 
   return (
     <>
-      {!loading && !data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 top-[-25px]'>
+      {!loading && !data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 '>
       <ScaleLoader
       color={"#db1010"}
       loading={!loading}
@@ -48,7 +49,7 @@ const Collection = () => {
       data-testid="loader"/></div>}
 
       {loading && data && <Helmet>
-        <title>{data[0].attributes.name} | کاشی و سرامیک ستاره  </title>
+        <title>{data[0].attributes.name} | {language === "fa-IR" ? `کاشی و سرامیک ستاره  ` : language === "en" ? `Setareh Meybod Tile & Ceramic` : ""}  </title>
       </Helmet>}
 
       {loading && <div className="h-[560px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative">
@@ -67,7 +68,7 @@ const Collection = () => {
       </div>}
 
       {/* Section Start */}
-      {loading && <section className="overflow-hidden relative pb-[150px] px-[11%] pb-[130px] bg-lightgray xl:px-[2%] lg:pb-[90px] md:px-0 md:pb-[75px] sm:pb-[50px]">
+      {loading && <section className="overflow-hidden relative pb-[150px] px-[11%] bg-lightgray xl:px-[2%] lg:pb-[90px] md:px-0 md:pb-[75px] sm:pb-[50px]">
         <Container fluid>
           <Row>
             <Col className="mx-[12%] xs:px-0">

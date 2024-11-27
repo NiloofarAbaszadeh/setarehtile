@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { m } from "framer-motion";
 
-
 const BlogMasonry = (props) => {
   const blogWrapper = useRef();
   const [loading, setLoading] = useState(true);
 
   const host = useSelector(state => state.State.host)
+  const language = useSelector(state => state.State.language)
 
   useEffect(() => {
     import("../../Functions/Utilities").then(module => {
@@ -22,20 +22,18 @@ const BlogMasonry = (props) => {
     <div className="grid-wrapper">
       <ul ref={blogWrapper} className={`grid-container grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large mt-28 md:mt-[4.5rem] sm:mt-[-100px]`} >
         <li className="grid-sizer"></li>
-        <li key={"85"} className={`grid-item grid-item-double`} >
-              <m.div className=" "
-                initial={{ opacity: 0 }}
-                whileInView={!loading && { opacity: 1 }}
-                viewport={{ once: true }}
-                 >
-                <div className="overflow-hidden relative">
-                  <div className="py-24">
-
-                  </div>
+          <li key={"85"} className={`grid-item grid-item-double`} >
+            <m.div className=" "
+              initial={{ opacity: 0 }}
+              whileInView={!loading && { opacity: 1 }}
+              viewport={{ once: true }}
+               >
+              <div className="overflow-hidden relative">
+                <div className="py-24">
                 </div>
-              </m.div>
-            </li>
-            {/* item.attributes.GroupImage.data.attributes.formats.custom.url */}
+              </div>
+            </m.div>
+          </li>
         {props.data.map((item, i) => { 
           return (
             <li key={i} className={`grid-item grid-item-double`} >
@@ -55,7 +53,7 @@ const BlogMasonry = (props) => {
                                     {/* {item.subtitle && <div className="mt-[5px] text-spanishgray text-sm uppercase">{item.subtitle}</div>} */}
                                     {item.attributes.name && <div className="font-medium text-darkgray uppercase text-[16px]">{item.attributes.name}</div>}
                                 </div>}
-                                <div className="mr-auto"><i className="line-icon-Arrow-OutLeft text-[32px] inline-block top-[3px] text-darkgray relative"></i></div>
+                                <div className={`${language === "fa-IR" ? `mr-auto` : language === "en" ? `ml-auto` : ""}`}><i className={`line-icon-Arrow-Out${language === "fa-IR" ? `Left` : language === "en" ? `Right` : ""} text-[32px] inline-block top-[3px] text-darkgray relative`}></i></div>
                             </div>
                         </div>
                     </div>
