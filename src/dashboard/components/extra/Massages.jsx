@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Col } from 'react-bootstrap'
 import moment from 'jalali-moment'
 
-export const MassagesLoader = () => {
-  if (localStorage.getItem("userRole") !== "نماینده") {
-    alert("شما اجازه دسترسی به این صفحه را ندارید.")
-    return redirect("/dashboard")
-  }
-  return null
-}
+// export const MassagesLoader = () => {
+//   if (localStorage.getItem("userRole") !== "نماینده") {
+//     alert("شما اجازه دسترسی به این صفحه را ندارید.")
+//     return redirect("/dashboard")
+//   }
+//   return null
+// }
 
 const Massages = () => {
     const token = useSelector(state => state.State.readToken)
@@ -23,15 +23,21 @@ const Massages = () => {
 
     useEffect(() => {
         const GetData = async () => {
+          localStorage.getItem("userRole") === "نماینده" ?
             await axios.get(`${host}/api/egent-notices`, {
-                headers: { Authorization: `Bearer ${token}` }
-              }).then(res => {
+              headers: { Authorization: `Bearer ${token}` }
+            }).then(res => {
+              setData(res.data.data)      
+            }) :
+            await axios.get(`${host}/api/employee-notices`, {
+              headers: { Authorization: `Bearer ${token}` }
+            }).then(res => {
                 setData(res.data.data)
                 
               })
-              const username = localStorage.getItem("userInfo")
-              // eslint-disable-next-line
-              await axios.get(`${host}/api/karbrans?filters\[username]=${username}`, {
+            const username = localStorage.getItem("userInfo")
+            // eslint-disable-next-line
+            await axios.get(`${host}/api/karbrans?filters\[username]=${username}`, {
                 headers: { Authorization: `Bearer ${token}` }
               })
               .then(res => {

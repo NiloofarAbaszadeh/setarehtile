@@ -57,6 +57,11 @@ export const navConfigKarbar = [
     icon: ic_analytics,
   },
   {
+    title: 'اعلان ها و پیام ها',
+    path: '/dashboard/massages',
+    icon: ic_latters,
+  },
+  {
     title: 'فایل ها',
     path: '/dashboard/files',
     icon: ic_file,

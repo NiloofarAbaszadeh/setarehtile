@@ -21,7 +21,7 @@ const Resume = () => {
 
     useEffect(() => {
         const GetData = () => {
-            axios.get(`${host}/api/recruitment-forms?populate=deep`, {
+            axios.get(`${host}/api/recruitment-forms?populate=deep&sort[0]=id:asc`, {
                 headers: { Authorization: `Bearer ${token}` }
               }).then(res => {
                 setData(res.data.data)

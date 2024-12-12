@@ -76,7 +76,6 @@ export default function Nav({ openNav, onCloseNav }) {
     }
 
     const Initialize = async (id) => {
-      console.log(id)
       await axios.put(`${host}/api/karbrans/${id}`, {
         data: {
           seen: {
@@ -94,7 +93,6 @@ export default function Nav({ openNav, onCloseNav }) {
       const Update = (url, id, data, seen) => {
         const seened = data.map(item => {return item.id})
         if (url === "/dashboard/inventory") {
-          console.log(id)
           axios.put(`${host}/api/karbrans/${id}`, {
             data: {
               seen: {
@@ -166,8 +164,18 @@ export default function Nav({ openNav, onCloseNav }) {
         setInventorys(count)
         pathname === "/dashboard/inventory" && Update(pathname, id, res.data.data, seen)
       })
-
+      localStorage.getItem("userRole") === "نماینده" ?
       axios.get(`${host}/api/egent-notices?populate=*`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        var count = 0
+        // eslint-disable-next-line
+        res.data.data.map(item => {seen.Massages.some(val => val === item.id) === false && count++})
+        setMassages(count)
+        pathname.split("/")[3] && Update(pathname, id, res.data.data, seen)
+      }) :
+      axios.get(`${host}/api/employee-notices?populate=*`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
@@ -239,7 +247,7 @@ export default function Nav({ openNav, onCloseNav }) {
         </Typography>
       </Box>
     </Box>
-    {data && nav &&  <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>  
+    {data && nav && <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>  
       {data.attributes.role === "ادمین" ? navConfigInfo.map((item) => (
         <NavItem key={item.title} item={item} data={[inventorys, file, resumes, massages]} />
       )) : data.attributes.role === "نماینده" ? navConfigNamayandeh.map((item) => (
@@ -284,13 +292,8 @@ export default function Nav({ openNav, onCloseNav }) {
       </>
     : <></>}
     </Box>
-
-      
-      
     </Stack>}
-
       <Box sx={{ flexGrow: 1 }} />
-
     </Scrollbar>
   );
 
@@ -389,6 +392,7 @@ function NavItem02(props) {
     <ListItemButton
       component={RouterLink}
       href={props.item.Link}
+      target='_blank'
       sx={{
         minHeight: 44,
         borderRadius: 0.75,

@@ -11,7 +11,7 @@ import {
   createRoutesFromElements
 } from 'react-router-dom'
 import { InventoryLoader } from "./dashboard/components/extra/Inventory";
-import { MassagesLoader } from "./dashboard/components/extra/Massages";
+// import { MassagesLoader } from "./dashboard/components/extra/Massages";
 import { CommentsLoader } from "./dashboard/components/extra/Comments";
 import { FavoriteTilesLoader } from "./dashboard/components/extra/FavoriteTiles";
 import { UploadFileLoader } from "./dashboard/components/extra/UploadFile";
@@ -20,7 +20,7 @@ import { ResumePageLoader } from "./dashboard/components/extra/ResumePage";
 import { UploadInventoryLoader } from "./dashboard/components/extra/UploadInventory";
 import { UploadLoader } from "./dashboard/components/extra/Upload";
 import { FilesLoader } from "./dashboard/components/extra/Files";
-import { SingleMassagesLoader } from "./dashboard/components/extra/SingleMassage";
+// import { SingleMassagesLoader } from "./dashboard/components/extra/SingleMassage";
 const InteriorDesignPage = lazy(() => import("./Pages/Home/InteriorDesign"))
 const ImageGalleryPage = lazy(() => import("./Pages/Elements/ImageGallery")) // بخش افتخارات و گواهی نامه ها
 const ImageGalleryPage02 = lazy(() => import("./Pages/Elements/ImageGallery02"))
@@ -70,8 +70,8 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
     <Route path="dashboard" element={<Main />} > 
           <Route index element={<IndexPage />} />
           <Route path="inventory" element={<Inventory />} loader={InventoryLoader}/>
-          <Route path="massages" element={<Massages />} loader={MassagesLoader}/>
-          <Route path="massages/:id" element={<SingleMassage />} loader={SingleMassagesLoader}/>
+          <Route path="massages" element={<Massages />} />
+          <Route path="massages/:id" element={<SingleMassage />}/>
           <Route path="comments" element={<Comments />} loader={CommentsLoader}/>
           <Route path="favorite-tile" element={<FavoriteTiles loader={FavoriteTilesLoader}/>} />
           <Route path="files" element={<Files />} loader={FilesLoader}/>

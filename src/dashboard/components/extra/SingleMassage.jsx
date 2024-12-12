@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react"
-import { useLocation, redirect, Link } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import axios from "axios"
 import moment from "jalali-moment"
 
-export const SingleMassagesLoader = () => {
-    if (localStorage.getItem("userRole") !== "نماینده") {
-      alert("شما اجازه دسترسی به این صفحه را ندارید.")
-      return redirect("/dashboard")
-    }
-    return null
-  }
+// export const SingleMassagesLoader = () => {
+//     if (localStorage.getItem("userRole") !== "نماینده") {
+//       alert("شما اجازه دسترسی به این صفحه را ندارید.")
+//       return redirect("/dashboard")
+//     }
+//     return null
+//   }
 
 
 const SingleMassage = () => {
@@ -25,7 +25,14 @@ const SingleMassage = () => {
 
     useEffect(() => {
         const GetData = async () => {
+            localStorage.getItem("userRole") === "نماینده" ?
             await axios.get(`${host}/api/egent-notices/${url}`, {
+                headers: { Authorization: `Bearer ${token}` }
+              }).then(res => {
+                setData(res.data.data.attributes)
+                setLoading(true)
+              }) :
+            await axios.get(`${host}/api/employee-notices/${url}`, {
                 headers: { Authorization: `Bearer ${token}` }
               }).then(res => {
                 setData(res.data.data.attributes)
