@@ -22,6 +22,7 @@ import Seo from '../../Seo';
 import BlogMetro from '../../Components/Blogs/BlogMetro'
 import { ScaleLoader } from 'react-spinners';
 import loginImage from "../../Assets/images/one-person.jpg"
+import MainImageShow from '../../Components/ProductShowHome/MainImageShow';
 
 const InteriorDesignPage = (props) => {
   const token = useSelector(state => state.State.readToken)
@@ -96,7 +97,7 @@ const InteriorDesignPage = (props) => {
       {loadingHome && data.attributes.seo && <Seo data={data.attributes.seo} />}
 
       {/* Section Start */}
-      {language === "fa-IR" && <m.section className="py-[50px] relative bg-cover bg-fixed bg-center overflow-hidden md:py-[65px] sm:py-[50px] xs:py-[40px]"{...fadeIn}>
+      {/* {language === "fa-IR" && <m.section className="py-[50px] relative bg-cover bg-fixed bg-center overflow-hidden md:py-[65px] sm:py-[50px] xs:py-[40px]"{...fadeIn}>
         <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-center" translateY={[-80, 80]} style={{ backgroundImage: `url()` }}></Parallax>
         <div className="absolute top-0 left-0 h-full w-full bg-darkgray opacity-[.75]"></div>
         <Container>
@@ -111,7 +112,7 @@ const InteriorDesignPage = (props) => {
             </Col>
           </Row>
         </Container>
-      </m.section>}
+      </m.section>} */}
       {/* Section End */}
 
       {loadingHome && data.attributes.Slider && <StartupPageBannerSlider data={data.attributes.Slider} />}
@@ -195,8 +196,16 @@ const InteriorDesignPage = (props) => {
       </section>}
       </LazyLoad>
       
+      {data && data.attributes.ShowProduct && <LazyLoad height={200} offset={100}>
+      <section className="bg-[#f1edea] pt-[100px] pb-[120px] lg:py-[120px] md:py-[75px] sm:py-[110px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
+        <Container className="pt-[6%] lg:pt-0">
+          <MainImageShow data={data.attributes.ShowProduct} />
+        </Container>
+      </section>
+      </LazyLoad>}
+      
       {data && <LazyLoad height={200} offset={100}>
-      <section className="bg-[#f1edea] pt-[100px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
+      <section className="bg-lightgray pt-[60px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
         <Container className="pt-[6%] lg:pt-0">
           <Row className="items-center">
             <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[65px] md:pt-0 xs:p-0">
@@ -213,7 +222,7 @@ const InteriorDesignPage = (props) => {
             </m.div>
             <m.div className="col-lg-8 offset-xl-1">
               <Swiper
-                className="interiordesign-icon-with-text black-move swiper-pagination-medium h-full min-w-[1170px] md:min-w-full"
+                className="interiordesign-icon-with-text black-move swiper-pagination-medium h-full min-w-[1170px] md:min-w-full "
                 ref={swiperRef}
                 spaceBetween={30}
                 slidesPerView={1}
@@ -261,13 +270,13 @@ const InteriorDesignPage = (props) => {
           <Row className="justify-center">
             <Col xl={7} lg={8} sm={10} className="text-center text-white overflow-hidden ">
               <m.div>
-                <h2 className="heading-4 font-semibold mb-[25px] sm:mb-[25px] text-fastblue">{data.attributes.Parallax.title}</h2>
-                <p className="uppercase text-[20px]">{data.attributes.Parallax.subtitle}</p>
-                <p className="uppercase mt-12 text-[16px] text-lightgray">{data.attributes.Parallax.content}</p>
+                {data.attributes.Parallax.title && <h2 className="heading-4 font-semibold mb-[25px] sm:mb-[25px] text-fastblue">{data.attributes.Parallax.title}</h2>}
+                {data.attributes.Parallax.subtitle && <p className="uppercase text-[20px]">{data.attributes.Parallax.subtitle}</p>}
+                {data.attributes.Parallax.content && <p className="uppercase mt-12 text-[16px] text-lightgray">{data.attributes.Parallax.content}</p>}
               </m.div>
-              <m.div className="flex item-center justify-center">
-                <Link to={'/about-us'}><button className="button-custom w-auto mt-[35px]">{data.attributes.Parallax.button}</button></Link>
-              </m.div>
+              {data.attributes.Parallax.button && <m.div className="flex item-center justify-center">
+                <Link to={language === "fa-IR" ? './agent/internal-agent' : language === "en" ? './agent/external-agent' : ""}><button className="button-custom w-auto mt-[35px]">{data.attributes.Parallax.button}</button></Link>
+              </m.div>}
             </Col>
           </Row>
         </Container>

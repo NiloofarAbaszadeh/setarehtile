@@ -83,7 +83,7 @@ const BlogGrid = (props) => {
                   <Link aria-label="link"
                     to={`../../product-groups`}
                     className="blog-grid-catagory bg-red text-white text-md uppercase px-[13px] py-[6px] rounded-[2px] absolute top-[23px] right-[23px]">
-                    <span>{language === "fa-IR" ? "گروه" : language === "en" ? "Groups" : ""}</span>
+                    <span>{language === "fa-IR" ? "گروه" : language === "en" ? "Group" : ""}</span>
                   </Link>
                 </div>
                 <div className="px-12 py-10 bg-white sm:px-8 xs:px-12">

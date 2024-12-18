@@ -27,7 +27,7 @@ const SearchResultPage = (props) => {
   useEffect(() => {
     setLoading(false)
     const GetData = () => {
-      axios.get(`${host}/api/collectionss?filters[name][$contains]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
+      axios.get(`${host}/api/collectionss?filters[name][$containsi]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(perData => {
@@ -38,7 +38,7 @@ const SearchResultPage = (props) => {
         })
         setLoading(true)
       })
-      axios.get(`${host}/api/groupss?filters[name][$contains]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
+      axios.get(`${host}/api/groupss?filters[name][$containsi]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(perData => {
@@ -49,7 +49,7 @@ const SearchResultPage = (props) => {
         })
         setLoading(true)
       })
-      axios.get(`${host}/api/products?filters[name][$contains]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
+      axios.get(`${host}/api/products?filters[name][$containsi]=${searchresult.state.search.search}&populate=*&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(perData => {

@@ -788,7 +788,7 @@ export const SearchBar = memo((props) => {
                     className="search-input-test text-darkgray relative border-b border-solid border-darkgray text-[12px] mt-6"
                     name="search"
                     type="text"
-                    placeholder={language === "fa-IR" ? "کلمه مورد نظر را اینجا بنویسید..." : language === "en" ? "Write the desired word here... (case sensitive)" : ""}
+                    placeholder={language === "fa-IR" ? "کلمه مورد نظر را اینجا بنویسید..." : language === "en" ? "Write the desired word here..." : ""}
                   />
                   <button
                     type="submit"
