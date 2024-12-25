@@ -215,7 +215,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const renderContent = (
     <Scrollbar
-      className="mt-8"
+      className="mt-8 iran-sans"
       sx={{
         height: 1,
         '& .simplebar-content': {
@@ -274,8 +274,8 @@ export default function Nav({ openNav, onCloseNav }) {
         <img className='grayscale' src={ic_link} sx={{ width: 1, height: 1 }} alt="icon" />
       </Box>
       <Box component="span"> لینک ها </Box>
-      {!openLink && <span className='text-[12px] ti-angle-left mr-2'></span>}
-      {openLink && <span className='text-[12px] ti-angle-down mr-2'></span>}
+      {!openLink && <span className={`text-[12px] ti-angle-${window.innerWidth >=1200 ? "left" : "right"} mx-2`}></span>}
+      {openLink && <span className='text-[12px] ti-angle-down mx-2'></span>}
     </ListItemButton>
 
     <Box
@@ -283,11 +283,11 @@ export default function Nav({ openNav, onCloseNav }) {
     >
       {openLink ? <>
         {data.attributes.role === "ادمین" && nav.attributes.AdminLink[0] ? nav.attributes.AdminLink.map((item) => (
-        <NavItem02 className="pr-8" key={item.LinkName} item={item} />
+        <NavItem02 className="px-8" key={item.LinkName} item={item} />
       )) : data.attributes.role === "نماینده" && nav.attributes.AgentLink[0] ? navConfigNamayandeh.map((item) => (
-        <NavItem02 className="pr-8" key={item.LinkName} item={item} />
+        <NavItem02 className="px-8" key={item.LinkName} item={item} />
       )) : data.attributes.role !== "نماینده" && nav.attributes.EmployeLink && nav.attributes.EmployeLink.map((item) => (
-        <NavItem02 className="pr-8" key={item.LinkName} item={item} />
+        <NavItem02 className="px-8" key={item.LinkName} item={item} />
       ))}
       </>
     : <></>}

@@ -52,23 +52,12 @@ const Upload = () => {
         })
     }
   
-    return <div>
+    return <div className="flex flex-col items-center justify-center">
         <div className="flex items-center justify-center mb-12 font-semibold">
             <p className="text-[22px]">بارگذاری موجودی کاشی ها</p>
         </div>
-        <form className="mx-32 lg:mx-24 sm:mx-12">
-            <div className="flex flex-col items-start justify-start mb-8">
-                <label className="mt-[18px] mb-[10px]" name="name">نام فایل بارگذاری شده</label>
-                <input
-                    type="text"
-                    className="w-[15vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]  border-[2px] border-solid border-[#0a467e] rounded-[5px]"
-                    placeholder="نام فایل"
-                    value={name}
-                    onChange={({ target : {value}}) => {
-                        value && setName(value)
-                    }}
-                    />
-            </div>
+        <div className="w-[80%] md:w-[90%] sm:w-[95%]">
+        <form className="mx-32 lg:mx-24 sm:mx-12 bg-white custom-boarder rounded-[5px] box-shadow pb-0">
             <label className=" mb-[10px]" name="name">بارگذاری فایل</label>
             <div className="custom-form bg-white" onClick={() => document.querySelector(".input-file").click()}>
                 <input
@@ -102,14 +91,30 @@ const Upload = () => {
                 <p className="mr-2">{fileName}</p>
             </div>
         </div>
-        <div className="flex items-center justify-end mt-8 ">
-            {state ? <p>فایل با موفقیت بارگذاری شد.</p> : <></>}
-            {state === false ? <p>مشکلی در بارگذاری فایل پیش آمد.</p> : <></>}
-        </div>
-        <div className="flex items-center justify-end mt-2 ">
-            <button className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0" onClick={handelSubmmit}>بارگذاری</button>
+        
+        <div className="flex items-center justify-between mt-2 ">
+        <div className="flex flex-col items-start justify-start mb-8">
+                <label className="mb-[10px]" name="name">نام فایل بارگذاری شده</label>
+                <input
+                    type="text"
+                    className="w-[15vw] xs:w-[25vw] py-[13px] px-[15px] text-md leading-[initial]  border-[2px] border-solid border-[#0a467e] rounded-[5px]"
+                    placeholder="نام فایل"
+                    value={name}
+                    onChange={({ target : {value}}) => {
+                        value && setName(value)
+                    }}
+                    />
+            </div>
+            <div className="flex items-center justify-center">
+                <div className="flex items-center justify-end ml-2 ">
+                    {state ? <p>فایل با موفقیت بارگذاری شد.</p> : <></>}
+                    {state === false ? <p>مشکلی در بارگذاری فایل پیش آمد.</p> : <></>}
+                </div>
+                <button className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0" onClick={handelSubmmit}>بارگذاری</button>
+            </div>
         </div>
         </form>
+        </div>
     </div>
 }
 

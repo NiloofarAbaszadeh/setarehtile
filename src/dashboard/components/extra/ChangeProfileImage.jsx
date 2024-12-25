@@ -42,12 +42,12 @@ const ChangeProfileImage = (props) => {
     }
   
     return <div>
-    <div className="flex items-center justify-center mt-24">
+    <div className="flex items-center justify-center mt-12">
         <div className="w-[80%] md:w-[90%] sm:w-[95%]">
             {/* <div className="flex items-center justify-center mb-12 font-semibold">
                 <p className="text-[22px]">تغییر عکس پروفایل</p>
             </div> */}
-            <form className="mx-32 lg:mx-24 sm:mx-12">
+            <form className="mx-32 lg:mx-24 sm:mx-12 bg-white custom-boarder rounded-[5px] box-shadow pb-8">
                 {/* <label className=" mb-[10px]" name="name">بارگذاری فایل</label> */}
                 <div className="custom-form bg-white" onClick={() => document.querySelector(".input-file").click()}>
 
@@ -86,7 +86,7 @@ const ChangeProfileImage = (props) => {
                 {state ? <p>فایل با موفقیت بارگذاری شد.</p> : <></>}
                 {state === false ? <p>مشکلی در بارگذاری فایل پیش آمد.</p> : <></>}
             </div>
-            <div className="flex items-center justify-center mt-2 ">
+            <div className="flex items-center justify-end mt-2 ">
                 <button className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0" onClick={handelSubmmit}>بارگذاری</button>
             </div>
             </form>

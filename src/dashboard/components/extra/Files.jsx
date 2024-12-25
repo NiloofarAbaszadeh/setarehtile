@@ -48,7 +48,7 @@ const Files = () => {
         <Link to={`./upload`}><button className="button-custom bg-[#ff3030] text-white hover:bg-[#ff3030] rounded-[5px] w-auto mt-0 flex items-center"><span className="ti ti-plus font-bold text-[16px] ml-2"></span> افزودن </button></Link>
     </div>}
     {data &&
-        <div className="flex flex-col items-start justify-center m-12 rounded-[5px]">
+        <div className="flex flex-col items-start justify-center m-12 rounded-[5px] ">
           {/* <div className="mb-4">
             <p className="text-[24px]">فایل ها</p>
           </div> */}
@@ -64,7 +64,7 @@ const Files = () => {
                             color="blue-gray"
                             className="leading-none"
                           >
-                            <p className="text-[14px] text-white">{head}</p>
+                            <p className="text-[14px] text-white iran-sans">{head}</p>
                           </Typography>
                         </th>
                       ))}
@@ -76,64 +76,64 @@ const Files = () => {
                         {(index % 2 === 0) ? <tr key={index} className="even:bg-blue-gray-50/50">
                         <td className="p-3">
                           <Typography variant="small" color="blue-gray" className="">
-                            <p className="text-[12px]">{index + 1}</p>
+                            <p className="text-[12px] iran-sans">{index + 1}</p>
                           </Typography>
                         </td>
                         <td className="p-3">
                           <Typography variant="small" color="blue-gray" className="">
-                            <p className="text-[12px]">{data.attributes.name}</p>
+                            <p className="text-[12px] iran-sans">{data.attributes.name}</p>
                           </Typography>
                         </td>
                         <td className="p-3">
                           <Typography variant="small" color="blue-gray" className="">
-                          <p className="text-[12px]">{moment(data.attributes.file.data.attributes.createdAt, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}</p>
+                          <p className="text-[12px] iran-sans">{moment(data.attributes.file.data.attributes.createdAt, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}</p>
                           </Typography>
                         </td>
                         <td className="p-3">
                           <Typography color="blue-gray" className="">
-                            <p className="text-[12px]">{data.attributes.file.data.attributes.ext.split(".")[1]}</p>
+                            <p className="text-[12px] iran-sans">{data.attributes.file.data.attributes.ext.split(".")[1]}</p>
                           </Typography>
                         </td>
                         <td className="p-3">
                           <Typography color="blue-gray" className="">
-                            <p className="text-[12px]">{data.attributes.file.data.attributes.size}kb</p>
+                            <p className="text-[12px] iran-sans">{data.attributes.file.data.attributes.size}kb</p>
                           </Typography>
                         </td>
                         <td className="p-3">
                           <Typography color="blue-gray" className="">
-                            <p className="text-[12px] text-[#0000ff]"><a href={host + data.attributes.file.data.attributes.url}> <span className="ti-import text-[18px] font-semibold"></span></a></p>
+                            <p className="text-[12px] iran-sans text-[#0000ff]"><a href={host + data.attributes.file.data.attributes.url}> <span className="ti-import text-[18px] font-semibold"></span></a></p>
                           </Typography>
                         </td>
                       </tr> : 
                       <tr key={index} className="even:bg-blue-gray-50/50 bg-slate-200/50">
                       <td className="p-3 ">
                         <Typography variant="small" color="blue-gray" className="">
-                          <p className="text-[12px]">{index + 1}</p>
+                          <p className="text-[12px] iran-sans">{index + 1}</p>
                         </Typography>
                       </td>
                       <td className="p-3">
                         <Typography variant="small" color="blue-gray" className="">
-                          <p className="text-[12px]">{data.attributes.name}</p>
+                          <p className="text-[12px] iran-sans">{data.attributes.name}</p>
                         </Typography>
                       </td>
                       <td className="p-3">
                         <Typography variant="small" color="blue-gray" className="">
-                        <p className="text-[12px]">{moment(data.attributes.file.data.attributes.createdAt, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}</p>
+                        <p className="text-[12px] iran-sans">{moment(data.attributes.file.data.attributes.createdAt, 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}</p>
                         </Typography>
                       </td>
                       <td className="p-3">
                         <Typography color="blue-gray" className="">
-                          <p className="text-[12px]">{data.attributes.file.data.attributes.ext.split(".")[1]}</p>
+                          <p className="text-[12px] iran-sans">{data.attributes.file.data.attributes.ext.split(".")[1]}</p>
                         </Typography>
                       </td>
                       <td className="p-3">
                         <Typography color="blue-gray" className="">
-                          <p className="text-[12px]">{data.attributes.file.data.attributes.size}kb</p>
+                          <p className="text-[12px] iran-sans">{data.attributes.file.data.attributes.size}kb</p>
                         </Typography>
                       </td>
                       <td className="p-3">
                         <Typography color="blue-gray" className="">
-                          <p className="text-[12px] text-[#0000ff]"><a href={host + data.attributes.file.data.attributes.url}> <span className="ti-import text-[18px] font-semibold"></span></a></p>
+                          <p className="text-[12px] iran-sans text-[#0000ff]"><a href={host + data.attributes.file.data.attributes.url}> <span className="ti-import text-[18px] font-semibold"></span></a></p>
                         </Typography>
                       </td>
                     </tr>}
@@ -144,7 +144,7 @@ const Files = () => {
               </Card> :
             <>
                 <div>
-                    <p className="text-fastblue text-[20px] mt-[30vh]">موردی جهت مشاهده وجود ندارد</p>
+                    <p className="text-fastblue text-[20px] mt-[30vh] iran-sans">موردی جهت مشاهده وجود ندارد</p>
                 </div>
             </>}
         </div>}

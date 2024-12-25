@@ -44,7 +44,7 @@ const InteriorDesignPage = (props) => {
     setLoadingHome(false)
     setLoadingResearch(false)
     const GetHomeData =  () => {
-       axios.get(`${host}/api/home-page?populate=deep&locale=${language}`, {
+       axios.get(`${host}/api/home-page?populate=deep,7&locale=${language}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setData(res.data.data)
@@ -95,26 +95,6 @@ const InteriorDesignPage = (props) => {
         aria-label="Loading Spinner"
         data-testid="loader"/></div>}
       {loadingHome && data.attributes.seo && <Seo data={data.attributes.seo} />}
-
-      {/* Section Start */}
-      {/* {language === "fa-IR" && <m.section className="py-[50px] relative bg-cover bg-fixed bg-center overflow-hidden md:py-[65px] sm:py-[50px] xs:py-[40px]"{...fadeIn}>
-        <Parallax className="lg-no-parallax bg-cover absolute top-[0px] left-0 md:-top-[30px] w-full h-[100vh] xs:bg-center" translateY={[-80, 80]} style={{ backgroundImage: `url()` }}></Parallax>
-        <div className="absolute top-0 left-0 h-full w-full bg-darkgray opacity-[.75]"></div>
-        <Container>
-          <Row className="justify-center items-center">
-            <Col xl={7} md={8} sm={10} className="relative text-right sm:mb-[30px] sm:text-right flex flex-col items-start justify-start">
-              <p className="text-[22px] text-white mb-2">قابل توجه کلیه خریداران محترم</p>
-              <p className="text-[16px] text-white mb-2">به استحضار می رساندبا توجه به سوء استفاده برخی افراد سودجو از نام تجاری شرکت کاشی ستاره، خواهشمند است محصولات این شرکت اعم از برند و غیره را تنها از نمایندگی های مجاز درج شده در سایت تهیه فرمایید.</p>
-              <p className="text-[16px] text-lightgray mb-2">شرکت کاشی و سرامیک ستاره میبد</p>
-            </Col>
-            <Col xl={5} md={4} className="text-center text-md-end flex items-center justify-end sm:justify-center">
-              <Buttons ariaLabel="link for company" to="/agent/internal-agent" className="rounded-[4px] font-medium uppercase hover:text-white btn-slide-filling-left bg-gradient-to-r from-[#fff] to-[#fff] text-darkgray" size="xl" color="#000" themeColor="#BF0D19" title="نمایندگان ما" />
-            </Col>
-          </Row>
-        </Container>
-      </m.section>} */}
-      {/* Section End */}
-
       {loadingHome && data.attributes.Slider && <StartupPageBannerSlider data={data.attributes.Slider} />}
 
       <LazyLoad height={-100}>

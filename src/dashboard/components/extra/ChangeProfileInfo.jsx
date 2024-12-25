@@ -80,7 +80,7 @@ const ChangeProfileInfo = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-4 bg-white p-8  sm:mt-8 bg-white rounded-[15px] p-16 box-shadow w-full">
+                <div className="grid grid-cols-4 sm:mt-8 bg-white rounded-[15px] p-16 box-shadow w-full">
                     <div className="flex flex-col items-start justify-center">
                         <label className="mt-[18px] mb-[10px]">نام و نام خانوادگی<span className="text-[#fb4f58]"> * </span></label>
                         <input

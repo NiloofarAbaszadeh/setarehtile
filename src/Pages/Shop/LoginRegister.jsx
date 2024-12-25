@@ -26,7 +26,7 @@ const LoginRegister = () => {
   const [loadingScreen, setLoadingScreen] = useState(false)
   const [user, setUser] = useState(false)
   const [err, setErr] = useState(false) // for no username
-  const [err2, setErr2] = useState(false) // for not thr right password
+  const [err2, setErr2] = useState(false) // for not the right password
   const check = localStorage.getItem("userInfo")
   const [formData, setFormData] = useState(
     { user: "",
@@ -66,6 +66,7 @@ const DirectToDashboard = (user) => {
       })}
 
   useEffect(() => {
+    localStorage.removeItem("userInfo")
     setTimeout(() => {
       scrollToTop()
       setLoading(true)

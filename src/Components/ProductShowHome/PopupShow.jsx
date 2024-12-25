@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const PopupShow = (props) => { 
   const host = useSelector(state => state.State.host)
-  const language = useSelector(state => state.State.language)
   const [popup, setPopup] = useState(false)
+  const language = useSelector(state => state.State.language)
 
   return <>
     {props.position[0] && <div className={`z-20 absolute`} style={{ left: `${props.position[0]}%`, top: `${props.position[1] + 5}%` }}>
@@ -17,8 +17,9 @@ const PopupShow = (props) => {
       <div className="mt-2">
         <img className="" src={host + props.tile.tile.data.attributes.image.data.attributes.url} alt="tile" />
       </div>
-      {popup && <div className={`flex item-center justify-start`}>
-        <Link to={`./product-tilse/${props.tile.tile.data.attributes.name}`}><button className="button-custom rounded-[2px] w-[100%] text-[11px] my-4 bg-[#f8f6f4] sm:text-[8px] sm:px-4 ">{language === "fa-IR" ? "مشاهده کاشی" : language === "en" ? "Tile details" : ""}</button></Link>
+      {popup && <div className={`flex item-center justify-center flex-col`}>
+        <span className="flex items-center justify-center mt-2 text-red text-[18px]">{props.tile.tile.data.attributes.baseInfo.size.data.attributes.size}</span>
+        <Link to={`./product-tilse/${props.tile.tile.data.attributes.name}`}><button className="button-custom rounded-[2px] w-[100%] text-[11px] mt-2 mb-4 bg-[#f8f6f4] sm:text-[8px] sm:px-4 flex items-center"> {props.tile.tile.data.attributes.name} <span className={`line-icon-Arrow-Out${language === "fa-IR" ? "Left mr-1 " : language === "en" && "Right ml-1 "}text-[18px]font-medium`}></span></button></Link>
       </div>}
     </div>
     </div>}

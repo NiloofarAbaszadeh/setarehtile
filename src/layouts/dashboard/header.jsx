@@ -12,7 +12,7 @@ import Iconify from '../../Components/iconify';
 // import Searchbar from './common/searchbar';
 import { HEADER } from './config-layout';
 import AccountPopover from './common/account-popover';
-import LanguagePopover from './common/language-popover';
+// import LanguagePopover from './common/language-popover';
 // import NotificationsPopover from './common/notifications-popover';
 import logo from "../../Assets/images/logo.png"
 import { useStopwatch } from 'react-timer-hook';
@@ -29,7 +29,7 @@ export default function Header({ onOpenNav }) {
   } = useStopwatch({ autoStart: true });
 
   const renderContent = (
-    <div className='flex items-center justify-between'>
+    <div className='flex lg:flex-row-reverse items-center justify-between'>
       {!lgUp && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
           <Iconify icon="eva:menu-2-fill" />
@@ -37,18 +37,19 @@ export default function Header({ onOpenNav }) {
       )}
 
       {/* <Searchbar /> */}
-      <Box >
+      {(window.innerWidth <= 767 || window.innerWidth >= 1200) && <Box>
         <img className='w-[75px]' src={logo} alt='logo' />
-      </Box>
+      </Box>}
 
-      <Box >
-        <div className='text-black' style={{fontSize: '24px'}}>
+
+      {window.innerWidth >= 767 && <Box >
+        <div className='text-black sm:hidden' style={{fontSize: '24px'}}>
           <span>{seconds}</span> : <span>{minutes}</span> : <span>{hours}</span>
         </div>
-      </Box>
+      </Box>}
 
       <Stack direction="row" alignItems="center" spacing={1}>
-        <LanguagePopover />
+        {/* <LanguagePopover /> */}
         {/* <NotificationsPopover /> */}
         <AccountPopover />
       </Stack>

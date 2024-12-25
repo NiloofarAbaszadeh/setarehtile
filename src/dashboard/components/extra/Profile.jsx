@@ -43,14 +43,14 @@ const Profile = () => {
       },[host,token])
 
       
-    return <div className="flex justify-center items-center ml-24">
+    return <div className="flex justify-center items-center ml-24 sm:ml-0">
         {data && <div className="flex items-start flex-col w-[65vw] lg:w-[80vw] sm:mx-4">
             <div className="mb-4 flex items-center justify-between w-full">
                 <div>
                     <span className="ti-id-badge text-[30px]  ml-4 mb-[3px]" ></span>
                     <span className="text-[24px] font-semibold ">اطلاعات کاربری</span> 
                 </div>
-                <div>
+                <div className="sm:hidden">
                     <Link to={"./edit-profile-image"} replace={true} >
                         <div className="flex button-custom items-center justify-center mt-0 mb-8 bg-red text-white hover:bg-red w-full">
                         <span>ویرایش عکس</span>
@@ -60,9 +60,16 @@ const Profile = () => {
                 </div>
             </div>
             <div className="bg-white rounded-[10px] p-12 box-shadow grid grid-cols-4 sm:flex sm:flex-col sm:items-center w-full relative z-10 user-card">
-                <div className="w-[15vw] h-full sm:w-[32vw] sm:flex sm:items-center sm:flex-col z-30">
-                    <div className="flex items-center h-full">
-                    <img className="rounded-[50%]  bg-white " width={450} height={450} src={host + data.attributes.profileImage.data.attributes.formats.custom.url} alt="عکس پروفایل" />
+                <div className="w-[15vw] h-full sm:w-[55vw] sm:flex sm:items-center sm:flex-col z-30">
+                    <div className="flex flex-col items-center h-full">
+                    <img className="rounded-[50%] bg-white " width={450} height={450} src={host + data.attributes.profileImage.data.attributes.formats.custom.url} alt="عکس پروفایل" />
+                    
+                    {window.innerWidth <= 767 && <Link to={"./edit-profile-image"} replace={true} >
+                        <div className="flex button-custom items-center justify-center bg-red text-white hover:bg-red w-full mt-4">
+                        <span className="w-max">ویرایش عکس</span>
+                        <span className="ti-pencil mr-2"></span>
+                        </div>
+                    </Link>}
                     
                     </div>
                     {/* <Link to={"./edit-profile-image"} replace={true} >
@@ -72,7 +79,7 @@ const Profile = () => {
                         </div>
                     </Link> */}
                 </div>
-                <div className="grid grid-cols-1 bg-white p-6 col-span-3 sm:mt-8">
+                <div className="grid grid-cols-1 bg-white p-6 col-span-3 sm:mt-2">
                     <div className="px-8 py-2">
                         {/* <span className="text-[16px] text-gray">نام و نام خانوادگی: </span> */}
                         <span className="text-[18px] font-semibold">{data.attributes.fullName}</span>

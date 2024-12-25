@@ -43,7 +43,7 @@ const Resume = () => {
         {data[0] ? <>{data.reverse().map(item => {
             const date = item.attributes.createdAt.split("T")
             return (
-                <div className={`bg-white w-[65vw] m-18 rounded-[10px] box-shadow p-8 flex justify-between items-end mb-8`}>
+                <div className={`bg-white w-[65vw] sm:w-[85vw] m-18 rounded-[10px] box-shadow p-8 flex justify-between items-end mb-8`}>
                     <div className={`${seen.includes(item.id) ? "opacity-[60%]" : ""}`}>
                         <p className="text-[16px] font-semibold">{item.attributes.fullName}</p>
                         <p className={`text-[13px] text-red mb-2 ${seen.includes(item.id) ? "text-black" : ""}`}>{moment(date[0], 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')} </p>
@@ -52,7 +52,7 @@ const Resume = () => {
                         <p className="text-gray">...</p>
                     </div>
                     <div className="flex items-center justify-end">
-                        <Link to={`./${item.id}`}><button className={`button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0 ${seen.includes(item.id) ? "opacity-[70%]" : ""}`}>مطالعه کامل</button></Link>
+                        <Link to={`./${item.id}`}><button className={`button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0 ${seen.includes(item.id) ? "opacity-[70%]" : ""}`}><p className="w-max">مطالعه کامل</p></button></Link>
                     </div>
                 </div>
             )

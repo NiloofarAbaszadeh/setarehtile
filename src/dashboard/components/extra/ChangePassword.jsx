@@ -137,7 +137,7 @@ const ChangePassword = () => {
                       />
                     </div>
                 </div>
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-end sm:justify-center">
                   <div className="mt-4">
                     {err ? <span className='pt-4 ml-4 c-c-red'>لطفا رمز عبور فعلی را به درستی وارد کنید</span> : <></>}
                     {err2 ? <span className='pt-4 ml-4 c-c-red'>لطفا تکرار رمز عبور جدید را به درستی وارد کنید</span> : <></>}

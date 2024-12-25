@@ -131,10 +131,10 @@ export default function AccountPopover() {
       >
         {data && <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {data.attributes.fullName}
+          <p className='iran-sans'>{data.attributes.fullName}</p>
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {data.attributes.email}
+          <p className='iran-sans'>{data.attributes.email}</p>
           </Typography>
         </Box>}
 
@@ -152,7 +152,7 @@ export default function AccountPopover() {
             onClick={handleClose}
             sx={{ typography: 'body2', py: 1.5 }}
           >
-            پروفایل
+            <p className='iran-sans'>پروفایل</p>
           </MenuItem>
         </Link>
 
@@ -162,7 +162,7 @@ export default function AccountPopover() {
           onClick={handleExit}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
-          خروج
+          <p className='iran-sans'>خروج</p>
         </MenuItem> 
       </Popover> </>}
     </>

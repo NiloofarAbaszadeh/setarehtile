@@ -19,7 +19,7 @@ const ResumePage = () => {
     const token = useSelector(state => state.State.readToken)
     const host = useSelector(state => state.State.host)
     const [data, setData] = useState()
-    const contentToPrint = useRef(null);
+    const contentToPrint = useRef();
     const handlePrint = useReactToPrint({
       documentTitle: data && data.fullName,
     //   onBeforePrint: () => console.log("before printing..."),
@@ -38,7 +38,12 @@ const ResumePage = () => {
         GetData()
     }, [host, token, url])
 
-    return <div className="ml-24">
+    // useEffect(() => {
+    //     console.log("test") 
+    //     handlePrint(null, () => contentToPrint.current);
+    // }, [contentToPrint])
+
+    return <div className="ml-24 sm:ml-0">
         <div className="flex items-center justify-between mx-8">
             <Link to={"/dashboard/resume"} replace={true} >          
               <div className="flex button-custom items-center justify-center bg-[#ff3030] text-white hover:bg-[#ff3030] w-full sm:text-[11px] rounded-[5px] mb-4 py-[15px]">
@@ -48,12 +53,12 @@ const ResumePage = () => {
             <button
             className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0 flex items-center"
             onClick={() => {
-                handlePrint(null, () => contentToPrint.current);
+                handlePrint(contentToPrint.current, () => contentToPrint.current);
             }}>
                 <span className="ti ti-printer py-[5px]"></span>
             </button>
         </div>
-        {data && <><div ref={contentToPrint} className="p-8 pt-0 dir-rtl">
+        {data && <><div ref={contentToPrint} onLayout={() => {}} className="p-8 pt-0 dir-rtl">
             <div className="flex items-center justify-between border-[3px] px-12">
                 <div className="w-[75px] py-2">
                     <img src={logo} alt="Logo" />
