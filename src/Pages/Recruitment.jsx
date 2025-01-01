@@ -6,125 +6,132 @@ import { Parallax } from "react-scroll-parallax"
 import { Col, Container, Row } from 'react-bootstrap'
 import image from "../Assets/images/recruitment image.png"
 import { ScaleLoader } from 'react-spinners'; 
+import Popup from "./Popup"
 
 const TABLE_HEAD = ["شرکت", "سمت", "سابقه کار (به ماه)", "حقوق دریافتی (به ریال)", "علت ترک کار", "آدرس", "شماره تلفن"];
 
 const Recruitment = () => {
-    const host = useSelector(state => state.State.host)
-    const [state, setState] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [heightCheck, setHeightCheck] = useState(false)
-    const [formData, setFormData] = useState(
-        {
-            fullName: "",
-            fatherName: "",
-            id: "",
-            nationalCode: "",
-            birthDay: "",
-            birthPlace: "",
-            weight: "",
-            height: "",
-            maritalStatus: "",
-            children: "",
-            physicalCondition: "",
-            address: "",
-            addressState: "",
-            phone: "",
-            mobile: "",
-            sex: "",
+  const host = useSelector(state => state.State.host)
+  const [state, setState] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [heightCheck, setHeightCheck] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [formData, setFormData] = useState(
+    {
+      fullName: "",
+      fatherName: "",
+      id: "",
+      nationalCode: "",
+      birthDay: "",
+      birthPlace: "",
+      weight: "",
+      height: "",
+      maritalStatus: "",
+      children: "",
+      physicalCondition: "",
+      address: "",
+      addressState: "",
+      phone: "",
+      mobile: "",
+      sex: "",
+      militaryService: "",
+      serviceUnit: "",
+      remissionState: "",
+      remissionReason: "",
+      lastEducationalCertificate: "",
+      fieldOfStudy: "",
+      university: "",
+      specializedCertificate: "",
+      internshipHistory: "",
+      language: "",
+      languageState: "",
+      workExperience1company: "",
+      workExperience1side: "",
+      workExperience1workExperience: "",
+      workExperience1income: "",
+      workExperience1leavingReason: "",
+      workExperience1address: "",
+      workExperience1phonNumber: "",
+      
+      workExperience2company: "",
+      workExperience2side: "",
+      workExperience2workExperience: "",
+      workExperience2income: "",
+      workExperience2leavingReason: "",
+      workExperience2address: "",
+      workExperience2phonNumber: "",
+      
+      workExperience3company: "",
+      workExperience3side: "",
+      workExperience3workExperience: "",
+      workExperience3income: "",
+      workExperience3leavingReason: "",
+      workExperience3address: "",
+      workExperience3phonNumber: "",
+      
+      demandedJob: "",
+      salaryRequested: "",
+      allowChangeSide: "",
+      experienceInSetareh: "",
+      acquaintanceToSetareh: "",
+      
+      missionOutsideWorkTime: "",
+      workThreeShiftes: "",
+      requestExtraBenefits: "",
+      currentWorkPlace: "",
+      insuranceNumber: "",
+      skillsAtWork: "",
+      extraWork: "",
+      familyfather: "",
+      familyfathersJob: "",
+      familymather: "",
+      familymathersJob: "",
+      familybrathers: "",
+      familysisters: "",
+      familyspouse: "",
+      familyspousesJob: "",
 
-            militaryService: "",
-            serviceUnit: "",
-            remissionState: "",
-            remissionReason: "",
+      introduceBy1fullName: "",
+      introduceBy1relationship: "",
+      introduceBy1address: "",
+      introduceBy1mobile: "",
 
-            lastEducationalCertificate: "",
-            fieldOfStudy: "",
-            university: "",
-            specializedCertificate: "",
-            internshipHistory: "",
-            language: "",
-            languageState: "",
+      introduceBy2fullName: "",
+      introduceBy2relationship: "",
+      introduceBy2address: "",
+      introduceBy2mobile: "",
 
-            workExperience1company: "",
-            workExperience1side: "",
-            workExperience1workExperience: "",
-            workExperience1income: "",
-            workExperience1leavingReason: "",
-            workExperience1address: "",
-            workExperience1phonNumber: "",
-            
-            workExperience2company: "",
-            workExperience2side: "",
-            workExperience2workExperience: "",
-            workExperience2income: "",
-            workExperience2leavingReason: "",
-            workExperience2address: "",
-            workExperience2phonNumber: "",
-            
-            workExperience3company: "",
-            workExperience3side: "",
-            workExperience3workExperience: "",
-            workExperience3income: "",
-            workExperience3leavingReason: "",
-            workExperience3address: "",
-            workExperience3phonNumber: "",
-            
-            demandedJob: "",
-            salaryRequested: "",
-            allowChangeSide: "",
-            experienceInSetareh: "",
-            acquaintanceToSetareh: "",
-            
-            missionOutsideWorkTime: "",
-            workThreeShiftes: "",
-            requestExtraBenefits: "",
-            currentWorkPlace: "",
-            insuranceNumber: "",
-            skillsAtWork: "",
-            extraWork: "",
-
-            familyfather: "",
-            familyfathersJob: "",
-            familymather: "",
-            familymathersJob: "",
-            familybrathers: "",
-            familysisters: "",
-            familyspouse: "",
-            familyspousesJob: "",
-        
-            introduceBy1fullName: "",
-            introduceBy1relationship: "",
-            introduceBy1address: "",
-            introduceBy1mobile: "",
-        
-            introduceBy2fullName: "",
-            introduceBy2relationship: "",
-            introduceBy2address: "",
-            introduceBy2mobile: "",
-        
-            acquaintancesInfo: "",
-        })
-
-    const handelChange = (event) => {
-    const { name, value } = event.target
-    if (formData.height >= 270 || formData.height <= 100) {
-      setHeightCheck(true)
-    } else {
-      setHeightCheck(false)
+      acquaintancesInfo: "",
     }
-    setFormData(pervFormData => {
-        return {
-          ...pervFormData,
-          [name]: value
-    }})}
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(true)
-      }, 1500)
-    }, [])
+  )
+
+  useEffect(() => {
+    if (state) {
+      setIsPopupOpen(true)
+    }
+  }, [state])
+
+  const handelChange = (event) => {
+  const { name, value } = event.target
+  if (formData.height >= 270 || formData.height <= 100) {
+    setHeightCheck(true)
+  } else {
+    setHeightCheck(false)
+  }
+  setFormData(pervFormData => {
+      return {
+        ...pervFormData,
+        [name]: value
+  }})}
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true)
+    }, 1500)
+  }, [])
 
   const handelSubmmit = async (event) => {
+    setIsPopupOpen(true)
     event.preventDefault()
     if (!heightCheck) {
       await axios.post(`${host}/api/recruitment-forms`, {
@@ -211,10 +218,10 @@ const Recruitment = () => {
         setState(false)
       })
     }
-      
-    }
+  }
 
     return <div className="dir-rtl">
+      {isPopupOpen && <Popup setIsPopupOpen={setIsPopupOpen} />}
       {!loading && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50 '>
           <ScaleLoader
           color={"#db1010"}
@@ -223,11 +230,11 @@ const Recruitment = () => {
           aria-label="Loading Spinner"
           data-testid="loader"/></div>}
       <div className="h-[400px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative">
-          <div className='absolute top-0 left-0 w-full h-full bg-darkgray opacity-60 z-[1]'></div>
-          <Parallax className="lg-no-parallax bg-cover absolute -top-[50px] left-0 w-full h-[100vh] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px] " translateY={[-40, 40]} style={{ backgroundImage: `url('${image}')` }}></Parallax>
+          <div className='absolute top-0 left-0 w-full h-full bg-darkgray opacity-50 z-[1]'></div>
+          <Parallax className="lg-no-parallax bg-cover absolute -top-[150px] left-0 w-full h-[130%] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px] " translateY={[-40, 40]} style={{ backgroundImage: `url('${image}')` }}></Parallax>
           <Container className="h-full relative z-[2]">
             <Row className="justify-center h-full">
-              <Col xl={6} lg={7} md={8} className="relative font-serif text-center flex justify-center flex-col">
+              <Col xl={6} lg={7} md={8} className="relative text-center flex justify-center flex-col">
                 <h2 className="text-white font-medium -tracking-[1px] mb-0 text-[50px]">استخدام</h2>
               </Col>
             </Row>
@@ -1438,8 +1445,8 @@ const Recruitment = () => {
               <div className="flex flex-col itams-center justify-start mx-[10vw] mt-8 mb-24">
                 <p className="text-[12px]"><span className="text-[#fb4f58]"> * </span>لطفا قبل از ارسال از درستی اطلاعات وارد شده اطمینان حاصل کنید. پش از ارسال امکان ویرایش وجود ندارد.</p>
                 {heightCheck ? <p className="text-[#fb4f58]">لطفا قد خود را با دقت و به سانتی‌متر وارد نمایید. </p> : <></>}
-                {state === true ? <p className="text-[13px] mt-8">اطلاعات با موفقیت ارسال شد. با تشکر از وقت شما</p> : state === false ?  <p className="text-[13px] text-red mt-8">مشکلی در ارسال فرم پیش آمد. لطفا پس از بررسی بخش های مورد نیاز، دوباره جهت ارسال اقدام کنید.</p> : <></>}
-                <input className="button-custom w-min mt-4" type="submit" value="ارسال" placeholder="ارسال" />
+                {state === false && <p className="text-[13px] text-red mt-8">مشکلی در ارسال فرم پیش آمد. لطفا پس از بررسی بخش های مورد نیاز، دوباره جهت ارسال اقدام کنید.</p>}
+                <input className="button-custom w-min mt-4" type="submit" value="ارسال" placeholder="ارسال"/>
               </div>
             </form>
     </div>
