@@ -5,8 +5,6 @@ import Nav from './nav';
 import Main from './main';
 import Header from './header';
 
-// ----------------------------------------------------------------------
-
 export default function DashboardLayout({ children }) {
   const [openNav, setOpenNav] = useState(false);
 
@@ -23,11 +21,10 @@ export default function DashboardLayout({ children }) {
         }}
       >
         <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
-
         <Main>{children}</Main>
       </Box>
     </>
-  );
+  )
 }
 
 DashboardLayout.propTypes = {

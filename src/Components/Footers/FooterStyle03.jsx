@@ -28,7 +28,7 @@ const iconData = [
         color: "#828282",
         link: "https://dribbble.com/",
         icon: "fab fa-dribbble"
-    },
+    }, 
     {
         color: "#828282",
         link: "https://twitter.com/",

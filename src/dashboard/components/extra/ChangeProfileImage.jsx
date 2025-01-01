@@ -41,58 +41,84 @@ const ChangeProfileImage = (props) => {
         })
     }
   
-    return <div>
-    <div className="flex items-center justify-center mt-12">
-        <div className="w-[80%] md:w-[90%] sm:w-[95%]">
-            {/* <div className="flex items-center justify-center mb-12 font-semibold">
-                <p className="text-[22px]">تغییر عکس پروفایل</p>
-            </div> */}
+    return (
+      <div>
+        <div className="flex items-center justify-center mt-12">
+          <div className="w-[80%] md:w-[90%] sm:w-[95%]">
             <form className="mx-32 lg:mx-24 sm:mx-12 bg-white custom-boarder rounded-[5px] box-shadow pb-8">
-                {/* <label className=" mb-[10px]" name="name">بارگذاری فایل</label> */}
-                <div className="custom-form bg-white" onClick={() => document.querySelector(".input-file").click()}>
-
-                    <input
-                    className="input-file"
-                    type="file"
-                    name="files"
-                    hidden
-                    onChange={({ target : {files}}) => {
-                        files[0] && setFileName(files[0].name)
-                        if (files[0]){
-                            setImage(files[0])
-                        }
-                    }}
+              <div
+                className="custom-form bg-white"
+                onClick={() => document.querySelector(".input-file").click()}
+              >
+                <input
+                  className="input-file"
+                  type="file"
+                  name="files"
+                  hidden
+                  onChange={({ target: { files } }) => {
+                    files[0] && setFileName(files[0].name);
+                    if (files[0]) {
+                      setImage(files[0]);
+                    }
+                  }}
+                />
+                {image ? (
+                  <div className="flex items-center justify-center flex-col p-12">
+                    <img
+                      src={URL.createObjectURL(image)}
+                      width={170}
+                      height={250}
+                      alt="فایل"
                     />
-                    {image ? 
-                        <div className="flex items-center justify-center flex-col p-12">
-                            <img src={URL.createObjectURL(image)} width={170} height={250} alt="فایل"/>
-                            {/* <p className="mr-2">{fileName}</p> */}
-                        </div> :
-                    <>
-                        <img src={uploadImage} width={150} height={150} alt={fileName}  /> 
-                        <p>فایل مورد نظر را انتخاب کنید.</p>
-                    </>}
-                </div>
-                <div >
+                  </div>
+                ) : (
+                  <>
+                    <img
+                      src={uploadImage}
+                      width={150}
+                      height={150}
+                      alt={fileName}
+                    />
+                    <p>فایل مورد نظر را انتخاب کنید.</p>
+                  </>
+                )}
+              </div>
+              <div>
                 <div className="flex items-center justify-start mt-6 bg-[#e9f0ff] rounded-[5px] py-[15px] px-[20px]">
-                    <span className="cursor-pointer ti ti-trash" alt="حذف فایل" width={20} height={30} onClick={() => {
-                        setFileName("هیچ فایلی انتخاب نشده است")
-                        setImage(null)
-                    }}/>
-                    <p className="mr-2">{fileName}</p>
+                  <span
+                    className="cursor-pointer ti ti-trash"
+                    alt="حذف فایل"
+                    width={20}
+                    height={30}
+                    onClick={() => {
+                      setFileName("هیچ فایلی انتخاب نشده است");
+                      setImage(null);
+                    }}
+                  />
+                  <p className="mr-2">{fileName}</p>
                 </div>
-            </div>
-            <div className="flex items-center justify-end mt-4 ">
+              </div>
+              <div className="flex items-center justify-end mt-4 ">
                 {state ? <p>فایل با موفقیت بارگذاری شد.</p> : <></>}
-                {state === false ? <p>مشکلی در بارگذاری فایل پیش آمد.</p> : <></>}
-            </div>
-            <div className="flex items-center justify-end mt-2 ">
-                <button className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0" onClick={handelSubmmit}>بارگذاری</button>
-            </div>
+                {state === false ? (
+                  <p>مشکلی در بارگذاری فایل پیش آمد.</p>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="flex items-center justify-end mt-2 ">
+                <button
+                  className="button-custom bg-[#ff3030] text-white rounded-[5px] hover:bg-[#ff3030] w-auto mt-0"
+                  onClick={handelSubmmit}
+                >
+                  بارگذاری
+                </button>
+              </div>
             </form>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+    );
 }
 
 export default ChangeProfileImage

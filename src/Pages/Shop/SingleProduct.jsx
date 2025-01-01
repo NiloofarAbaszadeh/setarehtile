@@ -11,7 +11,6 @@ import { fadeIn } from '../../Functions/GlobalAnimations';
 import { ContactFormStyle02Schema } from '../../Components/Form/FormSchema';
 import MessageBox from '../../Components/MessageBox/MessageBox';
 import { resetForm } from "../../Functions/Utilities";
-import SideButtons from "../../Components/SideButtons";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import IconWithText02 from '../../Components/IconWithText/IconWithText02';
@@ -20,7 +19,6 @@ import moment from 'jalali-moment'
 import Seo from '../../Seo';
 import { Helmet } from 'react-helmet-async'; 
 import { ScaleLoader } from "react-spinners"
-// import CustomModal from '../../Components/CustomModal';
 
 const SingleProduct = (props) => {
   const token = useSelector(state => state.State.readToken)
@@ -287,7 +285,7 @@ const SingleProduct = (props) => {
       {loading && <Helmet>
         <title> {data.tileName} | {language === "fa-IR" ? `کاشی و سرامیک ستاره  ` : language === "en" ? `Setareh Meybod Tile & Ceramic` : ""}</title>
       </Helmet>}
-      <SideButtons />
+      
       {/* Section Start */}
       {data && <section className="py-[60px] bg-white lg:py-[40px] md:py-[35px] sm:py-[30px] xs:py-[25px] overflow-hidden">
         <Container>

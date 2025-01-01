@@ -9,9 +9,9 @@ import DashboardLayout from './layouts/dashboard'
 const Main = () => {
   const data = localStorage.getItem("userInfo") 
   useScrollToTop()
-  return ( <>
-    {
-      data === null ? <Navigate to="/login" replace={true} /> : <HelmetProvider>
+  return (data === null ?
+    <Navigate to="/login" replace={true} /> : 
+    <HelmetProvider>
       <Suspense>
         <ThemeProvider>
           <DashboardLayout >
@@ -21,10 +21,8 @@ const Main = () => {
           </DashboardLayout>
         </ThemeProvider>
       </Suspense>
-  </HelmetProvider>
-  
-    }</>
-    )
+    </HelmetProvider>
+  )
 }
 
 export default Main

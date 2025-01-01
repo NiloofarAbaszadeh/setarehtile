@@ -24,7 +24,7 @@ const ResumePage = () => {
       documentTitle: data && data.fullName,
     //   onBeforePrint: () => console.log("before printing..."),
     //   onAfterPrint: () => console.log("after printing..."),
-      removeAfterPrint: true,
+    //   removeAfterPrint: true,
     });
 
     useEffect(() => {
@@ -37,11 +37,6 @@ const ResumePage = () => {
         }
         GetData()
     }, [host, token, url])
-
-    // useEffect(() => {
-    //     console.log("test") 
-    //     handlePrint(null, () => contentToPrint.current);
-    // }, [contentToPrint])
 
     return <div className="ml-24 sm:ml-0">
         <div className="flex items-center justify-between mx-8">

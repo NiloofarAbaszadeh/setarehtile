@@ -19,10 +19,6 @@ import ic_resume from "../../Assets/navbar/ic_resume.svg"
 import ic_inventory from "../../Assets/navbar/ic_inventory.png"
 import ic_link from "../../Assets/navbar/ic-link.svg"
 
-// ----------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
-
 export default function Nav({ openNav, onCloseNav }) {
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
@@ -34,7 +30,6 @@ export default function Nav({ openNav, onCloseNav }) {
   const [openLink, setOpenLink] = useState(false)
   const [inventorys, setInventorys] = useState(0)
   const [massages, setMassages] = useState(0)
-  // const [link, setLink] = useState(0)
   const [file, setfile] = useState(0)
   const [resumes, setResumes] = useState(0)
 
@@ -298,43 +293,43 @@ export default function Nav({ openNav, onCloseNav }) {
   );
 
   return (
-  <>
-    {loading && <Box
-      sx={{
-        flexShrink: { lg: 0 },
-        width: { lg: NAV.WIDTH },
-      }}
-    >
-      {upLg ? (
+    <>
+      {loading && (
         <Box
           sx={{
-            height: 1,
-            position: 'fixed',
-            width: NAV.WIDTH,
-            borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+            flexShrink: { lg: 0 },
+            width: { lg: NAV.WIDTH },
           }}
         >
-          {renderContent}
+          {upLg ? (
+            <Box
+              sx={{
+                height: 1,
+                position: "fixed",
+                width: NAV.WIDTH,
+                borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+              }}
+            >
+              {renderContent}
+            </Box>
+          ) : (
+            <Drawer
+              open={openNav}
+              onClose={onCloseNav}
+              PaperProps={{
+                sx: {
+                  width: NAV.WIDTH,
+                },
+              }}
+            >
+              {renderContent}
+            </Drawer>
+          )}
         </Box>
-      ) : (
-        <Drawer
-          open={openNav}
-          onClose={onCloseNav}
-          PaperProps={{
-            sx: {
-              width: NAV.WIDTH,
-            },
-          }}
-        >
-          {renderContent}
-        </Drawer>
       )}
-    </Box>}
-  </>
+    </>
   );
 }
-
-// ----------------------------------------------------------------------
 
 function NavItem(props) {
   const pathname = usePathname()

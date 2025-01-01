@@ -51,7 +51,7 @@ const LeftSideBarTilse = (props) => {
           <Helmet>
               <title>{language === "fa-IR" ? "کاشی ها | کاشی و سرامیک ستاره  " : language === "en" ? "Tiles | Setareh Tiles & Ceramic" : "کاشی ها | کاشی و سرامیک ستاره  "}</title>
           </Helmet>
-          {boardData && <div className="h-[400px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative">
+          {boardData && <div className="h-[400px] lg:h-[580px] md:h-[550px] sm:h-[500px] xs:h-[380px] overflow-hidden relative mb-24">
               <div className='absolute top-0 left-0 w-full h-full bg-darkgray opacity-70 z-[1]'></div>
               <Parallax className="lg-no-parallax bg-cover absolute -top-[50px] left-0 w-full h-[100vh] z-0 lg:-top-[70px] md:h-[600px] md:-top-[50px] xs:h-[450px]" translateY={[-40, 40]} style={{ backgroundImage: `url(${host}${boardData.tileImage.data.attributes.formats.custom.url})` }}></Parallax>
               <Container className="h-full relative z-[2]">
@@ -62,11 +62,7 @@ const LeftSideBarTilse = (props) => {
                 </Row>
               </Container>
           </div>}
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />    
+          
           {data[0] && <Tiles data={data} />}
       </div></>
     )
