@@ -81,7 +81,24 @@ const HeaderData = [
     },
     {
         title: 'تماس با ما',
-        link: '/contact-us'
+        dropdown: [
+            {
+                title: "اطلاعات تماس",
+                link: "/contact-us",
+            },
+            {
+                title: " نظرسنجی عمومی",
+                link: "https://setarehsurvey.ir/index.php/553657",
+            },
+            {
+                title: "نظرسنجی ایمنی",
+                link: "https://setarehsurvey.ir/index.php/669591",
+            },
+            {
+                title: "نظرسنجی نمایندگان",
+                link: "https://setarehsurvey.ir/index.php/176623",
+            },
+        ],
     }
 ]
 
@@ -168,7 +185,16 @@ const HeaderDataEn = [
     // },
     {
         title: 'Contact Us',
-        link: '/contact-us'
+        dropdown: [
+            {
+                title: "Contact Info",
+                link: "/contact-us",
+            },
+            {
+                title: "Survey",
+                link: "https://setarehsurvey.ir/index.php",
+            },
+        ],
     }
 ]
 

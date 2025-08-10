@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 
 const BlogSimple = (props) => {
   const host = useSelector(state => state.State.host)
+    const language = useSelector(state => state.State.language)
 
   const style = { "--overlay-color": typeof (props.overlay) === "object" ? `linear-gradient(to right top, ${props.overlay.map((item, i) => item)})` : props.overlay }
 
@@ -24,7 +25,7 @@ const BlogSimple = (props) => {
                 </div>
                 <div className="post-details">
                   <Link aria-label="link" to={`/research/${item.attributes.title}`} className="blog-category rounded-[10px]">
-                    <div className="text-md">
+                    <div className={`text-md ${language === "fa-IR" && "iran-sans"}`}>
                     {item.attributes.subject}
                     </div>
                   </Link>

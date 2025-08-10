@@ -22,7 +22,7 @@ const CommentBox = (props) => {
                     </div>
                         <div className="w-full pl-[25px] sm:pl-0 box-shadow rounded-[10px] bg-white p-4">
                             <Link aria-label="link" to="#" className="text-darkgray font-medium text-[18px] hover:text-fastblue">{item.attributes.name}</Link>
-                            <div className="text-md text-spanishgray mb-[15px"> 
+                            <div className="text-md text-spanishgray mb-[15px]"> 
                                 <span className='mr-2 text-red'>  
                                     {moment(date[0], 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')} 
                                 </span> 

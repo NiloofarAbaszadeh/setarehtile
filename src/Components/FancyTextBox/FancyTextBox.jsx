@@ -23,7 +23,7 @@ const FancyTextBox = (props) => {
                                     <div className="opacity-very-light opacity-30 absolute top-0 left-0 w-full h-full "></div>
                                 </div>
                                 <div className="fancy-text-box relative overflow-hidden h-[800px] xl:h-[500px] xs:h-[250px] z-[3]">
-                                    <div className="fancy-text-content pr-[4rem] pt-[1.5rem] pb-[1.5rem] xl:px-[2rem] xs:pb-[25px] xl:py-[1.5rem] lg:p-8 bg-[#000000a1] sm:p-5"> 
+                                    <div className="fancy-text-content pr-[4rem] pt-[1.5rem] pb-[1.5rem] xl:px-[2rem] xs:pb-[25px] xl:py-[1.5rem] lg:p-8 bg-red sm:p-5"> 
                                         <h3 className="heading-6 font-semibold text-[#fff] uppercase w-[85%] xl:w-full lg:w-3/5 md:w-[80%] mb-6 sm:mb-8">{item.attributes.name}</h3>
                                         <div className="fancy-text-box-bottom justify-center">
                                             <div className="flex">
@@ -34,7 +34,7 @@ const FancyTextBox = (props) => {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="feature-box-overlay bg-[#000000a1] transition-default"></div>
+                                        <div className="feature-box-overlay bg-red transition-default"></div>
                                     </div>
                                 </div>
                             </Col>

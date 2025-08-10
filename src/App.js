@@ -55,7 +55,6 @@ const Files = lazy(() => import("./dashboard/components/extra/Files"))
 const Recruitment = lazy(() => import("./Pages/Recruitment"))
 const Resume = lazy(() => import("./dashboard/components/extra/Resume"))
 const ResumePage = lazy(() => import("./dashboard/components/extra/ResumePage"))
-// const Map = lazy(() => import( "./map"))
 const UploadInventory = lazy(() => import("./dashboard/components/extra/UploadInventory"))
 const Upload = lazy(() => import("./dashboard/components/extra/Upload"))
 const UploadFile = lazy(() => import("./dashboard/components/extra/UploadFile"))
@@ -64,25 +63,24 @@ const ChangeProfileImage = lazy(() => import("./dashboard/components/extra/Chang
 const ChangeProfileInfo = lazy(() => import("./dashboard/components/extra/ChangeProfileInfo"))
 const SingleMassage = lazy(() => import("./dashboard/components/extra/SingleMassage"))
 
-
 export const router = createBrowserRouter(createRoutesFromElements(<>
     <Route path="login" element={<LoginRegister />} />
     <Route path="dashboard" element={<Main />} > 
-          <Route index element={<IndexPage />} />
-          <Route path="inventory" element={<Inventory />} loader={InventoryLoader}/>
-          <Route path="massages" element={<Massages />} />
-          <Route path="massages/:id" element={<SingleMassage />}/>
-          <Route path="comments" element={<Comments />} loader={CommentsLoader}/>
-          <Route path="favorite-tile" element={<FavoriteTiles loader={FavoriteTilesLoader}/>} />
-          <Route path="files" element={<Files />} loader={FilesLoader}/>
-          <Route path="files/upload" element={<UploadFile />} loader={UploadFileLoader}/>
-          <Route path="resume" element={<Resume />} loader={ResumeLoader}/>
-          <Route path="resume/:id" element={<ResumePage />} loader={ResumePageLoader}/>
-          <Route path="upload-inventory" element={<UploadInventory />} loader={UploadInventoryLoader}/>
-          <Route path="upload-inventory/upload" element={<Upload />} loader={UploadLoader}/>
-          <Route path="profile" element={<Profile />} />
-          <Route path="profile/edit-profile-image" element={<ChangeProfileImage />} />
-          <Route path="profile/edit-profile-info" element={<ChangeProfileInfo />} />
+      <Route index element={<IndexPage />} />
+      <Route path="inventory" element={<Inventory />} loader={InventoryLoader}/>
+      <Route path="massages" element={<Massages />} />
+      <Route path="massages/:id" element={<SingleMassage />}/>
+      <Route path="comments" element={<Comments />} loader={CommentsLoader}/>
+      <Route path="favorite-tile" element={<FavoriteTiles loader={FavoriteTilesLoader}/>} />
+      <Route path="files" element={<Files />} loader={FilesLoader}/>
+      <Route path="files/upload" element={<UploadFile />} loader={UploadFileLoader}/>
+      <Route path="resume" element={<Resume />} loader={ResumeLoader}/>
+      <Route path="resume/:id" element={<ResumePage />} loader={ResumePageLoader}/>
+      <Route path="upload-inventory" element={<UploadInventory />} loader={UploadInventoryLoader}/>
+      <Route path="upload-inventory/upload" element={<Upload />} loader={UploadLoader}/>
+      <Route path="profile" element={<Profile />} />
+      <Route path="profile/edit-profile-image" element={<ChangeProfileImage />} />
+      <Route path="profile/edit-profile-info" element={<ChangeProfileInfo />} />
     </Route>
     <Route element={<WhiteHeaderPage />} >
       <Route path="/" element={<InteriorDesignPage style={{ "--base-color": "#181616" }} />}/>
@@ -149,7 +147,7 @@ function App() {
                 </HelmetProvider>
               </ThemeProvider>
             </AnimatePresence>
-          </main>}
+        </main>}
       </div>
     </GlobalContext.Provider>)}
 

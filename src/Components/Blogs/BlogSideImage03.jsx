@@ -70,7 +70,7 @@ const BlogSideImage03 = (props) => {
                       <div className="post-details my-8 px-12">
                         <span className="blog-post-date"> {item.date} </span>
                         <span className="font-semibold text-xlg text-black sm:px-8">{item.name}</span>
-                        <p className="mb-4 text-fastblue text-[12px] sm:px-8"> {moment(date[0], 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}  </p>
+                        <p className={`mb-4 text-fastblue text-[12px] sm:px-8 ${language === "fa-IR" && "iran-sans"}`}> {moment(date[0], 'YYYY-MM-DD').locale('fa').format('YYYY/MM/DD')}  </p>
                         <p className="w-[100%] mb-4 text-justify text-[12px] sm:px-8">{item.description[0].children[0].text}</p>
                         <Link to={host + item.file.data.attributes.url} target="_blank"><button className="button-custom w-max mt-6 sm:mb-2 sm:mx-8">{language === "fa-IR" ? `دانلود فایل` : language === "en" ? `Download file` : ""}</button></Link>
                       </div>

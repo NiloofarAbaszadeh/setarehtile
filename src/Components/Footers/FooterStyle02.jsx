@@ -7,7 +7,7 @@ import SocialIcons from '../SocialIcon/SocialIcons'
 import FooterMenu, { Footer } from './Footer';
 import FooterData, { FooterDataEn } from './FooterData';
 import '../../Assets/css/custom-color.css';
-import WhiteLogo from "../../Assets/images/logo-white.png"
+import Logo from "../../Assets/images/logo.png"
 
 const iconData = [
     {
@@ -48,7 +48,7 @@ const FooterStyle02 = (props) => {
                     <Row className="md:text-start justify-start">
                         <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 1 }} className="md:mb-[50px] xs:mb-[25px]">
                             <Link aria-label="link" to="/" className="mb-[20px] block">
-                                <img className='w-[85px]' alt="logo" src={WhiteLogo} width="220" height="120" />
+                                <img className='w-[50%] mb-2' alt="logo" src={Logo} width="220" height="120" />
                             </Link>
                             {language === "fa-IR" ? <>
                                 <p className="w-[80%] mb-[20px] xs:w-full text-[14px]">شرکت کاشی و سرامیک ستاره میبد در خرداد 1383 در شهر تاریخی و زیبای میبد تاسیس گردید .</p>
@@ -62,7 +62,7 @@ const FooterStyle02 = (props) => {
                         {language === "fa-IR" ? <FooterMenu className="xl:px-[15px] md:mb-[40px] xs:mb-[25px]" data={FooterData.slice(0, 3)} lg={{ span: 2, order: 0 }} sm={{ span: 4, order: 3 }} titleClass="capitalize" /> :
                         language === "en" ? <FooterMenu className="xl:px-[15px] md:mb-[40px] xs:mb-[25px] dir-ltr" data={FooterDataEn.slice(0, 3)} lg={{ span: 2, order: 0 }} sm={{ span: 4, order: 3 }} titleClass="capitalize" /> : <></>}
                         <Col className='sm:hidden' lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 2 }}>
-                            <span className="font-medium block text-themecolor mb-[30px] md:mb-[15px]">{language === "fa-IR" ? "جدیدترین خبر ها" : language === "en" ? "Latest News" : ""}</span>
+                            <span className="block mb-[30px] md:mb-[15px] span-footer">{language === "fa-IR" ? "جدیدترین خبر ها" : language === "en" ? "Latest News" : ""}</span>
                             <ul>
                                 {loading && latestNewsData.map(item => {
                                     return (<li className="flex mb-[25px]" key={item.id}>

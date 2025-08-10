@@ -27,7 +27,7 @@ const BlogSideImage = (props) => {
               </div>
               <div className=" p-8 sm:pt-0 max-w-[55%] sm:max-w-full">
                 <div className="flex flex-col justify-start">
-                  <span className="c-c-red text-[13px] font-mono"> {item.attributes.date} </span>
+                  <span className="c-c-red text-[13px]"> {item.attributes.date} </span>
                   <Link aria-label="link" to={`${props.link}${[item.attributes.title]}`} className="blg-post-title my-[10px] text-[18px]"><span> {item.attributes.title} </span></Link>
                 </div>
                 <p className="text-[14px] text-justify text-gray mb-4 w-[92%]">{item.attributes.summery}</p>
@@ -44,7 +44,6 @@ const BlogSideImage = (props) => {
           );
         })
       }
-      
     </div>
   );
 };

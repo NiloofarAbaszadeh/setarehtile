@@ -49,6 +49,7 @@ const InteriorDesignPage = (props) => {
       }).then(res => {
         setData(res.data.data)
         setLoadingHome(true)
+        console.log(res.data.data)
       })
     }
     const GetGroupData =  () => {
@@ -105,13 +106,17 @@ const InteriorDesignPage = (props) => {
           />
         </div>
       )}
+      {/* Seo */}
       {loadingHome && data.attributes.seo && <Seo data={data.attributes.seo} />}
+
+      {/* Slider */}
       {loadingHome && data.attributes.Slider && (
         <StartupPageBannerSlider data={data.attributes.Slider} />
       )}
 
+      {/* About us */}
       <LazyLoad height={-100}>
-        {loadingHome && (
+        {loadingHome && data.attributes.aboutUs.state && (
           <section className="bg-white relative py-[100px] lg:py-[80px] md:py-[55px] sm:py-[30px] xs:py-[20px] sm:border-t border-[#dee2e6]">
             <Container>
               <Row className="justify-center">
@@ -139,15 +144,9 @@ const InteriorDesignPage = (props) => {
                       {data.attributes.aboutUs.summery}
                     </p>
                     <div className="flex item-center justify-start">
-                      <Link to={"./about-us"}>
+                      <Link to={data.attributes.aboutUs.button.link}>
                         <button className="button-custom w-auto mt-[35px]">
-                          {language === "fa-IR" ? (
-                            "درباره شرکت ما"
-                          ) : language === "en" ? (
-                            "Read More"
-                          ) : (
-                            <></>
-                          )}
+                          {data.attributes.aboutUs.button.title}
                         </button>
                       </Link>
                     </div>
@@ -286,15 +285,9 @@ const InteriorDesignPage = (props) => {
                       {data.attributes.aboutUs.summery}
                     </p>
                     <div className="flex item-center justify-start">
-                      <Link to={"./about-us"}>
+                      <Link to={data.attributes.aboutUs.button.link}>
                         <button className="button-custom w-auto mt-[35px]">
-                          {language === "fa-IR" ? (
-                            "درباره شرکت ما"
-                          ) : language === "en" ? (
-                            "Read More"
-                          ) : (
-                            <></>
-                          )}
+                          {data.attributes.aboutUs.button.title}
                         </button>
                       </Link>
                     </div>
@@ -308,7 +301,8 @@ const InteriorDesignPage = (props) => {
         )}
       </LazyLoad>
 
-      {data && data.attributes.ShowProduct && (
+      {/* Show product */}
+      {data && data.attributes.ShowProduct && data.attributes.ShowProduct.state && (
         <LazyLoad height={200} offset={100}>
           <section className="bg-[#f1edea] pt-[100px] pb-[120px] lg:py-[120px] md:py-[75px] sm:py-[110px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
             <Container className="pt-[6%] lg:pt-0">
@@ -318,16 +312,17 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {data && (
+      {/* Our work */}
+      {data && data.attributes.ourWork.state && (
         <LazyLoad height={200} offset={100}>
           <section className="bg-lightgray pt-[60px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
             <Container className="pt-[6%] lg:pt-0">
               <Row className="items-center">
-                <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[65px] md:pt-0 xs:p-0">
-                  <span className=" mb-[20px] block uppercase text-xlg font-medium text-fastblue">
+                <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[45px] md:pt-0 xs:p-0">
+                  <span className="heading-6 uppercase text-fastblue font-bold mb-[40px] md:mb-[20px]">
                     {data.attributes.ourWork.discreptionText}
                   </span>
-                  <h2 className="heading-6  uppercase text-darkgray font-bold mb-[40px] md:mb-[20px]">
+                  <h2 className="my-[20px] block uppercase text-xlg font-medium text-darkgray">
                     {data.attributes.ourWork.subDiscreptionText}
                   </h2>
                   <div className="flex">
@@ -351,7 +346,7 @@ const InteriorDesignPage = (props) => {
                     </div>
                     <div
                       onClick={() => swiperRef.current.swiper.slideNext()}
-                      className="btn-slider-prev text-[40px] text-[#828282] hover:text-black transition-default leading-[40px] w-auto h-[40px]"
+                      className="btn-slider-prev text-[40px] text-[#a3a2a2] hover:text-black transition-default leading-[40px] w-auto h-[40px]"
                     >
                       <button aria-label="swiper prev" className="">
                         <i
@@ -397,14 +392,14 @@ const InteriorDesignPage = (props) => {
                         return (
                           <SwiperSlide key={i}>
                             <m.div
-                              className="feature-box-bg-white-hover border-[1px] rounded-0 border-[#0000001a] overflow-hidden"
+                              className="feature-box-bg-white-hover border-[1px] rounded-2 border-[#0000001a] bg-[#00000021] overflow-hidden"
                               {...{
                                 ...props.animation,
                                 transition: { delay: 0.2 * i },
                               }}
                             >
                               <div className="feature-box-move-bottom-top py-12 px-16 md:py-8 md:px-10 sm:py-12 sm:px-[4.5rem] xs:pt-16">
-                                <h2 className="heading-4  font-medium text-temp mb-[20px] -tracking-[2px]">{`${
+                                <h2 className="heading-4  font-medium text-fastblue mb-[20px] -tracking-[2px]">{`${
                                   i <= 9 ? "0" : ""
                                 }${i + 1}`}</h2>
                                 <div className="feature-box-content">
@@ -442,7 +437,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {data && (
+      {/* Parallax */}
+      {data && data.attributes.Parallax.state &&  (
         <LazyLoad height={200} offset={100}>
           {" "}
           <div className="py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] md:flex md:items-center overflow-hidden relative">
@@ -481,16 +477,10 @@ const InteriorDesignPage = (props) => {
                   {data.attributes.Parallax.button && (
                     <m.div className="flex item-center justify-center">
                       <Link
-                        to={
-                          language === "fa-IR"
-                            ? "./agent/internal-agent"
-                            : language === "en"
-                            ? "./agent/external-agent"
-                            : ""
-                        }
+                        to={data.attributes.Parallax.button.link}
                       >
                         <button className="button-custom w-auto mt-[35px]">
-                          {data.attributes.Parallax.button}
+                          {data.attributes.Parallax.button.title}
                         </button>
                       </Link>
                     </m.div>
@@ -502,7 +492,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {data && (
+      {/* New in wrold */}
+      {data && data.attributes.newInWrold.state && (
         <LazyLoad height={200} offset={100}>
           <m.section
             className="cover-background py-[130px] lg:py-[50px] md:py-[45px] sm:py-[30px] sm:pt-[100px]"
@@ -549,9 +540,9 @@ const InteriorDesignPage = (props) => {
                   </div>
                 </Col>
                 <m.div className="col-lg-5 offset-lg-1 col-md-10 ml-0 mr-[4%]">
-                  <div className="font font-medium mb-[30px] sm:mb-4 flex sm:mt-24">
+                  <div className="font font-medium mb-[15px] sm:mb-4 flex sm:mt-24">
                     <div className="flex-grow-1">
-                      <span className="text-basecolor uppercase text-fastblue">
+                      <span className="text-basecolor uppercase text-fastblue font-bold text-[24px]">
                         {data.attributes.newInWrold.redtext}
                       </span>
                     </div>
@@ -563,15 +554,9 @@ const InteriorDesignPage = (props) => {
                     {data.attributes.newInWrold.discraption}
                   </p>
                   <div className="flex item-center justify-start">
-                    <Link to={"/about-us"}>
+                    <Link to={data.attributes.newInWrold.button.link}>
                       <button className="button-custom w-auto mt-[35px] sm:mt-4">
-                        {language === "fa-IR" ? (
-                          "اطلاعات بیشتر"
-                        ) : language === "en" ? (
-                          "Read More"
-                        ) : (
-                          <></>
-                        )}
+                        {data.attributes.newInWrold.button.title}
                       </button>
                     </Link>
                   </div>
@@ -582,7 +567,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {data && (
+      {/* Done work */}
+      {data && data.attributes.doneWork.state && (
         <LazyLoad height={200} offset={100}>
           <section className="py-[90px] lg:py-[60px] md:py-[45px] sm:py-[30px] relative border-t border-mediumgray overflow-hidden bg-[#f1edea]">
             <Container fluid className="px-0">
@@ -624,7 +610,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {loadingNews && newsData && loadingHome && (
+      {/* latest news */}
+      {loadingNews && newsData && loadingHome && data.attributes.newsElements.state && (
         <LazyLoad height={200} offset={100}>
           <section className="bg-white relative border-t border-mediumgray overflow-hidden">
             <section className="pt-[90px] lg:pt-[70px] md:pt-[55px] sm:pt-[40px]  pb-[50px] md:pb-[55px] sm:pb-[40px]">
@@ -632,22 +619,10 @@ const InteriorDesignPage = (props) => {
                 <Row className="justify-center">
                   <Col lg={6} className="text-center mb-8 sm:mb-6">
                     <span className="font-medium text-fastblue text-xxlg block mb-[5px] uppercase">
-                      {language === "fa-IR" ? (
-                        "اخبار"
-                      ) : language === "en" ? (
-                        "News"
-                      ) : (
-                        <></>
-                      )}
+                      {data.attributes.newsElements.mainTitle}
                     </span>
                     <h6 className=" text-darkgray text-xlg  uppercase">
-                      {language === "fa-IR" ? (
-                        "جدیدترین اخبار"
-                      ) : language === "en" ? (
-                        "Letest News"
-                      ) : (
-                        <></>
-                      )}
+                      {data.attributes.newsElements.SubTitle}
                     </h6>
                   </Col>
                 </Row>
@@ -681,7 +656,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {loadingGroup && data && (
+      {/* Latest groups */}
+      {loadingGroup && data && data.attributes.groupElements.state && (
         <LazyLoad height={200} offset={100}>
           <>
             <m.div className="flex items-center justify-center text-center py-24 w-full bg-[#f1edea]">
@@ -722,15 +698,9 @@ const InteriorDesignPage = (props) => {
             </m.section>
             <div className="flex-fix py-12 pt-2 bg-[#f1edea]">
               <div className="flex item-center justify-center">
-                <Link to={"./product-groups"}>
+                <Link to={data.attributes.groupElements.button.link}>
                   <button className="button-custom w-auto mt-[35px]">
-                    {language === "fa-IR" ? (
-                      "مشاهده همه"
-                    ) : language === "en" ? (
-                      "See All"
-                    ) : (
-                      <></>
-                    )}
+                    {data.attributes.groupElements.button.title}
                   </button>
                 </Link>
               </div>
@@ -739,7 +709,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {data && data.attributes.comments.item[0] && (
+      {/* Comments */}
+      {data && data.attributes.comments.item[0] && data.attributes.comments.state && (
         <LazyLoad height={200} offset={100}>
           <section className="py-[100px] lg:py-[50px] md:py-[45px]  xs:py-[30px]">
             <Container>
@@ -770,7 +741,8 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {loadingHome && (
+      {/* Article */}
+      {loadingHome && data.attributes.articleElements.state && (
         <LazyLoad height={200} offset={100}>
           <section className="py-[90px] lg:py-[70px] md:py-[55px]  xs:py-[40px] relative bg-[#f1edea]">
             <Container fluid>
@@ -824,6 +796,7 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
+      {/* Login page link */}
       {loadingHome && (
         <LazyLoad height={200} offset={100}>
           {" "}

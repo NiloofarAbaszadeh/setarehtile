@@ -211,13 +211,13 @@ export const Menu = memo((props) => {
               {
                 item.link ? (
                   <Link className="nav-link py-4" to={item.link}>
-                    <div className="text-xmd">
+                    <div className="text-xmd hover-underline pb-1">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
                   <div className="nav-link text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
-                    <div>
+                    <div className="hover-underline pb-1">
                       {item.title}
                     </div>
                     <div className="fa text-red mr-[5px] fa-angle-down">
@@ -226,13 +226,13 @@ export const Menu = memo((props) => {
                 )
               }
               {(item.dropdown) && (
-                <ul className="simple-dropdown-menu w-auto py-1 pl-4">
+                <ul className={`simple-dropdown-menu py-1 pl-4 bg-lightgray ${language === "fa-IR" && "right-[25px] w-[100%]"}`}>
                   {item.dropdown.map((item, i) => {
                     return (
                       <li key={i} className="simple-dropdown header-dropdown-fix">
                         {
                           item.link ? (
-                            <Link className="nav-link w-max" to={item.link}>
+                            <Link className="nav-link  hover-underline w-max pb-2" to={item.link}>
                               <div className="text-xmd c-c-black ">
                               {item.title} 
                               </div>
@@ -322,13 +322,13 @@ export const Menu = memo((props) => {
             <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} `} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link py-4" to={item.link}>
+                  <Link className="nav-link  hover-underline py-4" to={item.link}>
                     <div className="text-xmd">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
+                  <div className="nav-link  hover-underline text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
                     <div>
                       {item.title}
                     </div>
@@ -344,7 +344,7 @@ export const Menu = memo((props) => {
                       <li key={i} className="simple-dropdown header-dropdown-fix">
                         {
                           item.link ? (
-                            <Link className="nav-link w-max" to={item.link}>
+                            <Link className="nav-link  hover-underline w-max" to={item.link}>
                               <div className="text-xmd c-c-black ">
                               {item.title} 
                               </div>
@@ -537,7 +537,7 @@ export const MobileMenu = (props) => {
                           {item.title}
                         </Link>
                       ) : (
-                        <span className="nav-link ">{item.title}</span>
+                        <span className="nav-link  hover-underline ">{item.title}</span>
                       )
                     }
                     <i className="fa c-c-red fa-angle-down" onClick={(e) => handleMenuClick(e, i)} />
@@ -553,7 +553,7 @@ export const MobileMenu = (props) => {
                                     {item.dropdown && (<i className="fas fa-angle-right "></i>)}
                                   </Link>
                                 ) : (
-                                  <span className="nav-link text-xxlg">
+                                  <span className="nav-link  hover-underline text-xxlg">
                                     {item.title}
                                     {item.dropdown && (<i className="fas fa-angle-right"></i>)}
                                   </span>
