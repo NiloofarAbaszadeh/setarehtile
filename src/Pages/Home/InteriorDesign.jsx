@@ -49,7 +49,6 @@ const InteriorDesignPage = (props) => {
       }).then(res => {
         setData(res.data.data)
         setLoadingHome(true)
-        console.log(res.data.data)
       })
     }
     const GetGroupData =  () => {

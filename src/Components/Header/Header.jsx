@@ -746,7 +746,7 @@ export const SearchBar = memo((props) => {
   return (
     <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <i className={`feather-search px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
+        <i className={`feather-search hover:text-red px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
       </Link>
 
       {/* Search pop-up model Start */}
@@ -822,7 +822,7 @@ export const HeaderLanguage = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <i className={`feather-globe py-[27px] px-0 inline-block ${props.className}`}></i>
+        <i className={`feather-globe hover:text-red py-[27px] px-0 inline-block ${props.className}`}></i>
       </Link>
       <ul className="dropdown-menu block absolute right-auto left-[-45px] p-15px rounded-[6px] border-0 m-0 min-w-[140px]">
       <li className="flex items-center justify-start">
