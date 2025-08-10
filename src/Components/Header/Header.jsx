@@ -744,7 +744,7 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
         <i className={`feather-search px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
       </Link>
