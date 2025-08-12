@@ -37,10 +37,12 @@ const StartupPageBannerSlider = (props) => {
                         if (item.schedule) {
                             const now = new Date();
                             let showSlide = true;
-                                            
+
                             // Check start date/time if present
                             if (item.schedule.startDatee && item.schedule.startTime) {
                                 const startDateTime = new Date(`${item.schedule.startDatee}T${item.schedule.startTime}`);
+                                console.log("now", now)
+                                console.log("startDateTime", startDateTime)
                                 if (now < startDateTime) {
                                     showSlide = false; // too early
                                 }

@@ -83,7 +83,7 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
       <Route path="profile/edit-profile-info" element={<ChangeProfileInfo />} />
     </Route>
     <Route element={<WhiteHeaderPage />} >
-      <Route path="/" element={<InteriorDesignPage style={{ "--base-color": "#181616" }} />}/>
+      <Route path="/" element={<InteriorDesignPage style={{ "--base-color": "#BF0D19" }} />}/>
       <Route path="/about-us" element={<AboutUsPage />} />
       <Route path="certificate" >
         <Route path="internal-ce" element={<ImageGalleryPage />} />
