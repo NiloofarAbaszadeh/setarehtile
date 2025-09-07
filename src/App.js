@@ -62,6 +62,8 @@ const Profile = lazy(() => import("./dashboard/components/extra/Profile"))
 const ChangeProfileImage = lazy(() => import("./dashboard/components/extra/ChangeProfileImage"))
 const ChangeProfileInfo = lazy(() => import("./dashboard/components/extra/ChangeProfileInfo"))
 const SingleMassage = lazy(() => import("./dashboard/components/extra/SingleMassage"))
+const BlogFullWidthPost = lazy(() => import("./Pages/Blogs/PostTypes/BlogFullWidthPost"))
+// BlogFullWidthPost
 
 export const router = createBrowserRouter(createRoutesFromElements(<>
     <Route path="login" element={<LoginRegister />} />
@@ -87,6 +89,7 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
       <Route path="/about-us" element={<AboutUsPage />} />
       <Route path="certificate" >
         <Route path="internal-ce" element={<ImageGalleryPage />} />
+        <Route path="internal-ce/:id" element={<BlogFullWidthPost />} />
         <Route path="external-ce" element={<ImageGalleryPage02 />} />
         <Route path="honors" element={<ImageGalleryPage03 />} />
       </Route>  

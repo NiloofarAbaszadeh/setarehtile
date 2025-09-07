@@ -20,6 +20,7 @@ import Iso10004 from "../../Assets/images/iso/ISO-10004.png"
 import Iso13006 from "../../Assets/images/iso/ISO-13006.png"
 import Iso17025 from "../../Assets/images/iso/ISO-17025.png"
 import ce from "../../Assets/images/iso/CE-Certified.png"
+import Setareh from "../../Assets/images/footer/setareh-typo.png"
 
 
 const iconData = [
@@ -135,13 +136,19 @@ const FooterStyle02 = (props) => {
               setLoading(true)}
         LoadData()
     },[host, token, language])
+
+    // edwardian-script
     return ( <>
         {loading && 
             <Footer theme="dark" className={`text-slateblue bg-darkgray w-full xs:px-8`}>
-                {language === "fa-IR" && <div className='flex items-center justify-center py-12'>
+                {language === "fa-IR" ? <div className='flex items-center justify-center py-12'>
                     <img src={SetarehtileTypo} width={150} alt='setareh-typo' />
-                </div>}
-            <div className="pb-[4%] lg:pb-[4%] md:pb-0 xs:pb-[8%]">
+                </div> :
+                <div className='flex items-center justify-center pt-8 pb-4 mr-4'>
+                    <p className='edwardian-script text-white text-[55px] tracking-tight'><span className='text-[#ff0000]'>Setareh</span> TileCo</p>
+                </div>
+                }
+            <div className="">
                 <Container>
                     <Row className='mb-4'>
                         <div className='flex items-center justify-between mb-8'>
@@ -153,7 +160,7 @@ const FooterStyle02 = (props) => {
                         </div>
                     </Row>
                     <Row className="md:text-start justify-start">
-                        <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 0 }} className="md:mb-[50px] xs:mb-[25px] border-l border-[#f7f7f730] xs:border-none">
+                        <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 0 }} className={`md:mb-[50px] xs:mb-[25px] border-${language === "fa-IR" ? "l" : "r"} border-[#f7f7f730] xs:border-none`}>
                             <div className='border-b border-[#f7f7f730] pb-2 mb-2'>
                                 <div className='flex items-center justify-start mb-4'>
                                     <img className='rounded-[5px] w-[30%] xs:w-[20%]' src={QRCode} alt='QRCode' />
@@ -181,17 +188,17 @@ const FooterStyle02 = (props) => {
                                 <SocialIcons theme="social-icon-style-02" className="justify-start" size="xs" iconColor={props.theme === "dark" ? "light" : "dark"} data={iconData} />
                             </div>
                         </Col>
-                        <Col className='mr-2'>
+                        <Col className={`m${language === "fa-IR" ? "r" : "l"}-4`}>
                             <Row className='justify-between'>
                                 {language === "fa-IR" ? <FooterMenu className="xl:px-[15px] md:mb-[40px] xs:mb-[25px]" data={FooterData.slice(0, 3)} lg={{ span: 2, order: 0 }} sm={{ span: 4, order: 0 }} titleClass="capitalize" /> :
                                 language === "en" ? <FooterMenu className="xl:px-[15px] md:mb-[40px] xs:mb-[25px] dir-ltr" data={FooterDataEn.slice(0, 3)} lg={{ span: 2, order: 0 }} sm={{ span: 4, order: 0 }} titleClass="capitalize" /> : <></>}
-                                <Col className='sm:hidden' lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 2 }}>
-                                    <span className="block mb-[30px] md:mb-[15px] span-footer">{language === "fa-IR" ? "آخرین اخبار" : language === "en" ? "Latest News" : ""}</span>
+                                <Col className='sm:hidden p-0' lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 2 }}>
+                                    <span className="block mb-[20px] md:mb-[15px] span-footer">{language === "fa-IR" ? "آخرین اخبار" : language === "en" ? "Latest News" : ""}</span>
                                     <ul>
                                         {loading && latestNewsData.map(item => {
                                             return (<li className="flex mb-[25px]" key={item.id}>
                                                 <Link aria-label="link" to={`/news/${item.attributes.title}`} className="mx-[15px] shrink-0">
-                                                    <img className='' src={host + item.attributes.mainImage.data.attributes.formats.medium.url} alt="footer" width={65} height={65}/>
+                                                    <img className='' src={host + item.attributes.mainImage.data.attributes.formats.medium.url} alt="footer" width={55} height={55}/>
                                                 </Link>
                                                 <div>
                                                     <Link aria-label="link" to={`/news/${item.attributes.title}`}><span className='text-[14px] w-full'>{item.attributes.title}</span></Link>
@@ -201,21 +208,27 @@ const FooterStyle02 = (props) => {
                                             
                                 </Col>
                             </Row>
-                            <Row>
-
-                            </Row>
                         </Col>
                     </Row>
                 </Container>
             </div>
-            <div className="footer-bottom py-[8px] w-[100vw] px-0 bg-black">
+            <div className='flex items-center justify-center py-[2%] lg:py-[2%] md:py-0 xs:py-[4%]'>          
+                {language === "fa-IR" ? <span className='text-[28px] iranNastaliq text-white flex items-center'>هنر است ز خاک 
+                    {/* <span className='text-red font-medium text-[32px]'>ستاره</span> */}
+                    <img className='mb-3 ml-1' src={Setareh} alt='setareh-typo' width={85}/>
+                 آوردن</span> :
+                <span className='text-[28px] iranNastaliq text-white flex items-center edwardian-script'>The art is in bringing forth a 
+                    <span className='text-[#ff0000] mx-2'> star </span>
+                from dust</span>}
+            </div>
+            <div className="footer-bottom py-[8px] px-0 bg-black">
                 <Container>
                     <Row>
-                        <Col md={6} className="text-right sm:text-center">
+                        <Col md={6} className={`text-${language === "fa-IR" ? "right" : "left"} sm:text-center`}>
                         {language === "fa-IR" ? <>
                                 <span className="inline-block xs:text-md text-[12px]">&copy; تمام حقوق این سایت متعلق به <a aria-label="setarehtiles" rel="noreferrer" href="./" target="_blank" className="text-themecolor underline underline-offset-4"> شرکت کاشی و سرامیک ستاره میبد </a> می باشد. </span>
                             </> : language === "en" ? <>
-                            <span className="inline-block xs:text-md text-[12px]">&copy; All rights of this site belong to <a aria-label="setarehtiles" rel="noreferrer" href="./" target="_blank" className="text-themecolor underline underline-offset-4">Stare Mibod Tiles and Ceramics Company.</a></span>
+                            <span className="inline-block xs:text-md text-[12px]">&copy; All rights of this site belong to <a aria-label="setarehtiles" rel="noreferrer" href="./" target="_blank" className="text-themecolor underline underline-offset-4">Setareh Mibod Tiles and Ceramics Company.</a></span>
                             </> : <></>}
                         </Col>
                         <Col md={6} className="md:mb-[0.75rem] xs:mb-[15px] flex justify-end sm:justify-start sm:text-right">
@@ -223,7 +236,7 @@ const FooterStyle02 = (props) => {
                             {language === "fa-IR" ? <>
                                 <li className="mr-[35px] md:mr-[20px] xl:mb-0 xs:mb-[7px] xs:text-md text-[12px]"><a aria-label="link" href="https://www.anisagroup.net"><span> طراحی شده توسط گروه مهندسی آنیسا </span></a></li>
                             </> : language === "en" ? <>
-                                <li className="mr-[35px] md:mr-[20px] xl:mb-0 xs:mb-[7px] xs:text-md text-[12px]"><a aria-label="link" href="https://www.anisagroup.net"><span> Designed by Anisa Engineering Group </span></a></li>
+                                <li className="ml-[35px] md:mr-[20px] xl:mb-0 xs:mb-[7px] xs:text-md text-[12px]"><a aria-label="link" href="https://www.anisagroup.net"><span> Designed by Anisa Engineering Group </span></a></li>
                             </> : <></>}
                             </ul>
                         </Col>

@@ -8,6 +8,25 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Nastalig';
+  font-display: swap;
+  src: url('./font/IranNastaliq.woff2') format('woff2'),
+       url('./font/IranNastaliq.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: "Edwardian Script ITC V1";
+    src: url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.eot");
+    src: url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/ca6f91c0cad2fe33614026d17117601d.svg#Edwardian Script ITC V1")format("svg");
+}
+
 @keyframes dropTop{
   0%{
     transform: translateY(-100%) scale(0);
@@ -19,8 +38,17 @@
   }
 }
 
+
 .mulish {
   font-family: "Mulish";
+}
+
+.iranNastaliq {
+  font-family: 'Nastalig';
+}
+
+.edwardian-script {
+  font-family: "Edwardian Script ITC V1";
 }
 
 /* @font-face {

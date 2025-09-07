@@ -1,5 +1,4 @@
 import React, { useState, memo } from 'react'
-import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import Lightbox from 'react-18-image-lightbox'
 import { m } from 'framer-motion'
@@ -15,16 +14,7 @@ const ImageGallery = (props) => {
         setPhotoIndex(i)}
     
     return (<> {(isOpen) && (
-                (props.data[photoIndex].file) ?
                 <Lightbox
-                    imageCaption={<Link to={props.data[photoIndex].file}><button className="button-custom w-auto text-black text-xlg my-[35px] py-3 px-5">دانلود {props.data[photoIndex].title}</button></Link>}
-                    mainSrc={props.data[photoIndex].src}
-                    onCloseRequest={() => setIsOpen(false)}
-                    nextSrc={props.data[(photoIndex + 1) % props.data.length].src}
-                    prevSrc={props.data[(photoIndex + props.data.length - 1) % props.data.length].src}
-                    onMovePrevRequest={() => setPhotoIndex((photoIndex + props.data.length - 1) % props.data.length)}
-                    onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % props.data.length)}
-                /> : <Lightbox
                 imageCaption={<p className='text-xxlg mb-8'>{props.data[photoIndex].title}</p>}
                 mainSrc={props.data[photoIndex].src}
                 onCloseRequest={() => setIsOpen(false)}

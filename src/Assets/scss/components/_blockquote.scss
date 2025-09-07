@@ -38,9 +38,50 @@
 
 // Blockquote style 02
 .blockquote-style-02 {
-  padding: 2px 40px;
+  padding: 2px 20px;
   border-left: 6px;
-  border-color: var(--base-color);
+  border-color: #ff0000;
+  border-style: solid;
+
+
+  @media (max-width: var(--md)) {
+    margin-top: 54px;
+    margin-bottom: 54px;
+    padding-left: 30px;
+    padding-right: 0;
+  }
+
+  @media (max-width:var(--sm)) {
+    margin-top: 54px;
+    margin-bottom: 54px;
+  }
+
+  h6 {
+    color: #232323;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 30px;
+    font-weight: 500;
+    font-family: var(--alt-font);
+    margin-bottom: 17px;
+  }
+
+  span {
+    display: inline-block;
+    font-family: var(--alt-font);
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+  }
+}
+
+.blockquote-style-02-f {
+  padding: 2px 20px;
+  border-right: 6px;
+  border-color: #ff0000;
   border-style: solid;
 
 
