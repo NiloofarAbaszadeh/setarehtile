@@ -812,8 +812,9 @@ header {
       transform: translateY(-100%);
       box-shadow: none;
 
+      // this is where header color changes
       &.header-appear {
-        background-color: #fff;
+        background-color: rgb(255, 255, 255);
         transform: translateY(0);
         box-shadow: 0 0 35px rgb(0 0 0 / 10%);
 

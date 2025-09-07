@@ -7,8 +7,6 @@ import ic_file from "../../Assets/navbar/ic-file2.svg"
 
 // ----------------------------------------------------------------------
 
-
-
 const navConfigNamayandeh = [
   {
     title: 'داشبرد اصلی',

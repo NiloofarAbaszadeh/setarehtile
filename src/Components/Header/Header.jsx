@@ -97,12 +97,20 @@ export const Header = memo((props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  //make the header have more hight from here
   return (
     <header
-      className={`absolute top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
+      className={`absolute bg-white h-[95px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
         }`}
     >
-      {props.children}
+      <div className='bg-[#e4ded9] h-[25px] flex items-center justify-center box-shadow border-b-[1px] border-gray'>
+          <SearchBar className="px-3" />
+          <HeaderLanguage className="px-3" />
+          <HeaderCart className="px-3" />      
+      </div>
+      <div className="md:mt-6">
+        {props.children}
+      </div>
     </header>
   );
 });
@@ -163,8 +171,11 @@ export const Topbar = ({ className, ...props }) => {
   }, []);
 
   return (
-    <div className={`top-bar${className ? ` ${className}` : ""}`} {...props}>
+    <div className={`top-bar absolute top-0 w-[100vw] ${className ? ` ${className}` : ""}`} {...props}>
       {props.children}
+      <div className='bg-gray h-[30px] flex items-center '>
+        <p>هنر است ز خاک ستاره آوردن</p> 
+      </div>
     </div>
   );
 };
@@ -680,7 +691,7 @@ export const HamburgerMenu = memo((props) => {
         <Navbar
           key={expand}
           expand={expand}
-          className={`header-push-button bg-transparent inline-block ${props.theme}`}
+          className={`header-push-button bg-transparent inline-block z-[999] ${props.theme}`}
         >
           <Navbar.Toggle className={`push-button`} onClick={() => setShow(true)}>
             <div className="nav-icon">
@@ -745,8 +756,11 @@ export const SearchBar = memo((props) => {
 
   return (
     <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
+      {/* <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
         <i className={`feather-search hover:text-red px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
+      </Link> */}
+      <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
+        <div className="image-hover-search m-[8px]" onClick={() => setSearchModalOpen(true)}></div>
       </Link>
 
       {/* Search pop-up model Start */}
@@ -864,8 +878,8 @@ export const HeaderLanguage = (props) => {
 export const HeaderCart = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <Link to="/login" aria-label="language" target="-blank">
-      <div className="image-hover m-[8px]"></div>
+      <Link to="/login" aria-label="account" target="-blank">
+        <div className="image-hover m-[8px]"></div>
       </Link>
     </div>
   );

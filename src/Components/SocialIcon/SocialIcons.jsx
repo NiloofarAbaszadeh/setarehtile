@@ -7,7 +7,7 @@ import "../../Assets/scss/components/_socialicons.scss"
 
 const SocialIcons = (props) => {
     return (
-        <ul className={`social-icon flex-wrap gap-y-5 p-0 ${props.theme} ${props.size} ${props.iconColor} ${props.className}`}>
+        <ul className={`social-icon flex-wrap gap-y-5 p-0 ${props.theme} ${props.size} ${props.iconColor} ${props.className} `}>
             {
                 props.data.map((item, i) => {
                     return (
@@ -24,7 +24,7 @@ const SocialIcons = (props) => {
                                 <a href={item.link} aria-label="social icon" target="_blank" rel="noreferrer">
                                     {item.socialback && <div className='social-back'><span>{item.socialback}</span></div>}
                                     <div className={`${item.position} social-front grid`}>
-                                        {item.icon && <i className={`${item.icon} text-slateblue`}></i>}
+                                        {item.icon && <i className={`${item.icon} text-slateblue `}></i>}
                                         {item.name && <span>{item.name ? item.name : "icon"}</span>}
                                     </div>
                                 </a>

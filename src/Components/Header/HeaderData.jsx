@@ -1,9 +1,5 @@
 const HeaderData = [
     {
-        title: 'خانه',
-        link: '/',
-    },
-    {
         title: 'درباره ما',
         link: '/about-us',
     },
@@ -81,32 +77,39 @@ const HeaderData = [
     },
     {
         title: 'تماس با ما',
+        link: "/contact-us",
+    },
+    {
+        title: 'نظرسنجی',
         dropdown: [
             {
-                title: "اطلاعات تماس",
-                link: "/contact-us",
+                title: "نمایندگان",
+                link: "https://setarehsurvey.ir/index.php/176623",
             },
             {
-                title: " نظرسنجی عمومی",
+                title: "انبوه سازان",
+                link: "https://setarehsurvey.ir/index.php/323714",
+            },
+            {
+                title: "مصرف کنندگان",
+                link: "https://setarehsurvey.ir/index.php/765223",
+            },
+            {
+                title: "عمومی",
                 link: "https://setarehsurvey.ir/index.php/553657",
             },
             {
-                title: "نظرسنجی ایمنی",
+                title: "ایمنی",
                 link: "https://setarehsurvey.ir/index.php/669591",
             },
-            {
-                title: "نظرسنجی نمایندگان",
-                link: "https://setarehsurvey.ir/index.php/176623",
-            },
+            
+            
+            
         ],
     }
 ]
 
 const HeaderDataEn = [
-    {
-        title: 'Home',
-        link: '/',
-    },
     {
         title: 'About Us',
         link: '/about-us',
@@ -189,10 +192,6 @@ const HeaderDataEn = [
             {
                 title: "Contact Info",
                 link: "/contact-us",
-            },
-            {
-                title: "Survey",
-                link: "https://setarehsurvey.ir/index.php",
             },
         ],
     }

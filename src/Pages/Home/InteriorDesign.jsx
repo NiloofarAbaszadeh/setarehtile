@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import '../../Assets/css/custom-color.css';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper";
 import { Col, Container, Row } from "react-bootstrap";
-import { m } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Parallax } from "react-scroll-parallax";
 import { Helmet } from 'react-helmet-async'; 
@@ -29,7 +29,7 @@ const InteriorDesignPage = (props) => {
   const host = useSelector(state => state.State.host)
   const language = useSelector(state => state.State.language)
 
-  const swiperRef = React.useRef(null)
+  const [activeSlide, setActiveSlide] = useState(0)
   const [data, setData] = useState(null)
   const [loadingHome, setLoadingHome] = useState(false)
   const [researchData, setResearchData] = useState(null)
@@ -38,6 +38,10 @@ const InteriorDesignPage = (props) => {
   const [loadingGroup, setLoadingGroup] = useState(false)
   const [newsData, setNewsData] = useState(null)
   const [loadingNews, setLoadingNews] = useState(false)
+
+  
+  const swiperReff01 = React.useRef(null);
+  const swiperReff02 = React.useRef(null);
   
   useEffect(() => {
     setLoadingGroup(false)
@@ -123,7 +127,7 @@ const InteriorDesignPage = (props) => {
                   <span className="font-medium text-fastblue text-xxlg block mb-[5px] uppercase">
                     {data.attributes.aboutUs.mainTitle}
                   </span>
-                  <h3 className="text-basecolor text-xlg hover:text-darkgray font-medium">
+                  <h3 className="text-darkgray text-xlg font-medium">
                     {data.attributes.aboutUs.linkText}
                   </h3>
                 </Col>
@@ -300,10 +304,92 @@ const InteriorDesignPage = (props) => {
         )}
       </LazyLoad>
 
+      {/* Section Start */}
+      <section className="overflow-hidden py-[180px] lg:py-[140px] md:py-[75px] xs:py-[50px] bg-[#f1edea] pt-[200px]">
+        <Row className="g-0 mt-24">
+          <Col  xl={6} className="relative p-0 ">
+            <Swiper
+              ref={swiperReff01}
+              loop={true}
+              effect="fade"
+              modules={[Pagination, Navigation, EffectFade, Autoplay]}
+              autoHeight={false}
+              autoplay={{ delay: 7000, disableOnInteraction: false }}
+              fadeEffect={{ crossFade: true }}
+              onSlideChange={(swiperCore) => {
+                const { realIndex } = swiperCore;
+                setActiveSlide(realIndex);
+              }}
+              className="black-move h-full"
+            >
+              {data &&
+                data.attributes.ourWork.state &&
+                data.attributes.ourWork.boxs.map((item, i) => {
+                  return (
+                    <SwiperSlide key={i} className="cover-background h-full w-full relative">
+                      <AnimatePresence>
+                        {activeSlide === i && (
+                          <m.div
+                            key={i}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                              opacity: { duration: 1.2, ease: "easeInOut" }, // fade in
+                            }}
+                            style={{
+                              backgroundImage: `url(${host + item.mainImage.data.attributes.url})`,
+                            }}
+                            className="absolute top-0 left-0 h-full w-full bg-cover bg-center"
+                          />
+                        )}
+                      </AnimatePresence>
+                    </SwiperSlide>
+                  );
+                })}
+            </Swiper>
+
+            </Col>
+          <Col xl={6} className="relative p-0">
+            <div className={`flex absolute bottom-0 ${language === "fa-IR" ? "left" : "right"}-full z-10 lg:right-0`}>
+              <div onClick={() => {
+                swiperReff01.current.swiper.slidePrev()
+                swiperReff02.current.swiper.slidePrev()
+              }} className="btn-slider-next pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto  z-10 bottom-[63px] flex items-center justify-center cursor-pointer md:w-[70px]" >
+                <button aria-label="swiper next link" className="text-big"><i className="feather-arrow-left"></i></button>
+              </div>
+              <div onClick={() => {
+                swiperReff01.current.swiper.slideNext()
+                swiperReff02.current.swiper.slideNext()
+              }} className="btn-slider-prev pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto bottom-0 z-10 flex items-center justify-center cursor-pointer md:w-[70px]">
+                <button aria-label="swiper prev link" className="text-big"><i className="feather-arrow-right"></i></button>
+              </div>
+            </div>
+            <Swiper ref={swiperReff02} loop={true} modules={[Autoplay]} autoHeight={false} autoplay={{ delay: 7000, disableOnInteraction: false }} className="black-move h-full">
+              {data && data.attributes.ourWork.state && data.attributes.ourWork.boxs.map(item => {
+                return <SwiperSlide className="cover-background h-full" style={{ backgroundImage: `url(${host + item.sideImage.data.attributes.url})` }}>
+                    <div className="text-center h-full">
+                      <div className="flex flex-col justify-center bg-white box-shadow py-28 px-[9.5rem] h-full w-[70%] xl:px-20 lg:w-[55%] md:p-16 xs:px-8 md:w-[65%] sm:w-[70%] xs:w-full">
+                        <div>
+                          <img className="rounded-full mx-auto w-[150px] h-[150px] border-[8px] box-shadow border-red mb-[40px] xs:mb-[30px] xs:mx-auto" src={host + item.avatar.data.attributes.url} alt="" data-no-retina="" />
+                          <div className="text-[36px] leading-[42px] font-semibold text-darkgray mb-[30px] tracking-[-1px] xs:mb-[20px]">{item.title}</div>
+                          <p className="mb-[25px] text-[17px]">{item.discraption}</p>
+                          {/* <Buttons ariaLabel="Explore more" href="#" className="mx-3 font-medium after:bg-black hover:text-black font-serif uppercase btn-link after:h-[1px] md:text-md" color="#000" title="Explore more" size="xl" /> */}
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide> 
+              })}
+            </Swiper>
+          </Col>
+        </Row>
+      </section>
+      {/* Section End */}
+
       {/* Show product */}
       {data && data.attributes.ShowProduct && data.attributes.ShowProduct.state && (
         <LazyLoad height={200} offset={100}>
-          <section className="bg-[#f1edea] pt-[100px] pb-[120px] lg:py-[120px] md:py-[75px] sm:py-[110px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
+          <section className="bgwhite pt-[100px] pb-[120px] lg:py-[120px] md:py-[75px] sm:py-[110px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
             <Container className="pt-[6%] lg:pt-0">
               <MainImageShow data={data.attributes.ShowProduct} />
             </Container>
@@ -311,130 +397,6 @@ const InteriorDesignPage = (props) => {
         </LazyLoad>
       )}
 
-      {/* Our work */}
-      {data && data.attributes.ourWork.state && (
-        <LazyLoad height={200} offset={100}>
-          <section className="bg-lightgray pt-[60px] pb-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px] overflow-hidden xs:pt-[9%] xs:px-[15px]">
-            <Container className="pt-[6%] lg:pt-0">
-              <Row className="items-center">
-                <m.div className="relative md:mb-[20px] col-xl-3 col-lg-4 col-md-6 pt-[45px] md:pt-0 xs:p-0">
-                  <span className="heading-6 uppercase text-fastblue font-bold mb-[40px] md:mb-[20px]">
-                    {data.attributes.ourWork.discreptionText}
-                  </span>
-                  <h2 className="my-[20px] block uppercase text-xlg font-medium text-darkgray">
-                    {data.attributes.ourWork.subDiscreptionText}
-                  </h2>
-                  <div className="flex">
-                    <div
-                      onClick={() => swiperRef.current.swiper.slidePrev()}
-                      className="btn-slider-next ml-8 text-[40px] text-[#828282] hover:text-black transition-default leading-[40px] w-auto h-[40px] mr-[25px]"
-                    >
-                      <button aria-label="swiper next" className="">
-                        <i
-                          className={`line-icon-Arrow-Out${
-                            language === "fa-IR" ? (
-                              "Right"
-                            ) : language === "en" ? (
-                              "Left"
-                            ) : (
-                              <></>
-                            )
-                          }`}
-                        ></i>
-                      </button>
-                    </div>
-                    <div
-                      onClick={() => swiperRef.current.swiper.slideNext()}
-                      className="btn-slider-prev text-[40px] text-[#a3a2a2] hover:text-black transition-default leading-[40px] w-auto h-[40px]"
-                    >
-                      <button aria-label="swiper prev" className="">
-                        <i
-                          className={`line-icon-Arrow-Out${
-                            language === "fa-IR" ? (
-                              "Left"
-                            ) : language === "en" ? (
-                              "Right"
-                            ) : (
-                              <></>
-                            )
-                          }`}
-                        ></i>
-                      </button>
-                    </div>
-                  </div>
-                </m.div>
-                <m.div className="col-lg-8 offset-xl-1">
-                  <Swiper
-                    className="interiordesign-icon-with-text black-move swiper-pagination-medium h-full min-w-[1170px] md:min-w-full "
-                    ref={swiperRef}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    observer={true}
-                    observeParents={true}
-                    loop={true}
-                    modules={[Autoplay]}
-                    autoplay={{
-                      delay: 3000,
-                      disableOnInteraction: false,
-                    }}
-                    keyboard={{
-                      enabled: true,
-                      onlyInViewport: true,
-                    }}
-                    breakpoints={{
-                      992: { slidesPerView: 3 },
-                      768: { slidesPerView: 2 },
-                    }}
-                  >
-                    <Row className={`${props.grid} md:justify-center`}>
-                      {data.attributes.ourWork.boxs.map((item, i) => {
-                        return (
-                          <SwiperSlide key={i}>
-                            <m.div
-                              className="feature-box-bg-white-hover border-[1px] rounded-2 border-[#0000001a] bg-[#00000021] overflow-hidden"
-                              {...{
-                                ...props.animation,
-                                transition: { delay: 0.2 * i },
-                              }}
-                            >
-                              <div className="feature-box-move-bottom-top py-12 px-16 md:py-8 md:px-10 sm:py-12 sm:px-[4.5rem] xs:pt-16">
-                                <h2 className="heading-4  font-medium text-fastblue mb-[20px] -tracking-[2px]">{`${
-                                  i <= 9 ? "0" : ""
-                                }${i + 1}`}</h2>
-                                <div className="feature-box-content">
-                                  {item.title && (
-                                    <span className="font-semibold text-darkgray title  uppercase text-xlg mb-[10px] inline-block">
-                                      {item.title}
-                                    </span>
-                                  )}
-                                  {item.discraption && (
-                                    <p className="text-xmd text-justify">
-                                      {item.discraption}
-                                    </p>
-                                  )}
-                                </div>
-                                <div className="move-bottom-top w-full flex justify-start mt-[15px] xs:mt-0">
-                                  {(item.linkTitle || item.link) && (
-                                    <Buttons
-                                      ariaLabel="swiper btn"
-                                      to={item.link}
-                                      title={"اطلاعات بیشتر"}
-                                    />
-                                  )}
-                                </div>
-                              </div>
-                            </m.div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Row>
-                  </Swiper>
-                </m.div>
-              </Row>
-            </Container>
-          </section>
-        </LazyLoad>
-      )}
 
       {/* Parallax */}
       {data && data.attributes.Parallax.state &&  (

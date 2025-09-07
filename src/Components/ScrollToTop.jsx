@@ -30,7 +30,7 @@ const ScrollToTopButton = () => {
     return (
         visible ? (
             <m.div className="scroll-top-arrow cursor-pointer bottom-[45px] right-[45px] top-auto z-[20] fixed" initial={{ opacity: 0, y: 50 }} animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} transition={{ duration: 0.5 }}>
-                <div onClick={scrollToTop} className="rounded-full  hover:text-white w-[35px] h-[35px] hover:bg-red shadow-[0_0_20px_rgba(23,23,23,0.25)] flex justify-center items-center hover:-translate-y-[2px] hover:shadow-[0_0_30px_rgba(23,23,23,0.40)] transition-default">
+                <div onClick={scrollToTop} className="rounded-full hover:text-white w-[35px] h-[35px] hover:bg-red shadow-[0_0_20px_rgba(23,23,23,0.25)] flex justify-center items-center hover:-translate-y-[2px] hover:shadow-[0_0_30px_rgba(23,23,23,0.40)] transition-default">
                     <i className="feather-arrow-up text-[17px]" />
                 </div>
             </m.div>

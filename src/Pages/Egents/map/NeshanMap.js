@@ -15,7 +15,7 @@ const NeshanMap = (props) => {
   };
 
   const defaultOptions = {
-    key: "web.190d1e6563104d71873a7eb749cc2d2d",
+    key: "web.d2b585cb7d9347b0826270d62d933e16",
     maptype: "dreamy",
     poi: true,
     traffic: false,

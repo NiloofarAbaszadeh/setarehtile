@@ -4,8 +4,6 @@ import { Pagination, Navigation, EffectFade, Autoplay } from "swiper";
 import { LazyMotion, domMax, m } from 'framer-motion';
 import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import LazyLoad from 'react-lazyload';
-import moment from 'jalali-moment';
 
 const StartupPageBannerSlider = (props) => {
     const [activeSlide, setActiveSlide] = useState(0)
@@ -16,7 +14,6 @@ const StartupPageBannerSlider = (props) => {
         {props.data && <section className="bg-darkgray home-startup-swiper">
             <LazyMotion strict features={domMax}>
                 <Swiper
-                    // modules={[Pagination, Autoplay]}
                     slidesPerView={1}
                     spaceBetween={0}
                     loop={true}
@@ -41,8 +38,6 @@ const StartupPageBannerSlider = (props) => {
                             // Check start date/time if present
                             if (item.schedule.startDatee && item.schedule.startTime) {
                                 const startDateTime = new Date(`${item.schedule.startDatee}T${item.schedule.startTime}`);
-                                console.log("now", now)
-                                console.log("startDateTime", startDateTime)
                                 if (now < startDateTime) {
                                     showSlide = false; // too early
                                 }
@@ -62,11 +57,11 @@ const StartupPageBannerSlider = (props) => {
                         }      
                     
                         return (
-                            <LazyLoad key={i}>
                                 <SwiperSlide
                                     className="overflow-hidden"
                                     onMouseEnter={() => setHovered(i)}
                                     onMouseLeave={() => setHovered(null)}
+                                    key={i}
                                 >
                                     <a href={`${item.link}`}>
                                         <m.div
@@ -105,7 +100,6 @@ const StartupPageBannerSlider = (props) => {
                                         </div>
                                     </a>
                                 </SwiperSlide>
-                            </LazyLoad>
                         );
                     })}
                 </Swiper>

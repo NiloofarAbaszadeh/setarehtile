@@ -7,21 +7,14 @@ const FooterData = [
                 link: "/about-us"
             },
             {
-                title: "اخبار",
-                link: "/news"
-            },
-            {
-                title: "بازدید ها",
-                link: "/news"
+                title: "تماس با ما",
+                link: "/contact-us"
             },
             {
                 title: 'استخدام',
                 link: '/recruitment',
             },
-            {
-                title: "تماس با ما",
-                link: "/contact-us"
-            },
+            
         ]
     },
     {
@@ -42,19 +35,21 @@ const FooterData = [
         ]
     },
     {
-        title: "متفرقه",
+        title: "درباره ستاره",
         submenu: [
+            
+            {
+                title: "گواهی نامه داخلی",
+                link: "/certificate/internal-ce"
+            },
+            
+            {
+                title: "گواهی نامه خارجی",
+                link: "/certificate/external-ce"
+            },
             {
                 title: "افتخارات",
                 link: "/certificate/honors"
-            },
-            {
-                title: "گواهی نامه های داخلی",
-                link: "/certificate/internal-ce"
-            },
-            {
-                title: "گواهی نامه های خارجی",
-                link: "/certificate/external-ce"
             },
             {
                 title: "مقالات",

@@ -257,15 +257,27 @@
 }
 
 .image-hover {
-  width: 22px; /* Specify the width */
-  height: 22px; /* Specify the height */
-  background-image: url('../../Assets/images/user\ white.png'); /* Initial background image */
-  background-size: cover; /* Cover the entire area of the element */
-  transition: background-image 0.2s ease-in-out; /* Smooth transition */
+  width: 22px; 
+  height: 22px; 
+  background-image: url('../../Assets/images/user\ white.png'); 
+  background-size: cover; 
+  transition: background-image 0.2s ease-in-out; 
 }
 
 .image-hover:hover {
-  background-image: url('../../Assets/images/user\ black.png'); /* Change on hover */
+  background-image: url('../../Assets/images/user-red.png'); 
+}
+
+.image-hover-search {
+  width: 22px; 
+  height: 22px; 
+  background-image: url('../../Assets/images/search-black.png'); 
+  background-size: cover; 
+  transition: background-image 0.2s ease-in-out; 
+}
+
+.image-hover-search:hover {
+  background-image: url('../../Assets/images/search-red.png'); 
 }
 
 .custom-form {

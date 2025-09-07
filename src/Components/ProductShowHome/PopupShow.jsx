@@ -8,7 +8,7 @@ const PopupShow = (props) => {
   const language = useSelector(state => state.State.language)
 
   return <>
-    {props.position[0] && <div className={`z-20 absolute`} style={{ left: `${props.position[0]}%`, top: `${props.position[1] + 5}%` }}>
+    {props.position[0] && <div className={`z-20 absolute`} style={{ left: `${props.position[0]}%`, top: `${props.position[1] + 5}%` }} key={props.keys} >
     <div className="relative">
       <div
       className={`icon-container ${popup ? 'active' : ''} absolute left-[5px]`}

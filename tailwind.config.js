@@ -34,7 +34,7 @@ module.exports = {
         8: '8px'
       },
       colors: {
-        fastblue: '#E31400',
+        fastblue: '#BF0D19',
         darkgray: '#232323',
         darkslateblue: '#1f232c',
         lightgray: '#f7f7f7',
