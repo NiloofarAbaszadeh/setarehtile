@@ -14,7 +14,7 @@ import "../../Assets/scss/layouts/_header.scss"
 import { useDispatch } from "react-redux";
 import { changeLanguage } from "../../Store/state";
 import { useSelector } from "react-redux";
-
+ 
 /* Header Component Start */
 export const Header = memo((props) => {
   // Add Global Header Data
@@ -100,10 +100,10 @@ export const Header = memo((props) => {
   //make the header have more hight from here
   return (
     <header
-      className={`absolute bg-white h-[95px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
+      className={`absolute bg-white h-[100px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
         }`}
     >
-      <div className='bg-[#e4ded9] h-[25px] flex items-center justify-center box-shadow border-b-[1px] border-gray'>
+      <div className='bg-[#b6b6b6] h-[30px] flex items-center justify-center'>
           <SearchBar className="px-3" />
           <HeaderLanguage className="px-3" />
           <HeaderCart className="px-3" />      
@@ -151,7 +151,7 @@ export const HeaderNav = (props) => {
     >
       <Container
         fluid={props.fluid}
-        className={props.containerClass ? props.containerClass : ""}
+        className={`mx-4 ${props.containerClass ? props.containerClass : ""}`}
       >
         {props.children}
       </Container>
@@ -214,40 +214,40 @@ export const Menu = memo((props) => {
 
   return (
     <div className={`${language === "en" && "dir-ltr"} iran-sans ${props.mobileMenu ? `mobile-menu-${props.mobileMenu}` : ""}${props.className ? ` ${props.className}` : ""}`}>
-      <ul className="navbar-nav font-sans">
+      <ul className="navbar-nav">
         {language === "fa-IR" ? <>
           {props.data.map((item, i) => {
           return (
-            <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""}`} key={i}>
+            <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} flex items-center justify-center flex-col`} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link py-4" to={item.link}>
-                    <div className="text-xmd hover-underline pb-1">
+                  <Link className="nav-link nav-link-up py-4" to={item.link}>
+                    <div className="text-xmd hover-header-item pb-1">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
-                    <div className="hover-underline pb-1">
+                  <div className="nav-link nav-link-up text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
+                    <div className="hover-header-item pb-1">
                       {item.title}
                     </div>
-                    <div className="fa text-red mr-[5px] fa-angle-down">
-                    </div>
+                    {/* <div className="fa text-red mr-[5px] fa-angle-down">
+                    </div> */}
                   </div>
                 )
               }
               {(item.dropdown) && (
-                <ul className={`simple-dropdown-menu py-1 pl-4 bg-lightgray ${language === "fa-IR" && "right-[25px] w-[100%]"}`}>
+                <ul className={`simple-dropdown-menu py-0 pl-4 bg-lightgray w-[100%]`}>
                   {item.dropdown.map((item, i) => {
                     return (
-                      <li key={i} className="simple-dropdown header-dropdown-fix">
+                      <li key={i} className="simple-dropdown header-dropdown-fix hover:bg-red hover:text-white rounded-b-[2px]">
                         {
                           item.link ? (
-                            <Link className="nav-link  hover-underline w-max pb-2" to={item.link}>
-                              <div className="text-xmd c-c-black ">
-                              {item.title} 
+                            <Link className="nav-link mr-[10px] hover-header-item w-max pb-2" to={item.link}>
+                              {/* here it is */}
+                              <div className="text-xmd">
+                                {item.title} 
                               </div>
-                              
                             </Link>
                           ) : (
                             <span className="nav-link">
@@ -333,18 +333,18 @@ export const Menu = memo((props) => {
             <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} `} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link  hover-underline py-4" to={item.link}>
+                  <Link className="nav-link  hover-header-item py-4" to={item.link}>
                     <div className="text-xmd">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link  hover-underline text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
+                  <div className="nav-link  hover-header-item text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
                     <div>
                       {item.title}
                     </div>
-                    <div className="fa text-red ml-[5px] fa-angle-down">
-                    </div>
+                    {/* <div className="fa text-red ml-[5px] fa-angle-down">
+                    </div> */}
                   </div>
                 )
               }
@@ -355,7 +355,7 @@ export const Menu = memo((props) => {
                       <li key={i} className="simple-dropdown header-dropdown-fix">
                         {
                           item.link ? (
-                            <Link className="nav-link  hover-underline w-max" to={item.link}>
+                            <Link className="nav-link  hover-header-item w-max" to={item.link}>
                               <div className="text-xmd c-c-black ">
                               {item.title} 
                               </div>
@@ -548,7 +548,7 @@ export const MobileMenu = (props) => {
                           {item.title}
                         </Link>
                       ) : (
-                        <span className="nav-link  hover-underline ">{item.title}</span>
+                        <span className="nav-link  hover-header-item ">{item.title}</span>
                       )
                     }
                     <i className="fa c-c-red fa-angle-down" onClick={(e) => handleMenuClick(e, i)} />
@@ -564,7 +564,7 @@ export const MobileMenu = (props) => {
                                     {item.dropdown && (<i className="fas fa-angle-right "></i>)}
                                   </Link>
                                 ) : (
-                                  <span className="nav-link  hover-underline text-xxlg">
+                                  <span className="nav-link  hover-header-item text-xxlg">
                                     {item.title}
                                     {item.dropdown && (<i className="fas fa-angle-right"></i>)}
                                   </span>
@@ -755,12 +755,9 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      {/* <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <i className={`feather-search hover:text-red px-0 pt-1 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
-      </Link> */}
+    <div className={`header-search-iconbar hover:text-red inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <div className="image-hover-search m-[8px]" onClick={() => setSearchModalOpen(true)}></div>
+        <div className="feather-search m-[8px] text-[22px]" onClick={() => setSearchModalOpen(true)}></div>
       </Link>
 
       {/* Search pop-up model Start */}
@@ -834,17 +831,17 @@ export const HeaderLanguage = (props) => {
     window.location.reload()
     }
   return (
-    <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-language dropdown flex justify-center align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <i className={`feather-globe hover:text-red py-[27px] px-0 inline-block ${props.className}`}></i>
+        <i className={`feather-globe hover:text-red py-[27px] px-0 inline-block ${props.className} text-[20px]`}></i>
       </Link>
-      <ul className="dropdown-menu block absolute right-auto left-[-45px] p-15px rounded-[6px] border-0 m-0 min-w-[140px]">
-      <li className="flex items-center justify-start">
+      <ul className="dropdown-menu top-14 block absolute p-0 rounded-[6px] border-0 m-0 min-w-[140px]">
+      <li className="flex items-center justify-start px-[15px] pt-[15px]">
           <Link aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
             <div className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/country-flag-16X16/Iran.png"
-                alt="usa"
+                alt="iran"
                 width="16"
                 height="16"
               />
@@ -854,7 +851,7 @@ export const HeaderLanguage = (props) => {
             </div>
           </Link>
         </li>
-        <li className="flex items-center justify-start">
+        <li className="flex items-center justify-start px-[15px] pb-[15px]">
           <Link aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
             <div className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
@@ -879,7 +876,7 @@ export const HeaderCart = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="/login" aria-label="account" target="-blank">
-        <div className="image-hover m-[8px]"></div>
+        <li className="feather-user block text-[20px]"></li>
       </Link>
     </div>
   );

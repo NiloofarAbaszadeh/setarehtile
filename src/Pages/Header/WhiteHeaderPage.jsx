@@ -112,8 +112,8 @@ const WhiteHeaderPage = (props) => {
             >
               {language === 'fa-IR' ? (
                 <>
-                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0">
-                    <Link aria-label="header logo" className="flex items-center" to="/">
+                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0 md:ml-0">
+                    <Link aria-label="header logo" className="flex items-center md:justify-end" to="/">
                       <Navbar className="inline-block p-0 m-0 justify-between ">
                         <LogoWithConditionalShape />
                       </Navbar>

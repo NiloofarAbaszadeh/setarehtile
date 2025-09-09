@@ -44,7 +44,7 @@ module.exports = {
         coolgray: '#d6d5d5',
         neonorange: '#ff7a56',
         slateblue: '#8890a4',
-        red: "#BF0D19",
+        red: "#ff0000",
         error: 'red',
         balck: "balck",
         temp: "#C39B4E",

@@ -6,10 +6,6 @@
   color: #e3000f;
 }
 
-.c-c-black {
-  color: black;
-}
-
 .c-bg-lightgray {
   background-color: rgb(249, 247, 247);
 }
@@ -459,13 +455,6 @@
 .icon-container.active .horizontal {
   height: 4px;
   transform: translateY(-50%) rotate(45deg);
-}
-
-
-.hover-underline {
-  cursor: pointer;
-  position: relative;
-  width:fit-content;
 }
 
 .hover-underline::after {
