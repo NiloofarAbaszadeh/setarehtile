@@ -16,8 +16,6 @@ import { fadeIn } from "../../../Functions/GlobalAnimations"
 import Seo from '../../../Seo'
 import Lightbox from 'react-18-image-lightbox'
 
-// Data
-import { authorData, blogData } from '../../../Components/Blogs/BlogData'
 
 const SocialIconsData = [
   {
@@ -155,7 +153,7 @@ const BlogFullWidthPost = (props) => {
                     </div>
                     <div className='flex items-center justify-center relative' onClick={() => setIsOpen(true)}>
                       <div className='relative group'>
-                        <img src={host + data.mainImage.data.attributes.url} width={300} alt="iso-image" />
+                        <img src={host + data.mainImage.data.attributes.url} width={300} alt="iso" />
                         <div className='absolute w-full h-full top-0 bg-red opacity-[0%] group-hover:opacity-50 transition-all duration-500 ease-in-out'>
                           <div className="image-box-wrapper absolute w-full left-0 top-[50%] flex items-center justify-center" >
                             <div className="feather-zoom-in text-[28px] font-light text-white drop-shadow h-full

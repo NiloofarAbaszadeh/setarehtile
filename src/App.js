@@ -91,7 +91,9 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
         <Route path="internal-ce" element={<ImageGalleryPage />} />
         <Route path="internal-ce/:id" element={<BlogFullWidthPost />} />
         <Route path="external-ce" element={<ImageGalleryPage02 />} />
+        <Route path="external-ce/:id" element={<BlogFullWidthPost />} />
         <Route path="honors" element={<ImageGalleryPage03 />} />
+        <Route path="honors/:id" element={<BlogFullWidthPost />} />
       </Route>  
       <Route path="news" element={<BlogSideImPage />} />
       <Route path="news/:id" element={<BlogStandardPostPage style={{ "--base-color": "#C80C0C" }} />} />

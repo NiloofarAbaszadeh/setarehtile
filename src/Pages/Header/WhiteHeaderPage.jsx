@@ -41,7 +41,7 @@ const WhiteHeaderPage = (props) => {
 
   const DefaultLogo = () => (
     <div
-      className={`absolute flex items-start justify-center px-2 ${language === "fa-IR" ? "left-[-15px] top-[-17px]" : "right-[135px] top-[-15px]"} `} 
+      className={`absolute flex items-start justify-center px-2 ${language === "fa-IR" ? "left-[-15px] top-[-17px]" : "right-[280px] top-[-15px]"} `} 
       style={{
         width: "5000px", // make wider
         height: '100.5px',
@@ -131,25 +131,29 @@ const WhiteHeaderPage = (props) => {
                     <Menu {...props} />
                   </Navbar.Collapse>
                   <Col className="col-auto text-right pe-0 md:hidden">
-                    <div className='w-[10vw]'></div>
+                    <div className='w-[7vw]'></div>
                   </Col>
                 </>
               ) : language === 'en' ? (
                 <>
-                  <div className="col-auto hidden order-first md:block pl-6">
+                  
+                  <Col className="col-auto hidden order-first md:block">
                     <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
                       <span className="navbar-toggler-line"></span>
                       <span className="navbar-toggler-line"></span>
                       <span className="navbar-toggler-line"></span>
                       <span className="navbar-toggler-line"></span>
                     </Navbar.Toggle>
-                  </div>
-                  <Navbar.Collapse className="col-auto px-0 justify-center">
+                  </Col>
+                  <Navbar.Collapse className="col-auto px-0 justify-end">
                     <Menu {...props} />
                   </Navbar.Collapse>
-                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0 pr-12 ">
-                    <Link aria-label="header logo" className="flex items-center" to="/">
-                      <Navbar className="inline-block p-0 m-0 justify-between">
+                  <Col className="col-auto text-right pe-0 md:hidden">
+                    <div className='w-[7vw]'></div>
+                  </Col>
+                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0 md:ml-0">
+                    <Link aria-label="header logo" className="flex items-center md:justify-end" to="/">
+                      <Navbar className="inline-block p-0 m-0 justify-between ">
                         <LogoWithConditionalShape />
                       </Navbar>
                     </Link>

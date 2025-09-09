@@ -333,14 +333,14 @@ export const Menu = memo((props) => {
             <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} `} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link  hover-header-item py-4" to={item.link}>
-                    <div className="text-xmd">
+                  <Link className="nav-link nav-link-up py-4" to={item.link}>
+                    <div className="text-xlg hover-header-item pb-1">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link  hover-header-item text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
-                    <div>
+                  <div className="nav-link nav-link-up text-xlg flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
+                    <div className="hover-header-item pb-1">
                       {item.title}
                     </div>
                     {/* <div className="fa text-red ml-[5px] fa-angle-down">
@@ -349,17 +349,17 @@ export const Menu = memo((props) => {
                 )
               }
               {(item.dropdown) && (
-                <ul className="simple-dropdown-menu w-auto py-1 pl-4">
+                <ul className={`simple-dropdown-menu py-0 pl-4 bg-lightgray w-[100%]`}>
                   {item.dropdown.map((item, i) => {
                     return (
-                      <li key={i} className="simple-dropdown header-dropdown-fix">
+                      <li key={i} className={`simple-dropdown header-dropdown-fix hover:bg-red hover:text-white rounded-b-[2px]`}>
                         {
                           item.link ? (
-                            <Link className="nav-link  hover-header-item w-max" to={item.link}>
-                              <div className="text-xmd c-c-black ">
-                              {item.title} 
+                            <Link className="nav-link mr-[10px] hover-header-item w-max pb-2" to={item.link}>
+                              {/* here it is */}
+                              <div className="text-xlg">
+                                {item.title} 
                               </div>
-                              
                             </Link>
                           ) : (
                             <span className="nav-link">
@@ -372,7 +372,7 @@ export const Menu = memo((props) => {
                           <ul className="simple-dropdown-menu">
                             {item.dropdown.map((item, i) => {
                               return (
-                                <li key={i} className="simple-dropdown">
+                                <li key={i} className="simple-dropdown ">
                                   {
                                     item.link ? (
                                       <Link
