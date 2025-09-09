@@ -52,7 +52,7 @@ header {
 
   .header-search-iconbar {
     >a {
-      color: black;
+      color: white;
       cursor: pointer;
       transition: var(--default-transition);
 
@@ -66,7 +66,7 @@ header {
     position: relative;
 
     >a {
-      color: black;
+      color: white;
       cursor: pointer;
       transition: var(--default-transition);
 
@@ -109,7 +109,7 @@ header {
     position: relative;
 
     >a {
-      color: black;
+      color: white;
       transition: var(--default-transition);
     }
 
@@ -826,7 +826,7 @@ header {
 
       // this is where header color changes
       &.header-appear {
-        background-color: rgb(255, 255, 255);
+        // background-color: rgb(255, 255, 255);
         transform: translateY(0);
         box-shadow: 0 0 35px rgb(0 0 0 / 10%);
 

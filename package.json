@@ -17,8 +17,8 @@
     "@material-tailwind/react": "^2.1.9",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.6",
-    "@neshan-maps-platform/mapbox-gl": "^1.1.1",
-    "@neshan-maps-platform/mapbox-gl-react": "^1.0.0",
+    "@neshan-maps-platform/mapbox-gl": "^1.1.5",
+    "@neshan-maps-platform/mapbox-gl-react": "^1.0.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -39,9 +39,7 @@
     "i": "^0.3.7",
     "isotope-layout": "^3.0.6",
     "jalali-moment": "^3.3.11",
-    
     "jquery": "^3.7.1",
-
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "nodemailer": "^6.9.1",

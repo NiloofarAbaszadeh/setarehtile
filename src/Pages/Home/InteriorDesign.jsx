@@ -501,7 +501,7 @@ const InteriorDesignPage = (props) => {
                   </div>
                 </Col>
                 <m.div className="col-lg-5 offset-lg-1 col-md-10 ml-0 mr-[4%]">
-                  <div className="font font-medium mb-[15px] sm:mb-4 flex sm:mt-24">
+                  <div className="font-medium mb-[15px] sm:mb-4 flex sm:mt-24">
                     <div className="flex-grow-1">
                       <span className="text-basecolor uppercase text-fastblue font-bold text-[24px]">
                         {data.attributes.newInWrold.redtext}

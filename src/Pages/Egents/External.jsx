@@ -107,7 +107,12 @@ const External = () => {
                   fillOpacity: 0.5,
                   radius: 500,
                 }).addTo(myMap)
-                .bindPopup(`<div class="flex-fix iran-sans"><img src="${image}" /><b>${egent.attributes.fullName}</b>${store.name}</div>`)
+                .bindPopup(`<div class="flex-fix">
+                    <img src="${image}" />
+                    </br >
+                    <span>${egent.attributes.fullName}</span>
+                    <span>${store.name}</span>
+                  </div>`)
                 .on('click', () => {setSelect(true)
                   setActiveAgent({egent, store})})
               })

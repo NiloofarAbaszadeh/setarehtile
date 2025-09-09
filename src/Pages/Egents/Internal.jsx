@@ -44,8 +44,8 @@ const Internal = () => {
   return (<> <Helmet>
         <title> نمایندگان داخلی | کاشی و سرامیک ستاره  </title>
       </Helmet>
-      {loading && <div className="z-0 relative">
-        {select && <div className="absolute top-0 left-0 h-[100vh] w-[350px] bg-[#010000cc]  z-10">
+      {loading && <div className="z-0 relative font-sans">
+        {select && <div className="absolute top-0 left-0 h-[100vh] w-[350px] bg-[#010000cc] font-sans z-10">
           <p onClick={handelClose} className="text-white mr-4 mt-3 text-[20px] ti-close"></p>
           <div className="flex-fix items-center justify-center opacity-100">
             <div className="flex items-center bg-white rounded-[50%] p-7 h-[180px] w-[180px] mt-12 mb-4">
@@ -93,7 +93,12 @@ const Internal = () => {
                   fillOpacity: 0.5,
                   radius: 500,
                 }).addTo(myMap)
-                .bindPopup(`<div class="flex-fix"><img src="${image}" /><b>${egent.attributes.fullName}</b>${store.name}</div>`)
+                .bindPopup(`<div class="flex-fix">
+                    <img src="${image}" />
+                    </br >
+                    <span>${egent.attributes.fullName}</span>
+                    <span>${store.name}</span>
+                  </div>`)
                 .on('click', () => {setSelect(true)
                 setActiveAgent({egent, store})})
               })

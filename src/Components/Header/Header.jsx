@@ -100,16 +100,16 @@ export const Header = memo((props) => {
   //make the header have more hight from here
   return (
     <header
-      className={`absolute bg-white h-[100px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
+      className={`absolute bg-none h-[90px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
         }`}
     >
-      <div className='bg-[#b6b6b6] h-[30px] flex items-center justify-center'>
+      <div className="md:mt-6 bg-white">
+        {props.children}
+      </div>
+      <div className='bg-[#00000088] h-[25px] flex items-center justify-center'>
           <SearchBar className="px-3" />
           <HeaderLanguage className="px-3" />
           <HeaderCart className="px-3" />      
-      </div>
-      <div className="md:mt-6">
-        {props.children}
       </div>
     </header>
   );
@@ -221,14 +221,14 @@ export const Menu = memo((props) => {
             <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} flex items-center justify-center flex-col`} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link nav-link-up py-4" to={item.link}>
-                    <div className="text-xmd hover-header-item pb-1">
+                  <Link className="nav-link nav-link-up py-4 p-1" to={item.link}>
+                    <div className="text-[15px] hover-header-item pt-1">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link nav-link-up text-xmd flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
-                    <div className="hover-header-item pb-1">
+                  <div className="nav-link nav-link-up text-[15px] flex items-center py-4 p-1" onClick={(e) => handleMenuClick(e, i)}>
+                    <div className="hover-header-item pt-1">
                       {item.title}
                     </div>
                     {/* <div className="fa text-red mr-[5px] fa-angle-down">
@@ -334,13 +334,13 @@ export const Menu = memo((props) => {
               {
                 item.link ? (
                   <Link className="nav-link nav-link-up py-4" to={item.link}>
-                    <div className="text-xlg hover-header-item pb-1">
+                    <div className="text-xlg hover-header-item">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
                   <div className="nav-link nav-link-up text-xlg flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
-                    <div className="hover-header-item pb-1">
+                    <div className="hover-header-item">
                       {item.title}
                     </div>
                     {/* <div className="fa text-red ml-[5px] fa-angle-down">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Col, Navbar } from 'react-bootstrap'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { Header, HeaderNav, Menu } from "../../Components/Header/Header";
+import { Header, HeaderNav, Menu, SearchBar, HeaderLanguage,HeaderCart } from "../../Components/Header/Header";
 import FooterStyle02 from '../../Components/Footers/FooterStyle02'
 import logo from '../../Assets/images/logo.png'
 // import whiteLogo from '../../Assets/images/logo-white.png'
@@ -78,7 +78,7 @@ const WhiteHeaderPage = (props) => {
         className='transition-discrete'
         style={{
           position: 'absolute',
-          top: "-30.5px",
+          top: "-5px",
           left: 0,
           width: '420%',
           height: '420%',
@@ -96,7 +96,6 @@ const WhiteHeaderPage = (props) => {
   }
 
   return (<>
-        
     <div className="z-10 w-full relative iran-sans">
       <div className="dir-rtl">
         {loading && (
@@ -131,12 +130,21 @@ const WhiteHeaderPage = (props) => {
                     <Menu {...props} />
                   </Navbar.Collapse>
                   <Col className="col-auto text-right pe-0 md:hidden">
-                    <div className='w-[7vw]'></div>
+                    <div className='w-[4vw]'></div>
                   </Col>
+                  {/* <Col className="col-auto text-right pe-0">
+                    <HeaderCart className="xs:pl-[15px]" /> 
+                    <HeaderLanguage className="xs:pl-[15px]" />
+                    <SearchBar className="pr-0 xs:pl-[15px]" />
+                  </Col> */}
                 </>
               ) : language === 'en' ? (
                 <>
-                  
+                  {/* <Col className="col-auto text-right pe-0">
+                    <HeaderCart className="xs:pl-[15px]" /> 
+                    <HeaderLanguage className="xs:pl-[15px]" />
+                    <SearchBar className="pr-0 xs:pl-[15px]" />
+                  </Col> */}
                   <Col className="col-auto hidden order-first md:block">
                     <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
                       <span className="navbar-toggler-line"></span>
@@ -158,6 +166,7 @@ const WhiteHeaderPage = (props) => {
                       </Navbar>
                     </Link>
                   </Col>
+                  
                 </>
               ) : <></>}
             </HeaderNav>
