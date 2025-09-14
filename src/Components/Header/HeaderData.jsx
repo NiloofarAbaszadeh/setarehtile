@@ -81,7 +81,12 @@ const HeaderData = [
     },
     {
         title: 'نظرسنجی',
+        link: "/survay",
         dropdown: [
+            {
+                title: "تامین کنندگان",
+                link: "https://setarehsurvey.ir/index.php/186919",
+            },
             {
                 title: "نمایندگان",
                 link: "https://setarehsurvey.ir/index.php/176623",
@@ -102,9 +107,6 @@ const HeaderData = [
                 title: "ایمنی",
                 link: "https://setarehsurvey.ir/index.php/669591",
             },
-            
-            
-            
         ],
     }
 ]

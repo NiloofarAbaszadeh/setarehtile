@@ -468,7 +468,7 @@
     right: 0;
     bottom: 0;
     width: 0;
-    background: #e3000f;
+    background: #ff0000;
     transition: width .2s;
 }
 
@@ -477,7 +477,7 @@
 }
 
 .span-footer {
-  color: #BF0D19;
+  color: #ff0000;
   font-weight: 900; 
   font-weight: bolder;
   font-size: larger;

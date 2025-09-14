@@ -20,6 +20,7 @@ import { ResumePageLoader } from "./dashboard/components/extra/ResumePage";
 import { UploadInventoryLoader } from "./dashboard/components/extra/UploadInventory";
 import { UploadLoader } from "./dashboard/components/extra/Upload";
 import { FilesLoader } from "./dashboard/components/extra/Files";
+import ImageGalleryPage04 from "./Pages/Elements/ImageGallery04";
 // import { SingleMassagesLoader } from "./dashboard/components/extra/SingleMassage";
 const InteriorDesignPage = lazy(() => import("./Pages/Home/InteriorDesign"))
 const ImageGalleryPage = lazy(() => import("./Pages/Elements/ImageGallery")) // بخش افتخارات و گواهی نامه ها
@@ -113,8 +114,9 @@ export const router = createBrowserRouter(createRoutesFromElements(<>
         <Route path="external-agent" element={<External />} />
       </Route>
       <Route path="contact-us" element={<ContactUsClassicPage />} />
-      <Route path="recruitment" element={<Recruitment />} /> {/* */}
+      <Route path="recruitment" element={<Recruitment />} />
       <Route path="search-result/:searched" element={<SearchResultPage />} />
+      <Route path="survay" element={<ImageGalleryPage04 />} />
     </Route>
     <Route path="*" element={<>404 not found</>} />
   </>

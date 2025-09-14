@@ -160,7 +160,7 @@ const FooterStyle02 = (props) => {
                         </div>
                     </Row>
                     <Row className="md:text-start justify-start">
-                        <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 0 }} className={`md:mb-[50px] xs:mb-[25px] border-${language === "fa-IR" ? "l" : "r"} border-[#f7f7f730] xs:border-none`}>
+                        <Col lg={{ span: 3, order: 0 }} md={5} sm={{ span: 6, order: 0 }} className={`md:mb-[50px] xs:mb-[25px] border-${language === "fa-IR" ? "l ml-16" : "r mr-16"} border-[#f7f7f730] xs:border-none`}>
                             <div className='border-b border-[#f7f7f730] pb-2 mb-2'>
                                 <div className='flex items-center justify-start mb-4'>
                                     <img className='rounded-[5px] w-[30%] xs:w-[20%]' src={QRCode} alt='QRCode' />
@@ -183,9 +183,9 @@ const FooterStyle02 = (props) => {
                                     })}
                                 </div>}
                             </div>
-                            <div className='flex items-center justify-between text-[12px]'>
-                                {language === "fa-IR" ? <span className='mt-2'>با ما همراه باشید</span> : <span className='mt-2'>Fallow us in social media </span>}
-                                <SocialIcons theme="social-icon-style-02" className="justify-start" size="xs" iconColor={props.theme === "dark" ? "light" : "dark"} data={iconData} />
+                            <div className='flex items-center justify-between text-[12px] pt-2'>
+                                {language === "fa-IR" ? <span className='mt-2 text-white'>با ما همراه باشید</span> : <span className='mt-2 text-white'>Fallow us in social media </span>}
+                                <SocialIcons theme="social-icon-style-20" className="justify-start" size="xs" iconColor={props.theme === "dark" ? "light" : "dark"} data={iconData} />
                             </div>
                         </Col>
                         <Col className={`m${language === "fa-IR" ? "r" : "l"}-4`}>

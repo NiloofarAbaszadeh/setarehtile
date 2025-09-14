@@ -17,6 +17,7 @@ import { resetForm } from '../../Functions/Utilities';
 import axios from 'axios';
 import { ScaleLoader } from 'react-spinners';
 import image from "../../Assets/images/one-person.jpg"
+import logo from '../../Assets/images/logo.png'
 
 const LoginRegister = () => {
   const location = useLocation();
@@ -137,8 +138,9 @@ const LoginRegister = () => {
                         <div>
                           <Link to={"/"}>
                             <img
-                              src={`${host}/uploads/logo_e4ee97606d.png`}
+                              src={`${logo}`}
                               alt=""
+                              width={140}
                             ></img>
                           </Link>
                         </div>

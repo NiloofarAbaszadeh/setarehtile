@@ -11,7 +11,16 @@ const SocialIcons = (props) => {
             {
                 props.data.map((item, i) => {
                     return (
-                        props.theme !== "social-icon-style-11" ? (
+                        props.theme === "social-icon-style-20" ? (
+                            <m.li key={i} className='rounded-[50%] border-[1px] border-[#ffffff00] hover:border-lightgray transition duration-200' {...{ ...props.animation, transition: { delay: i * props.animationDelay } }} >
+                                <a href={item.link} aria-label="social icon" target="_blank" rel="noreferrer">
+                                    {/* {item.name && <span className='flex brand-label'>{item.name ? item.name : "icon"}</span>} */}
+                                    {item.icon && <i className={`${item.icon} text-white brand-icon flex justify-center items-center pt-2 text-[16px]`}></i>}
+                                    <span></span>
+                                </a>
+                            </m.li>
+                            
+                        ) : props.theme !== "social-icon-style-11" ? (
                             <m.li key={i} style={{ "--social-icon-color": item.color ? item.color : "#000" }} {...{ ...props.animation, transition: { delay: i * props.animationDelay } }} >
                                 <a href={item.link} aria-label="social icon" target="_blank" rel="noreferrer">
                                     {item.name && <span className='flex brand-label'>{item.name ? item.name : "icon"}</span>}
