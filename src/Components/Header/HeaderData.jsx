@@ -84,12 +84,12 @@ const HeaderData = [
         link: "/survay",
         dropdown: [
             {
-                title: "تامین کنندگان",
-                link: "https://setarehsurvey.ir/index.php/186919",
-            },
-            {
                 title: "نمایندگان",
                 link: "https://setarehsurvey.ir/index.php/176623",
+            },
+            {
+                title: "تامین کنندگان",
+                link: "https://setarehsurvey.ir/index.php/186919",
             },
             {
                 title: "انبوه سازان",

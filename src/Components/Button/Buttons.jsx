@@ -52,9 +52,11 @@ const Buttons = (props) => {
 const ButtonInner = (props) => {
   return (
     <>
-      {(props.icon && props.iconPosition !== "after") && <i className={`${props.icon} left-icon`}></i>}
-      {props.title}
-      {(props.icon && props.iconPosition === "after") && <i className={`${props.icon} right-icon`}></i>}
+      <div className='flex items-center justify-center'>
+        {(props.icon && props.iconPosition !== "after") && <i className={`${props.icon}  text-[20px]`}></i>}
+        <span className='font-sans pr-1'>{props.title}</span>
+      </div>
+      {/* {(props.icon && props.iconPosition === "after") && <i className={`${props.icon} right-icon mt-[1px]`}></i>} */}
       {(props.theme === "btn-link-gradient") && <span></span>}
     </>
   )

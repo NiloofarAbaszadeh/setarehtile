@@ -9,7 +9,7 @@ import useOnClickOutside from "../../Functions/UseOnClickOutside";
 import { Input } from '../Form/Form'
 import ReactCustomScrollbar from "../ReactCustomScrollbar";
 import GlobalContext from "../../Context/Context";
-import HeaderData, {HeaderDataEn} from "./HeaderData";
+import HeaderData, { HeaderDataEn } from "./HeaderData";
 import "../../Assets/scss/layouts/_header.scss"
 import { useDispatch } from "react-redux";
 import { changeLanguage } from "../../Store/state";

@@ -134,7 +134,21 @@ const LoginRegister = () => {
                     }}
                   >
                     {() => (
-                      <div className="flex-fix">
+                      <div className="flex-fix relative">
+                        <Link to={"/"} >
+                          <div className='group absolute right-[-20px] top-[-20px]'>
+                            <Buttons
+                              ariaLabel="بازگشت"
+                              type="submit"
+                              className="btn-fill btn-fancy w-full font-bold text-xxlg uppercase rounded-[7px] px-4"
+                              themeColor="#ff0000"
+                              color="#fff"
+                              size="md"
+                              title=" بازگشت" 
+                              icon= "feather-arrow-right"
+                            />
+                          </div>
+                        </Link>
                         <div>
                           <Link to={"/"}>
                             <img
@@ -188,7 +202,7 @@ const LoginRegister = () => {
                               ariaLabel="ورود"
                               type="submit"
                               className="btn-fill btn-fancy w-full font-bold text-xxlg uppercase rounded-[7px]"
-                              themeColor="#BF0D19"
+                              themeColor="#ff0000"
                               color="#fff"
                               size="md"
                               title="ورود"
