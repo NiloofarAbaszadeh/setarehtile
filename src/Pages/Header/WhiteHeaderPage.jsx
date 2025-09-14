@@ -41,7 +41,7 @@ const WhiteHeaderPage = (props) => {
 
   const DefaultLogo = () => (
     <div
-      className={`absolute flex items-start justify-center px-2 ${language === "fa-IR" ? "left-[-15px] top-[-17px]" : "right-[280px] top-[-15px]"} `} 
+      className={`absolute flex items-start justify-center px-2 ${language === "fa-IR" ? "left-[-15px] top-[-17px]" : "right-[180px] top-[-15px]"} `} 
       style={{
         width: "5000px", // make wider
         height: '100.5px',
@@ -78,7 +78,7 @@ const WhiteHeaderPage = (props) => {
         className='transition-discrete'
         style={{
           position: 'absolute',
-          top: "-20px",
+          top: language === "fa-IR" ? "-19px" : "-21px",
           left: 0,
           width: '400%',
           height: '400%',

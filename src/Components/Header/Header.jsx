@@ -215,13 +215,13 @@ export const Menu = memo((props) => {
             <li className={`h-[90px] nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} flex items-center justify-center flex-col`} key={i}>
               {
                 item.link ? (
-                  <Link className="nav-link nav-link-up py-4 p-1" to={item.link}>
-                    <div className="text-[15px] hover-header-item pt-1">
+                  <Link className="nav-link nav-link-up py-4" to={item.link}>
+                    <div className="hover-header-item pt-1">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link nav-link-up text-[15px] flex items-center py-4 p-1" onClick={(e) => handleMenuClick(e, i)}>
+                  <div className="nav-link nav-link-up flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
                     <div className="hover-header-item pt-1">
                       {item.title}
                     </div>
@@ -328,12 +328,12 @@ export const Menu = memo((props) => {
               {
                 item.link ? (
                   <Link className="nav-link nav-link-up py-4" to={item.link}>
-                    <div className="text-xlg hover-header-item">
+                    <div className="text-[16px] hover-header-item">
                     {item.title}
                     </div>
                   </Link>
                 ) : (
-                  <div className="nav-link nav-link-up text-xlg flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
+                  <div className="nav-link nav-link-up text-[16px] flex items-center py-4" onClick={(e) => handleMenuClick(e, i)}>
                     <div className="hover-header-item">
                       {item.title}
                     </div>
@@ -749,9 +749,9 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : "pl-[80px]"} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-search-iconbar inline-block align-middle px-[17px] ${language === "fa-IR" ? "pr-[80px] pl-[12px]" : "pl-[80px] pr-[12px]"} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <div className="feather-search hover:text-red m-[8px] text-[22px]" onClick={() => setSearchModalOpen(true)}></div>
+        <div className="feather-search hover:text-red m-[8px] text-[18px]" onClick={() => setSearchModalOpen(true)}></div>
       </Link>
 
       {/* Search pop-up model Start */}
@@ -827,7 +827,7 @@ export const HeaderLanguage = (props) => {
   return (
     <div className={`header-language dropdown flex justify-center align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <i className={`feather-globe hover:text-red pt-[8px] px-0 inline-block ${props.className} text-[20px]`}></i>
+        <i className={`feather-globe hover:text-red pt-[8px] px-0 inline-block ${props.className} text-[18px]`}></i>
       </Link>
       <ul className="dropdown-menu top-14 block absolute p-0 rounded-[6px] border-0 m-0 min-w-[140px]">
       <li className="flex items-center justify-start px-[15px] pt-[15px]">
@@ -870,7 +870,7 @@ export const HeaderCart = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="/login" aria-label="account" target="-blank">
-        <li className="feather-user block text-[20px] hover:text-red"></li>
+        <li className="feather-user block text-[18px] hover:text-red"></li>
       </Link>
     </div>
   );
