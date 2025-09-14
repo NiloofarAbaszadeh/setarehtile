@@ -156,7 +156,7 @@ const Groups = (props) => {
                         </Col>
                         <m.aside className="col col-lg-3 col-md-4 shopping-sidebar inline-block order-md-1 order-2" {...fadeIn}>
                             <div className="custom-border box-shadow bg-white pt-3 mb-8 relative rounded-[4px] pb-6">
-                            <span className="shop-title relative px-8 pb-3 font-medium text-darkgray block mb-[20px] text-xlg border-b-2 border-fastblue">{language === "fa-IR" ? "ابعاد" : language === "en" ? "Size" : "ابعاد"}</span>
+                            <span className="shop-title relative px-8 pb-3 font-medium text-darkgray block mb-[20px] text-xlg border-b-2 border-fastblue">{language === "fa-IR" ? "تم رنگی" : language === "en" ? "Color" : "تم رنگی"}</span>
                                 <ul className="list-style filter-category">
                                     {tileColor && tileColor.length !== 0 && tileColor.map((item) => {
                                         return (<>
@@ -166,7 +166,7 @@ const Groups = (props) => {
                                 </ul>
                             </div>
                             <div className="custom-border box-shadow bg-white pt-3 mb-8 relative rounded-[4px] pb-6">
-                            <span className="shop-title relative px-8 pb-3 font-medium text-darkgray block mb-[20px] text-xlg border-b-2 border-fastblue">{language === "fa-IR" ? "تم رنگی" : language === "en" ? "Color" : "تم رنگی"}</span>
+                            <span className="shop-title relative px-8 pb-3 font-medium text-darkgray block mb-[20px] text-xlg border-b-2 border-fastblue">{language === "fa-IR" ? "ابعاد" : language === "en" ? "Size" : "ابعاد"}</span>
                                 <ul className="list-style filter-category">
                                 {tileSize && tileSize.length !== 0 && tileSize.map(item => {
                                         return (<>

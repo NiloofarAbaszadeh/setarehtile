@@ -52,7 +52,7 @@ header {
 
   .header-search-iconbar {
     >a {
-      color: white;
+      color: black;
       cursor: pointer;
       transition: var(--default-transition);
 
@@ -66,7 +66,7 @@ header {
     position: relative;
 
     >a {
-      color: white;
+      color: black;
       cursor: pointer;
       transition: var(--default-transition);
 
@@ -76,7 +76,7 @@ header {
     }
 
     .dropdown-menu {
-      background-color: #e6e6e6;
+      background-color: #ffffff;
       width: max-content;
       a {
         font-size: 12px;
@@ -109,7 +109,7 @@ header {
     position: relative;
 
     >a {
-      color: white;
+      color: black;
       transition: var(--default-transition);
     }
 

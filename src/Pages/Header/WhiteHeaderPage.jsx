@@ -78,13 +78,13 @@ const WhiteHeaderPage = (props) => {
         className='transition-discrete'
         style={{
           position: 'absolute',
-          top: "-5px",
+          top: "-20px",
           left: 0,
-          width: '420%',
-          height: '420%',
+          width: '400%',
+          height: '400%',
           transition: 'opacity 3s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out, transform 4s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out',
           opacity: (window.innerWidth > 991) ? 1 : 0,
-          transform: 'scale(1)',
+          transform: 'scale(0.9)',
           pointerEvents: isAtTop ? 'none' : 'auto',
           zIndex: 5,
         }}
@@ -132,19 +132,23 @@ const WhiteHeaderPage = (props) => {
                   <Col className="col-auto text-right pe-0 md:hidden">
                     <div className='w-[4vw]'></div>
                   </Col>
-                  {/* <Col className="col-auto text-right pe-0">
-                    <HeaderCart className="xs:pl-[15px]" /> 
-                    <HeaderLanguage className="xs:pl-[15px]" />
-                    <SearchBar className="pr-0 xs:pl-[15px]" />
-                  </Col> */}
+                  <Col className="col-auto text-right pe-0">
+                    <div className='flex items-center justify-center'>
+                      <SearchBar className="pr-0 xs:pl-[15px]" />
+                      <HeaderLanguage className="xs:pl-[15px]" />
+                      <HeaderCart className="xs:pl-[15px]" /> 
+                    </div>
+                  </Col>
                 </>
               ) : language === 'en' ? (
                 <>
-                  {/* <Col className="col-auto text-right pe-0">
+                  <Col className="col-auto text-right pe-0">
+                  <div className='flex items-center justify-center'>
                     <HeaderCart className="xs:pl-[15px]" /> 
                     <HeaderLanguage className="xs:pl-[15px]" />
                     <SearchBar className="pr-0 xs:pl-[15px]" />
-                  </Col> */}
+                  </div>
+                  </Col>
                   <Col className="col-auto hidden order-first md:block">
                     <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
                       <span className="navbar-toggler-line"></span>

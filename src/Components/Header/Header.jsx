@@ -100,17 +100,11 @@ export const Header = memo((props) => {
   //make the header have more hight from here
   return (
     <header
-      className={`absolute bg-none h-[90px] mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
+      className={`absolute bg-white bg-none mt-0 top-0 z-50 ${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
         }`}
     >
-      <div className="md:mt-6 bg-white">
         {props.children}
-      </div>
-      <div className='bg-[#00000088] h-[25px] flex items-center justify-center'>
-          <SearchBar className="px-3" />
-          <HeaderLanguage className="px-3" />
-          <HeaderCart className="px-3" />      
-      </div>
+      {/* <div className='bg-[#00000088] h-[25px] flex items-center justify-center'></div> */}
     </header>
   );
 });
@@ -218,7 +212,7 @@ export const Menu = memo((props) => {
         {language === "fa-IR" ? <>
           {props.data.map((item, i) => {
           return (
-            <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} flex items-center justify-center flex-col`} key={i}>
+            <li className={`h-[90px] nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} flex items-center justify-center flex-col`} key={i}>
               {
                 item.link ? (
                   <Link className="nav-link nav-link-up py-4 p-1" to={item.link}>
@@ -330,7 +324,7 @@ export const Menu = memo((props) => {
         </> : language === "en" ? <>
         {HeaderDataEn.map((item, i) => {
           return (
-            <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} `} key={i}>
+            <li className={`h-[90px] pt-3 nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} `} key={i}>
               {
                 item.link ? (
                   <Link className="nav-link nav-link-up py-4" to={item.link}>
@@ -755,9 +749,9 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar hover:text-red inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : language === "en" ? "pl-[10px]" : ""} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-search-iconbar inline-block align-middle px-[10px] ${language === "fa-IR" ? "pr-[80px]" : "pl-[80px]"} text-[17px] sm:pr-2 leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <div className="feather-search m-[8px] text-[22px]" onClick={() => setSearchModalOpen(true)}></div>
+        <div className="feather-search hover:text-red m-[8px] text-[22px]" onClick={() => setSearchModalOpen(true)}></div>
       </Link>
 
       {/* Search pop-up model Start */}
@@ -833,7 +827,7 @@ export const HeaderLanguage = (props) => {
   return (
     <div className={`header-language dropdown flex justify-center align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <i className={`feather-globe hover:text-red py-[27px] px-0 inline-block ${props.className} text-[20px]`}></i>
+        <i className={`feather-globe hover:text-red pt-[8px] px-0 inline-block ${props.className} text-[20px]`}></i>
       </Link>
       <ul className="dropdown-menu top-14 block absolute p-0 rounded-[6px] border-0 m-0 min-w-[140px]">
       <li className="flex items-center justify-start px-[15px] pt-[15px]">
@@ -874,9 +868,9 @@ export const HeaderLanguage = (props) => {
 
 export const HeaderCart = (props) => {
   return (
-    <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="/login" aria-label="account" target="-blank">
-        <li className="feather-user block text-[20px]"></li>
+        <li className="feather-user block text-[20px] hover:text-red"></li>
       </Link>
     </div>
   );
