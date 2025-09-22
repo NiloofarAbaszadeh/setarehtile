@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Col, Navbar } from 'react-bootstrap'
+import { Col, Navbar, Row, Container } from 'react-bootstrap'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { Header, HeaderNav, Menu, SearchBar, HeaderLanguage,HeaderCart } from "../../Components/Header/Header";
+import { Header, HeaderNav, Menu, SearchBar, HeaderLanguage, HeaderCart, Topbar } from "../../Components/Header/Header";
 import FooterStyle02 from '../../Components/Footers/FooterStyle02'
-import logo from '../../Assets/images/logo.png'
-// import whiteLogo from '../../Assets/images/logo-white.png'
-import LogoFarsi from "../../Assets/images/logo-farsi.png"
-import logoEnglish from "../../Assets/images/logo-english.png"
+import redLogo from "../../Assets/images/idk5.png"
+import HeaderData, { HeaderDataEn } from '../../Components/Header/HeaderData';
+
+import SocialIcons from '../../Components/SocialIcon/SocialIcons'
+
+
+
+const SocialIconsData = [
+  {
+        color: "#828282",
+        link: "https://www.instagram.com/setarehtile/?hl=en",
+        icon: "fab fa-instagram"
+    },
+    {
+        color: "#007bb6",
+        link: "https://www.linkedin.com/in/setarehtile/?originalSubdomain=ir",
+        icon: "fab fa-linkedin-in"
+    },
+    {
+        color: "#007bb6",
+        link: "https://t.me/s/setareh_tile",
+        icon: "fab fa-telegram"
+    },
+]
 
 const WhiteHeaderPage = (props) => {
   const language = useSelector(state => state.State.language)
@@ -16,168 +36,92 @@ const WhiteHeaderPage = (props) => {
   const [loadingScreen, setLoadingScreen] = useState(false)
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
-  const [isAtTop, setIsAtTop] = useState(true)
-  const [specialLogo, setSpecialLogo] = useState(true)
 
   useEffect(() => {
-  const handleScroll = () => {
-    // you can throttle/debounce this if needed
-    setIsAtTop(window.scrollY === 0);
-  }
-  window.addEventListener('scroll', handleScroll, { passive: true })
-  handleScroll()
-  return () => window.removeEventListener('scroll', handleScroll)
-}, [specialLogo])
-
-
-  useEffect(() => {
-    setSpecialLogo(window.innerWidth >= 990 ? true : false)
     setLoading(false)
     window.scrollTo({ top: 0 })
     setLoading(true)
     setLoadingScreen(false)
     setTimeout(() => setLoadingScreen(true), 500)
-  }, [location.pathname, host, token, specialLogo])
-
-  const DefaultLogo = () => (
-    <div
-      className={`absolute flex items-start justify-center px-2 ${language === "fa-IR" ? "left-[-15px] top-[-17px]" : "right-[180px] top-[-15px]"} `} 
-      style={{
-        width: "5000px", // make wider
-        height: '100.5px',
-        aspectRatio: '1 / 0.86602540378', // equilateral ratio
-        clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)',
-        // backgroundColor: '#b90000',
-        zIndex: 20,
-      }}
-    >
-      <img className={`alt-logo h-[100%] absolute ${language === "fa-IR" ? "left-[0px]" : "right-[0px]"}`} loading="lazy" src={language === "fa-IR" ? LogoFarsi : logoEnglish} alt="logo" />
-    </div>
-    
-  )
-
-  const LogoWithConditionalShape = () => {
-  return (
-    <div style={{ position: 'relative', width: 80, height: 36 }}>
-      <div
-        className='transition-discrete'
-        style={{
-          position: 'absolute',
-          top: "-10px",
-          transition: 'opacity 3s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out, transform 4s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out',
-          opacity: (window.innerWidth < 991) ? 1 : 0,
-          transform: 'scale(1)',
-          pointerEvents: isAtTop ? 'none' : 'auto',
-          zIndex: 5,
-        }}
-      >
-        <img className={`alt-logo`} loading="lazy" src={logo} alt="logo" />
-      </div>
-      
-      <div
-        className='transition-discrete'
-        style={{
-          position: 'absolute',
-          top: language === "fa-IR" ? "-19px" : "-21px",
-          left: 0,
-          width: '400%',
-          height: '400%',
-          transition: 'opacity 3s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out, transform 4s cubic-bezier(0.25, 0.1, 0.25, 1) ease-in-out',
-          opacity: (window.innerWidth > 991) ? 1 : 0,
-          transform: 'scale(0.9)',
-          pointerEvents: isAtTop ? 'none' : 'auto',
-          zIndex: 5,
-        }}
-      >
-        <DefaultLogo />
-      </div>
-    </div>
-  )
-  }
+  }, [location.pathname, host, token])
 
   return (<>
     <div className="z-10 w-full relative iran-sans">
       <div className="dir-rtl">
         {loading && (
-          <Header topSpace={{ desktop: true }} type="reverse-scroll">
-            {/* <Topbar /> */}
-            <HeaderNav
-              theme="light"
-              // bg="light-white"
-              menu="light"
-              expand="lg"
-              className="px-[15px] mx-12 py-[0px] lg:px-[15px] md:px-0 flex justify-center md:justify-between"
-              containerClass="sm:px-0 sm:mx-2"
-            >
-              {language === 'fa-IR' ? (
-                <>
-                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0 md:ml-0">
-                    <Link aria-label="header logo" className="flex items-center md:justify-end" to="/">
-                      <Navbar className="inline-block p-0 m-0 justify-between ">
-                        <LogoWithConditionalShape />
-                      </Navbar>
-                    </Link>
+          <Header className="header-with-topbar bg-[#00000099] backdrop-blur-sm" topSpace={{ md: false }} type="reverse-scroll">
+            <Topbar className="text-white md:px-[15px] border-b-[1px] border-[#ffffff99] h-[26px] sm:hidden">
+              <Container fluid="lg">
+                <Row className="items-center justify-center ">
+                  <Col className="col-12 col-md-3 header-social-icon d-none d-md-inline-block border-0 ">
+                    <SocialIcons theme="social-icon-style-21" className="justify-start" size="xs" iconColor="light" data={SocialIconsData}
+                    />
                   </Col>
-                  <Col className="col-auto hidden order-first md:block">
-                    <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                    </Navbar.Toggle>
+                  <Col className="col-12 col-md-6 text-center px-md-0 sm-padding-5px-tb line-height-normal sm:hidden">
+                    <span className="text-sm font-serif uppercase -tracking-[0.5px] inline-block">
+
+                    </span>
                   </Col>
-                  <Navbar.Collapse className="col-auto px-0 justify-end">
-                    <Menu {...props} />
-                  </Navbar.Collapse>
-                  <Col className="col-auto text-right pe-0 md:hidden">
-                    <div className='w-[4vw]'></div>
+                  <Col className="col-auto col-md-3 text-left">
+                    <SearchBar className="py-0 text-white" />
+                    <HeaderLanguage />
+                    <HeaderCart className="py-0 text-white" />
                   </Col>
-                  <Col className="col-auto text-right pe-0">
-                    <div className='flex items-center justify-center'>
-                      <SearchBar className="pr-0 xs:pl-[15px]" />
-                      <HeaderLanguage className="xs:pl-[15px]" />
-                      <HeaderCart className="xs:pl-[15px]" /> 
+                </Row>
+              </Container>
+            </Topbar>
+            <HeaderNav theme="light" containerClass="!px-0 h-full" className="flex items-center justify-center py-[0px]  md:px-[15px] sm:px-0 h-[65px] ">
+              <Container className='px-0 h-full'>
+              <Col lg={6} xs={"auto"} className="px-lg-0 position-absolute left-0 right-0 mx-lg-auto text-center md:!relative mr-auto h-0">
+                <Link aria-label="header logo" className="inline-block relative z-50 h-full w-[20vw] sm:w-full" to="/">
+                  <Navbar.Brand className="p-0 m-0 align-middle  w-full relative flex items-center justify-center">
+                    <div className='absolute top-[-38px] md:top-[-41px] sm:top-[-10px]'>
+                      <img className="default-logo h-[90px] sm:h-[73px]" loading="lazy" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' />
+                      <img className="alt-logo h-[90px] sm:h-[73px]" loading="lazy" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' />
+                      <img className="mobile-logo h-[90px] sm:h-[73px]" loading="lazy" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' />
                     </div>
-                  </Col>
-                </>
-              ) : language === 'en' ? (
-                <>
-                  <Col className="col-auto text-right pe-0">
-                  <div className='flex items-center justify-center'>
-                    <HeaderCart className="xs:pl-[15px]" /> 
-                    <HeaderLanguage className="xs:pl-[15px]" />
-                    <SearchBar className="pr-0 xs:pl-[15px]" />
-                  </div>
-                  </Col>
-                  <Col className="col-auto hidden order-first md:block">
-                    <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                      <span className="navbar-toggler-line"></span>
-                    </Navbar.Toggle>
-                  </Col>
-                  <Navbar.Collapse className="col-auto px-0 justify-end">
-                    <Menu {...props} />
+                  </Navbar.Brand>
+                </Link>
+              </Col>
+              <Col className="h-full">
+                <Navbar.Toggle className="absolute z-50 order-last md:ml-[17px] top-9 right-4">
+                  <span className="navbar-toggler-line"></span>
+                  <span className="navbar-toggler-line"></span>
+                  <span className="navbar-toggler-line"></span>
+                  <span className="navbar-toggler-line"></span>
+                </Navbar.Toggle>
+                <div className="hidden sm:block">
+                  <Navbar.Collapse className="col-auto justify-center">
+                    {language === "fa-IR" ? <Menu data={HeaderData} /> : <Menu data={HeaderDataEn} />}
                   </Navbar.Collapse>
-                  <Col className="col-auto text-right pe-0 md:hidden">
-                    <div className='w-[7vw]'></div>
+                </div>
+                <div className="flex items-center justify-between w-full h-full sm:hidden col-lg-10 col-xl-8 mx-auto !pl-[25px] !pr-[12px] lg:!pl-0 lg:!pr-0 z-20">
+                  {language === "fa-IR" ? 
+                    <>
+                      <Menu data={HeaderData.slice(0, Math.floor(HeaderData.length / 2))} theme={"skew-x-[-28deg]"} class={`justify-start pl-4`} />
+                      <Menu data={HeaderData.slice(Math.floor(HeaderData.length / 2), (HeaderData.length))} theme={"skew-x-[28deg]"} class={`justify-end`} />
+                    </> :
+                    <>
+                      <Menu data={HeaderDataEn.slice(0, Math.floor(HeaderDataEn.length / 2))} theme={"skew-x-[-28deg]"} class={`justify-start`} />
+                      <Menu data={HeaderDataEn.slice(Math.floor(HeaderDataEn.length / 2), (HeaderDataEn.length))} theme={"skew-x-[28deg]"} class={`justify-end`} />
+                    </>
+                  }
+                </div>
+                <Col className="col-auto col-md-3 text-left sm:block hidden">
+                    <SearchBar className="py-0 text-white" />
+                    <HeaderLanguage className="py-0 text-white"/>
+                    <HeaderCart className="py-0 text-white" />
                   </Col>
-                  <Col className="col-3 col-sm-4 col-lg-1 me-auto ps-lg-0 md:ml-0">
-                    <Link aria-label="header logo" className="flex items-center md:justify-end" to="/">
-                      <Navbar className="inline-block p-0 m-0 justify-between ">
-                        <LogoWithConditionalShape />
-                      </Navbar>
-                    </Link>
-                  </Col>
-                  
-                </>
-              ) : <></>}
+              </Col>
+              
+              </Container>
             </HeaderNav>
           </Header>
         )}
       </div>
+
       <Outlet />
+
       {loadingScreen && <FooterStyle02 />}
     </div>
     </>

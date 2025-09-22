@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import '../../Assets/css/custom-color.css';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper";
+import { Navigation, Pagination, EffectFade, Autoplay, Controller } from "swiper";
 import { Col, Container, Row } from "react-bootstrap";
 import { m, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -38,10 +38,9 @@ const InteriorDesignPage = (props) => {
   const [loadingGroup, setLoadingGroup] = useState(false)
   const [newsData, setNewsData] = useState(null)
   const [loadingNews, setLoadingNews] = useState(false)
+  const [firstSwiper, setFirstSwiper] = useState(null);
+  const [secondSwiper, setSecondSwiper] = useState(null);
 
-  
-  const swiperReff01 = React.useRef(null);
-  const swiperReff02 = React.useRef(null);
   
   useEffect(() => {
     setLoadingGroup(false)
@@ -307,12 +306,14 @@ const InteriorDesignPage = (props) => {
       {/* Section Start */}
       <section className="overflow-hidden py-[180px] lg:py-[140px] md:py-[75px] xs:py-[50px] bg-[#f1edea] pt-[200px]">
         <Row className="g-0 mt-24">
-          <Col  xl={6} className="relative p-0 ">
+          {/* Left swiper (main image) */}
+          <Col xl={6} className="relative p-0">
             <Swiper
-              ref={swiperReff01}
               loop={true}
               effect="fade"
-              modules={[Pagination, Navigation, EffectFade, Autoplay]}
+              modules={[Pagination, Navigation, EffectFade, Autoplay, Controller]}
+              controller={{ control: secondSwiper }}
+              onSwiper={setFirstSwiper}
               autoHeight={false}
               autoplay={{ delay: 7000, disableOnInteraction: false }}
               fadeEffect={{ crossFade: true }}
@@ -324,62 +325,111 @@ const InteriorDesignPage = (props) => {
             >
               {data &&
                 data.attributes.ourWork.state &&
-                data.attributes.ourWork.boxs.map((item, i) => {
-                  return (
-                    <SwiperSlide key={i} className="cover-background h-full w-full relative">
-                      <AnimatePresence>
-                        {activeSlide === i && (
-                          <m.div
-                            key={i}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{
-                              opacity: { duration: 1.2, ease: "easeInOut" }, // fade in
-                            }}
-                            style={{
-                              backgroundImage: `url(${host + item.mainImage.data.attributes.url})`,
-                            }}
-                            className="absolute top-0 left-0 h-full w-full bg-cover bg-center"
-                          />
-                        )}
-                      </AnimatePresence>
-                    </SwiperSlide>
-                  );
-                })}
+                data.attributes.ourWork.boxs.map((item, i) => (
+                  <SwiperSlide
+                    key={i}
+                    className="cover-background h-full w-full relative"
+                  >
+                    <AnimatePresence>
+                      {activeSlide === i && (
+                        <m.div
+                          key={i}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{
+                            opacity: { duration: 1.2, ease: "easeInOut" },
+                          }}
+                          style={{
+                            backgroundImage: `url(${host + item.mainImage.data.attributes.url})`,
+                          }}
+                          className="absolute top-0 left-0 h-full w-full bg-cover bg-center"
+                        />
+                      )}
+                    </AnimatePresence>
+                  </SwiperSlide>
+                ))}
             </Swiper>
+          </Col>
 
-            </Col>
+          {/* Right swiper (side image + content) */}
           <Col xl={6} className="relative p-0">
-            <div className={`flex absolute bottom-0 ${language === "fa-IR" ? "left" : "right"}-full z-10 lg:right-0`}>
-              <div onClick={() => {
-                swiperReff01.current.swiper.slidePrev()
-                swiperReff02.current.swiper.slidePrev()
-              }} className="btn-slider-next pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto  z-10 bottom-[63px] flex items-center justify-center cursor-pointer md:w-[70px]" >
-                <button aria-label="swiper next link" className="text-big"><i className="feather-arrow-left"></i></button>
+            {/* Slider navigation buttons */}
+            <div
+              className={`flex absolute bottom-0 ${
+                language === "fa-IR" ? "left" : "right"
+              }-full z-10 lg:right-0`}
+            >
+              <div
+                onClick={() => {
+                  firstSwiper?.slidePrev();
+                  secondSwiper?.slidePrev();
+                }}
+                className="btn-slider-next pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto z-10 bottom-[63px] flex items-center justify-center cursor-pointer md:w-[70px]"
+              >
+                <button
+                  aria-label="swiper next link"
+                  className="text-big"
+                >
+                  <i className="feather-arrow-left"></i>
+                </button>
               </div>
-              <div onClick={() => {
-                swiperReff01.current.swiper.slideNext()
-                swiperReff02.current.swiper.slideNext()
-              }} className="btn-slider-prev pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto bottom-0 z-10 flex items-center justify-center cursor-pointer md:w-[70px]">
-                <button aria-label="swiper prev link" className="text-big"><i className="feather-arrow-right"></i></button>
+              <div
+                onClick={() => {
+                  firstSwiper?.slideNext();
+                  secondSwiper?.slideNext();
+                }}
+                className="btn-slider-prev pt-2 bg-[#BF0D19cc] hover:bg-red text-[#fff] h-[62px] transition-default w-[62px] leading-[62px] text-[18px] absolute right-0 left-auto bottom-0 z-10 flex items-center justify-center cursor-pointer md:w-[70px]"
+              >
+                <button
+                  aria-label="swiper prev link"
+                  className="text-big"
+                >
+                  <i className="feather-arrow-right"></i>
+                </button>
               </div>
             </div>
-            <Swiper ref={swiperReff02} loop={true} modules={[Autoplay]} autoHeight={false} autoplay={{ delay: 7000, disableOnInteraction: false }} className="black-move h-full">
-              {data && data.attributes.ourWork.state && data.attributes.ourWork.boxs.map(item => {
-                return <SwiperSlide className="cover-background h-full" style={{ backgroundImage: `url(${host + item.sideImage.data.attributes.url})` }}>
+
+            {/* Second swiper */}
+            <Swiper
+              loop={true}
+              modules={[Autoplay, Controller]}
+              controller={{ control: firstSwiper }}
+              onSwiper={setSecondSwiper}
+              autoHeight={false}
+              autoplay={{ delay: 7000, disableOnInteraction: false }}
+              className="black-move h-full"
+            >
+              {data &&
+                data.attributes.ourWork.state &&
+                data.attributes.ourWork.boxs.map((item, i) => (
+                  <SwiperSlide
+                    key={i}
+                    className="cover-background h-full"
+                    style={{
+                      backgroundImage: `url(${host + item.sideImage.data.attributes.url})`,
+                    }}
+                  >
                     <div className="text-center h-full">
                       <div className="flex flex-col justify-center bg-white box-shadow py-28 px-[9.5rem] h-full w-[70%] xl:px-20 lg:w-[55%] md:p-16 xs:px-8 md:w-[65%] sm:w-[70%] xs:w-full">
                         <div>
-                          <img className="rounded-full mx-auto w-[150px] h-[150px] border-[8px] box-shadow border-red mb-[40px] xs:mb-[30px] xs:mx-auto" src={host + item.avatar.data.attributes.url} alt="" data-no-retina="" />
-                          <div className="text-[36px] leading-[42px] font-semibold text-darkgray mb-[30px] tracking-[-1px] xs:mb-[20px]">{item.title}</div>
-                          <p className="mb-[25px] text-[17px]">{item.discraption}</p>
-                          {/* <Buttons ariaLabel="Explore more" href="#" className="mx-3 font-medium after:bg-black hover:text-black font-serif uppercase btn-link after:h-[1px] md:text-md" color="#000" title="Explore more" size="xl" /> */}
+                          <img
+                            className="rounded-full mx-auto w-[150px] h-[150px] border-[8px] box-shadow border-red mb-[40px] xs:mb-[30px] xs:mx-auto"
+                            src={host + item.avatar.data.attributes.url}
+                            alt=""
+                            data-no-retina=""
+                          />
+                          <div className="text-[36px] leading-[42px] font-semibold text-darkgray mb-[30px] tracking-[-1px] xs:mb-[20px]">
+                            {item.title}
+                          </div>
+                          <p className="mb-[25px] text-[17px]">
+                            {item.discraption}
+                          </p>
                         </div>
                       </div>
                     </div>
-                  </SwiperSlide> 
-              })}
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </Col>
         </Row>

@@ -4,19 +4,15 @@ const HeaderData = [
         link: '/about-us',
     },
     {
-        title: 'اخبار و مقالات',
+        title: 'نمایندگان',
         dropdown: [
             {
-                title: 'مقالات',
-                link: './research',
+                title: 'نمایندگان داخلی',
+                link: './agent/internal-agent',
             },
             {
-                title: 'اخبار',
-                link: '/news',
-            },
-            {
-                title: 'بازدیدها',
-                link: '/visits',
+                title: 'نمایندگان خارجی',
+                link: './agent/external-agent',
             },
         ],
     },
@@ -55,21 +51,25 @@ const HeaderData = [
         ],
     },
     {
-        title: 'کاتالوگ',
-        link: '/catalog',
-    },
-    {
-        title: 'نمایندگان',
+        title: 'اخبار و مقالات',
         dropdown: [
             {
-                title: 'نمایندگان داخلی',
-                link: './agent/internal-agent',
+                title: 'مقالات',
+                link: './research',
             },
             {
-                title: 'نمایندگان خارجی',
-                link: './agent/external-agent',
+                title: 'اخبار',
+                link: '/news',
+            },
+            {
+                title: 'بازدیدها',
+                link: '/visits',
             },
         ],
+    },
+    {
+        title: 'کاتالوگ',
+        link: '/catalog',
     },
     {
         title: 'استخدام',
