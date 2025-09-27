@@ -201,6 +201,7 @@ const SingleProduct = (props) => {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setLoading(false)
+        console.log(res.data.data)
         Set(res.data.data)
         setTimeout(() => {
           setLoading(true)

@@ -698,6 +698,7 @@ export const SearchBar = memo((props) => {
 
 /* HeaderLanguage Component Start */
 export const HeaderLanguage = (props) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
   const dispatch = useDispatch()
   const handelChange = (lan) => {
     dispatch(changeLanguage(lan))
@@ -707,41 +708,70 @@ export const HeaderLanguage = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <div className="flex items-center justify-center">
-        <Link className="items-center justify-center flex hover:text-red" to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <span className={`feather-globe px-0 inline-block py-0 pl-[20px] text-[15px]`}></span>
-      </Link>
-      <ul className="dropdown-menu block absolute top-[25px] p-15px rounded-[6px] border-0 m-0 min-w-[140px]">
-        <li className="flex items-center justify-start px-[15px] pt-[15px]">
-          <Link aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
-            <div className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
-              <img
-                src="/assets/img/country-flag-16X16/Iran.png"
-                alt="iran"
-                width="16"
-                height="16"
-              />
+        {/* <Link className="items-center justify-center flex hover:text-red" to="#" aria-label="language" onClick={e => e.preventDefault()}> */}
+          <span className={`feather-globe px-0 inline-block py-0 pl-[20px] text-[15px] hover:text-red`} onClick={() => {setIsPopupOpen(true)}}></span>
+        {/* </Link> */}
+        {/* {isPopupOpen && <Popup setIsPopupOpen={setIsPopupOpen} />} */}
+        {isPopupOpen && <div
+        onClick={() =>{setIsPopupOpen(false)}}
+        className="z-20"
+        style={{
+          position: "fixed",
+          background: "rgba(0,0,0,0.4)",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        >
+          <div style={{
+            background: "white",
+            borderRadius: "5px",
+            width: "300px",
+            padding: "20px 10px",
+            animation: "dropTop .3s linear"
+          }}>
+            <div className="flex flex-col items-center justify-center px-6">
+              <ul className=" p-15px rounded-[6px] border-0 m-0 min-w-[140px] z-50 flex items-center justify-center flex-col">
+                <li className="pt-8 pb-3"> 
+                  <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
+                    <div className="icon-country block py-[2px] px-0 text-xs text-black">
+                      <img
+                        src="/assets/img/country-flag-16X16/Iran.png"
+                        alt="iran"
+                        width="20"
+                        height="20"
+                      />
+                    </div>
+                    <div className="mr-2 text-black">
+                      فارسی
+                    </div>
+                  </Link>
+                </li>
+                <li className="pb-8 pt-3">
+                  <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
+                    <div className="icon-country block py-[2px] px-0 text-xs ">
+                      <img
+                        src="/assets/img/country-flag-16X16/usa.png"
+                        alt="usa"
+                        width="20"
+                        height="20"
+                      />
+                    </div>
+                    <div className="mr-2 text-black">
+                    English
+                    </div>
+                  </Link>
+                </li>
+              </ul> 
             </div>
-            <div className="mr-2">
-              فارسی
-            </div>
-          </Link>
-        </li>
-        <li className="flex items-center justify-start px-[15px] pb-[15px]">
-          <Link aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
-            <div className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
-              <img
-                src="/assets/img/country-flag-16X16/usa.png"
-                alt="usa"
-                width="16"
-                height="16"
-              />
-            </div>
-            <div className="mr-2">
-            English
-            </div>
-          </Link>
-        </li>
-      </ul>
+          </div>
+        </div>}
       </div>
     </div>
   );
