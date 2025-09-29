@@ -21,10 +21,10 @@ const SocialIcons = (props) => {
                             </m.li>
                             
                         ) : props.theme === "social-icon-style-21" ? (
-                            <m.li key={i} className='rounded-[50%] mx-2' {...{ ...props.animation, transition: { delay: i * props.animationDelay } }} >
+                            <m.li key={i} className="mx-2">
                                 <a href={item.link} aria-label="social icon" target="_blank" rel="noreferrer">
                                     {/* {item.name && <span className='flex brand-label'>{item.name ? item.name : "icon"}</span>} */}
-                                    {item.icon && <i className={`${item.icon} text-white flex justify-center items-center pt-2 text-[14px] hover:text-red`}></i>}
+                                    {item.icon && <span className={`${item.icon} text-blue`}></span>}
                                     <span></span>
                                 </a>
                             </m.li>

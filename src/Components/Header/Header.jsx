@@ -214,12 +214,12 @@ export const Menu = memo((props) => {
                 item.link ? (
                   <Link className="nav-link" to={item.link}>
                     <span className="text-white md:text-[12px]">{item.title}</span>
-                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[65.5px] w-full bg-[#ff0000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
+                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
                   </Link>
                 ) : (
                   <div className="nav-link">
                     <span className="text-white md:text-[12px]">{item.title}</span>
-                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[65.5px] w-full bg-[#ff0000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
+                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
                   </div>
                 )
               }
@@ -437,7 +437,7 @@ export const MobileMenu = (props) => {
                                     {item.dropdown && (<i className="fas fa-angle-right "></i>)}
                                   </Link>
                                 ) : (
-                                  <span className="nav-link  hover-header-item text-xxlg">
+                                  <span className="nav-link hover-header-item text-xxlg">
                                     {item.title}
                                     {item.dropdown && (<i className="fas fa-angle-right"></i>)}
                                   </span>
@@ -695,7 +695,6 @@ export const SearchBar = memo((props) => {
 });
 /* Search-bar Component End */
 
-
 /* HeaderLanguage Component Start */
 export const HeaderLanguage = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -717,7 +716,7 @@ export const HeaderLanguage = (props) => {
         className="z-20"
         style={{
           position: "fixed",
-          background: "rgba(0,0,0,0.4)",
+          background: "rgba(0,0,0,0.1)",
           top: 0,
           left: 0,
           right: 0,
@@ -730,15 +729,16 @@ export const HeaderLanguage = (props) => {
         }}
         >
           <div style={{
-            background: "white",
+            background: "rgba(0,0,0,0.65)",
             borderRadius: "5px",
-            width: "300px",
-            padding: "20px 10px",
-            animation: "dropTop .3s linear"
+            width: "200px",
+            padding: "10px 10px",
+            opacity: 1,
+            transition: "opacity 1s linear"
           }}>
             <div className="flex flex-col items-center justify-center px-6">
               <ul className=" p-15px rounded-[6px] border-0 m-0 min-w-[140px] z-50 flex items-center justify-center flex-col">
-                <li className="pt-8 pb-3"> 
+                <li className="pt-4 pb-2"> 
                   <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
                     <div className="icon-country block py-[2px] px-0 text-xs text-black">
                       <img
@@ -748,12 +748,12 @@ export const HeaderLanguage = (props) => {
                         height="20"
                       />
                     </div>
-                    <div className="mr-2 text-black">
+                    <div className="mr-2 text-white">
                       فارسی
                     </div>
                   </Link>
                 </li>
-                <li className="pb-8 pt-3">
+                <li className="pb-4 pt-2">
                   <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
                     <div className="icon-country block py-[2px] px-0 text-xs ">
                       <img
@@ -763,7 +763,7 @@ export const HeaderLanguage = (props) => {
                         height="20"
                       />
                     </div>
-                    <div className="mr-2 text-black">
+                    <div className="mr-2 text-white">
                     English
                     </div>
                   </Link>
@@ -777,8 +777,6 @@ export const HeaderLanguage = (props) => {
   );
 };
 /* HeaderLanguage Component End */
-
-
 
 export const HeaderCart = (props) => {
   return (

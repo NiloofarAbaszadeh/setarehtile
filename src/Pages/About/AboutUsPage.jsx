@@ -141,7 +141,7 @@ const AboutUsPage = (props) => {
           </Row>
         </Container>
 
-        <Container>
+        {data.attributes.people && <Container>
           <Row className="justify-center">
             <m.div className="col-md-6  text-center mb-[2.5rem] sm:mb-8" {...fadeIn}>
             {language === "fa-IR" ? <>
@@ -164,7 +164,7 @@ const AboutUsPage = (props) => {
             carousel={false}
             className="team-about-us"
             carouselOption={{ slidesPerView: 3, spaceBetween: 30, loop: true, navigation: true, autoplay: { delay: 3000, disableOnInteraction: true }, pagination: { dynamicBullets: true, clickable: true } }} />
-        </Container>
+        </Container>}
       </section></>}
     </div>)}
 

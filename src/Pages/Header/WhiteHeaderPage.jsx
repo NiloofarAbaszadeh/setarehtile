@@ -4,12 +4,8 @@ import { Col, Navbar, Row, Container } from 'react-bootstrap'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { Header, HeaderNav, Menu, SearchBar, HeaderLanguage, HeaderCart, Topbar } from "../../Components/Header/Header";
 import FooterStyle02 from '../../Components/Footers/FooterStyle02'
-import redLogo from "../../Assets/images/idk4.png"
+import redLogo from "../../Assets/images/Header-site-eslahi.png"
 import HeaderData, { HeaderDataEn } from '../../Components/Header/HeaderData';
-
-import SocialIcons from '../../Components/SocialIcon/SocialIcons'
-
-
 
 const SocialIconsData = [
   {
@@ -50,17 +46,30 @@ const WhiteHeaderPage = (props) => {
       <div className="dir-rtl">
         {loading && (
           <Header className="header-with-topbar" topSpace={{ md: false }} type="reverse-scroll">
-            <Topbar className="text-white md:px-[15px] border-b-[1px] border-[#81818199] h-[26px] sm:hidden bg-[#00000099] backdrop-blur-md">
+            <Topbar className="text-white md:px-[15px] border-b-[1px] border-[#81818199] h-[30px] sm:hidden bg-[#00000099] backdrop-blur-md">
               <Container fluid="lg">
                 <Row className="items-center justify-center ">
-                  <Col className="col-12 col-md-3 header-social-icon d-none d-md-inline-block border-0 ">
-                    <SocialIcons theme="social-icon-style-21" className="justify-start" size="xs" iconColor="light" data={SocialIconsData}
-                    />
+                  <Col className="col-12 col-md-3  ">
+                    <div className="flex items-end justify-start">
+                      {SocialIconsData.map((item, i) => (
+                        <span key={i} className="mx-2">
+                          <a
+                            href={item.link}
+                            aria-label="social icon"
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ color: '#ffffff', transition: 'color 0.3s ease' }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')} // Tailwind red-500
+                            onMouseLeave={e => (e.currentTarget.style.color = '#ffffff')}
+                          >
+                            <span className={`${item.icon} text-[16px] ml-5`}></span>
+                          </a>
+                        </span>
+                      ))}
+                    </div>
                   </Col>
                   <Col className="col-12 col-md-6 text-center px-md-0 sm-padding-5px-tb line-height-normal sm:hidden">
-                    <span className="text-sm font-serif uppercase -tracking-[0.5px] inline-block">
-
-                    </span>
+                    <span className="text-sm font-serif uppercase -tracking-[0.5px] inline-block"></span>
                   </Col>
                   <Col className="col-auto col-md-3 text-left">
                     <SearchBar className="py-0 text-white" />
@@ -76,9 +85,9 @@ const WhiteHeaderPage = (props) => {
                   <Col lg={6} xs={"auto"} className="px-lg-0 position-absolute left-0 right-0 mx-lg-auto text-center md:!relative mr-auto h-0">
                     <Link aria-label="header logo" className="inline-block relative z-50 h-full w-[20vw] sm:w-full" to="/">
                       <div className="p-0 m-0 align-middle  w-full relative flex items-center justify-center">
-                        <div className='absolute top-[-40px] md:top-[-41px] sm:top-[-10px]'>
+                        <div className='absolute top-[-42px] md:top-[-41px] sm:top-[-10px]'>
                           {/* <img className="default-logo h-[105px] sm:h-[73px]" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' /> */}
-                          <img className="alt-logo h-[105px] sm:h-[73px]" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' />
+                          <img className="alt-logo h-[110px] sm:h-[73px]" src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' />
                           {/* <img className="mobile-logo h-[105px] sm:h-[73px]"  src={redLogo} data-rjs='/assets/img/webp/logo-yellow-ochre@2x.webp' alt='logo' /> */}
                         </div>
                       </div>
@@ -99,12 +108,12 @@ const WhiteHeaderPage = (props) => {
                     <div className="flex items-center justify-between w-full h-full sm:hidden col-lg-10 col-xl-8 mx-auto !pl-[25px] !pr-[12px] lg:!pl-0 lg:!pr-0 z-20">
                       {language === "fa-IR" ? 
                         <>
-                          <Menu data={HeaderData.slice(0, Math.floor(HeaderData.length / 2))} theme={"skew-x-[-28deg]"} class={`justify-start pl-4`} />
-                          <Menu data={HeaderData.slice(Math.floor(HeaderData.length / 2), (HeaderData.length))} theme={"skew-x-[28deg]"} class={`justify-end`} />
+                          <Menu data={HeaderData.slice(0, Math.floor(HeaderData.length / 2))} theme={"skew-x-[-16deg]"} class={`justify-start pl-4`} />
+                          <Menu data={HeaderData.slice(Math.floor(HeaderData.length / 2), (HeaderData.length))} theme={"skew-x-[16deg]"} class={`justify-end`} />
                         </> :
                         <>
-                          <Menu data={HeaderDataEn.slice(0, Math.floor(HeaderDataEn.length / 2))} theme={"skew-x-[-28deg]"} class={`justify-start`} />
-                          <Menu data={HeaderDataEn.slice(Math.floor(HeaderDataEn.length / 2), (HeaderDataEn.length))} theme={"skew-x-[28deg]"} class={`justify-end`} />
+                          <Menu data={HeaderDataEn.slice(0, Math.floor(HeaderDataEn.length / 2))} theme={"skew-x-[-16deg]"} class={`justify-start`} />
+                          <Menu data={HeaderDataEn.slice(Math.floor(HeaderDataEn.length / 2), (HeaderDataEn.length))} theme={"skew-x-[16deg]"} class={`justify-end`} />
                         </>
                       }
                     </div>
@@ -121,9 +130,7 @@ const WhiteHeaderPage = (props) => {
           </Header>
         )}
       </div>
-
       <Outlet />
-
       {loadingScreen && <FooterStyle02 />}
     </div>
     </>

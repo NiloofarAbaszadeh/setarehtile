@@ -4,15 +4,19 @@ const HeaderData = [
         link: '/about-us',
     },
     {
-        title: 'نمایندگان',
+        title: 'اخبار و مقالات',
         dropdown: [
             {
-                title: 'نمایندگان داخلی',
-                link: './agent/internal-agent',
+                title: 'مقالات',
+                link: './research',
             },
             {
-                title: 'نمایندگان خارجی',
-                link: './agent/external-agent',
+                title: 'اخبار',
+                link: '/news',
+            },
+            {
+                title: 'بازدیدها',
+                link: '/visits',
             },
         ],
     },
@@ -34,6 +38,19 @@ const HeaderData = [
         ],
     },
     {
+        title: 'نمایندگی ها',
+        dropdown: [
+            {
+                title: 'نمایندگی های داخلی',
+                link: './agent/internal-agent',
+            },
+            {
+                title: 'نمایندگی های خارجی',
+                link: './agent/external-agent',
+            },
+        ],
+    },
+    {
         title: 'محصولات',
         dropdown: [
             {
@@ -50,34 +67,10 @@ const HeaderData = [
             },
         ],
     },
-    {
-        title: 'اخبار و مقالات',
-        dropdown: [
-            {
-                title: 'مقالات',
-                link: './research',
-            },
-            {
-                title: 'اخبار',
-                link: '/news',
-            },
-            {
-                title: 'بازدیدها',
-                link: '/visits',
-            },
-        ],
-    },
+    
     {
         title: 'کاتالوگ',
         link: '/catalog',
-    },
-    {
-        title: 'استخدام',
-        link: '/recruitment',
-    },
-    {
-        title: 'تماس با ما',
-        link: "/contact-us",
     },
     {
         title: 'نظرسنجی',
@@ -107,8 +100,29 @@ const HeaderData = [
                 title: "ایمنی",
                 link: "https://setarehsurvey.ir/index.php/669591",
             },
+            {
+                title: "ثبت شکایات",
+                link: "/",
+            },
         ],
-    }
+    },
+    {
+        title: 'ارتباط با ما',
+        dropdown: [
+            {
+                title: 'تماس با ما',
+                link: "/contact-us",
+            },
+            {
+                title: 'درخواست استخدام',
+                link: '/recruitment',
+            },
+            {
+                title: "درخواست نمایندگی",
+                link: "/",
+            }
+        ],
+    },
 ]
 
 const HeaderDataEn = [
