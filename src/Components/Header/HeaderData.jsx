@@ -5,18 +5,22 @@ const HeaderData = [
     },
     {
         title: 'اخبار و مقالات',
+        img: true,
         dropdown: [
             {
                 title: 'مقالات',
                 link: './research',
+                img: "https://setarehtile.com/uploads/custom_pm_12607_10_10474_rjywt5919w_2001_58646_1338543560_82d80b34ac.jpg"
             },
             {
                 title: 'اخبار',
                 link: '/news',
+                img: "https://setarehtile.com/uploads/custom_pm_12607_10_10474_rjywt5919w_2001_58646_1338543560_82d80b34ac.jpg"
             },
             {
                 title: 'بازدیدها',
                 link: '/visits',
+                img: "https://setarehtile.com/uploads/custom_pm_12607_10_10474_rjywt5919w_2001_58646_1338543560_82d80b34ac.jpg"
             },
         ],
     },
@@ -52,18 +56,22 @@ const HeaderData = [
     },
     {
         title: 'محصولات',
+        megaitem: true,
         dropdown: [
             {
                 title: 'کلکسیون ها',
                 link: './product-collection',
+                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'گروه ها',
                 link: '/product-groups',
+                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'کاشی ها',
                 link: '/product-tilse',
+                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
         ],
     },

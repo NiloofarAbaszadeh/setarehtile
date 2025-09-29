@@ -14,6 +14,8 @@ import "../../Assets/scss/layouts/_header.scss"
 import { useDispatch } from "react-redux";
 import { changeLanguage } from "../../Store/state";
 import { useSelector } from "react-redux";
+import axios from "axios";
+
  
 /* Header Component Start */
 export const Header = memo((props) => {
@@ -175,140 +177,235 @@ export const Topbar = ({ className, ...props }) => {
 
 
 /* Menu Component Start */
+
 export const Menu = memo((props) => {
   const megamenu_ref = useRef(null);
   const [isMenuActive, setMenuActive] = useState(null);
-  const [isHover, setIsHover] = useState(false)
-  const handleMenuClick = (e, index) => setMenuActive(index !== isMenuActive ? index : null);
-  // set Active Menu
-  const location = useLocation()
+  const [isHover, setIsHover] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 767);
+  const language = useSelector(state => state.State.language)
+  const token = useSelector(state => state.State.readToken)
+  const host = useSelector(state => state.State.host)
+  const [hoveredId, setHoveredId] = useState(0)
+  const [datax, setDatax] = useState([])
+
+  const location = useLocation();
+
+  const handleMenuClick = (e, index) =>
+    setMenuActive(index !== isMenuActive ? index : null);
+
+  // Track window width for switching dropdown <-> mega menu
+  useEffect(() => {
+    const onResize = () => {
+      setIsWideScreen(window.innerWidth > 991);
+    };
+
+    window.addEventListener("resize", onResize);
+
+    // Initial check
+    onResize();
+
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     let header = document.querySelector("header"),
       links = header.querySelectorAll(".nav-link");
 
-    const activeLink = Array.from(links).find(link => link.getAttribute("href") === location.pathname)
+    const activeLink = Array.from(links).find(
+      (link) => link.getAttribute("href") === location.pathname
+    );
     if (activeLink) {
-      import("../../Functions/Utilities").then(module => {
-        let filtered_dropdown = module.getParents(activeLink).filter(item => item.classList.contains('simple-dropdown'))
-        let filtered_nav_item = module.getParents(activeLink).filter(item => item.classList.contains('nav-item'))
-        filtered_dropdown.forEach(item => item.classList.add("active"))
-        filtered_nav_item.forEach(item => item.classList.add("active"))
-      })
+      import("../../Functions/Utilities").then((module) => {
+        let filtered_dropdown = module
+          .getParents(activeLink)
+          .filter((item) => item.classList.contains("simple-dropdown"));
+        let filtered_nav_item = module
+          .getParents(activeLink)
+          .filter((item) => item.classList.contains("nav-item"));
+        filtered_dropdown.forEach((item) => item.classList.add("active"));
+        filtered_nav_item.forEach((item) => item.classList.add("active"));
+      });
     }
-  }, [location, isHover])
+  }, [location, isHover]);
 
   useEffect(() => {
-    let navItems = document.querySelector("header").querySelectorAll(".navbar-nav > .nav-item")
-    navItems.forEach(nav => nav.addEventListener("mouseover", () => setIsHover(true)))
-  }, [])
+    let navItems = document
+      .querySelector("header")
+      .querySelectorAll(".navbar-nav > .nav-item");
+    navItems.forEach((nav) =>
+      nav.addEventListener("mouseover", () => setIsHover(true))
+    );
+  }, []);
+
+
+
+  useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${host}${hoveredId}${language}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setDatax(response.data.data);
+        } catch (err) {
+          console.error("Failed to fetch:", err);
+        }
+      };
+
+      fetchData();
+  }, [hoveredId, token, host, language]);
 
   return (
-    <div className={`${props.mobileMenu ? `mobile-menu-${props.mobileMenu}` : ""}${props.className ? ` ${props.className}` : ""}`}>
+    <div
+      className={`${
+        props.mobileMenu ? `mobile-menu-${props.mobileMenu}` : ""
+      }${props.className ? ` ${props.className}` : ""}`}
+    >
       <ul className="navbar-nav p-0 ">
-        
         {props.data.map((item, i) => {
           return (
-            <li className={`nav-item group relative ${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""} md:px-2`} key={i}>
-              {
-                item.link ? (
-                  <Link className="nav-link" to={item.link}>
-                    <span className="text-white md:text-[12px]">{item.title}</span>
-                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
-                  </Link>
-                ) : (
-                  <div className="nav-link">
-                    <span className="text-white md:text-[12px]">{item.title}</span>
-                    <span className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}></span>
-                  </div>
-                )
-              }
-              <i  onClick={(e) => handleMenuClick(e, i)} />
-              {(item.dropdown) && (
-                <ul className="simple-dropdown-menu skew-0 p-0 md:top-6">
-                  {item.dropdown.map((item, i) => {
-                    return (
-                      <li key={i} className="simple-dropdown">
-                        {
-                          item.link ? (
-                            <Link className="nav-link px-4 py-2" to={item.link}>
-                              <span className="text-white">{item.title}</span>
-                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                            </Link>
-                          ) : (
-                            <span className="nav-link px-4 py-2">
-                              <span className="text-white">{item.title}</span>
-                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                            </span>
-                          )
-                        }
-                        {item.dropdown && (
-                          <ul className="simple-dropdown-menu">
-                            {item.dropdown.map((item, i) => {
-                              return (
-                                <li key={i} className="simple-dropdown">
-                                  {
-                                    item.link ? (
-                                      <Link
-                                        className={`nav-link${item.dropdown ? " md:text-black md:mt-[15px] md:mb-[7px]" : ""}`}
-                                        to={item.link}
-                                      >
-                                        {item.title}
-                                        {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                      </Link>
-                                    ) : (
-                                      <span className="nav-link">
-                                        {item.title}
-                                        {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                      </span>
-                                    )
-                                  }
-                                  {item.dropdown && (
-                                    <ul className="simple-dropdown-menu">
-                                      {item.dropdown.map((item, i) => {
-                                        return (
-                                          <li
-                                            className="simple-dropdown"
-                                            key={i}
-                                          >
-                                            <Link className="nav-link" to={item.link}>{item.title}</Link>
-                                          </li>
-                                        );
-                                      })}
-                                    </ul>
-                                  )}
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        )}
-                      </li>
-                    );
-                  })}
+            <li
+              className={`nav-item group relative ${
+                item.dropdown || item.megamenu ? ` dropdown` : ""
+              }${isMenuActive === i ? " open" : ""} md:px-2`}
+              key={i}
+            >
+              {item.link ? (
+                <Link className="nav-link" to={item.link}>
+                  <span className="text-white md:text-[12px]">{item.title}</span>
+                  <span
+                    className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}
+                  ></span>
+                </Link>
+              ) : (
+                <div className="nav-link">
+                  <span className="text-white md:text-[12px]">{item.title}</span>
+                  <span
+                    className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}
+                  ></span>
+                </div>
+              )}
+
+              <i onClick={(e) => handleMenuClick(e, i)}  className="h-[50px]"/>
+
+              {/* Conditionally render dropdown or mega menu */}
+              {item.dropdown && !isWideScreen && (
+                <ul className="simple-dropdown-menu skew-0 p-0 md:top-6 mt-18">
+                  {item.dropdown.map((subItem, i) => (
+                    <li key={i} className="simple-dropdown ">
+                      {subItem.link ? (
+                        <Link className="nav-link px-4 py-2" to={subItem.link}>
+                          <span className="text-white">{subItem.title}</span>
+                          {subItem.dropdown && <i className="fas fa-angle-right"></i>}
+                        </Link>
+                      ) : (
+                        <span className="nav-link px-4 py-2">
+                          <span className="text-white">{subItem.title}</span>
+                          {subItem.dropdown && <i className="fas fa-angle-right"></i>}
+                        </span>
+                      )}
+                      {/* You can keep nested dropdowns here if needed */}
+                    </li>
+                  ))}
                 </ul>
               )}
-              {(item.megamenu) && (
+
+              {/* Render mega menu instead when wide screen and dropdown exists */}
+              {item.dropdown && isWideScreen && (
+                <div className={`flex megamenu ${!item.img ? "px-0 justify-start" : "justify-center"}`} ref={megamenu_ref}>
+                  <div className={`flex items-start justify-start ${!item.img ? " pt-12 px-4" : "justify-center"} pl-[50px] w-full`}>
+                    <div className={`${item.img ? "flex flex-col" : "grid"} `}>
+                      {item.dropdown.map((subItem, i) => (
+                          <div
+                        key={i} 
+                        id={i} 
+                        className={`nav-item mx-8 relative`}
+                        onMouseEnter={() => setHoveredId(subItem.url)}
+                        >
+                        <div>
+                          {(subItem.img && subItem.link) && (
+                          <Link to={subItem.link}>
+                            <img
+                              height="235"
+                              alt="menu-banner"
+                              width="210"
+                              className="inline-block max-w-[210px]"
+                              src={subItem.img}
+                            />
+                          </Link>
+                        )}
+                        {subItem.title && (
+                          <Link
+                            className={`${item.img && "bg-[#c60000aa] flex justify-center"} nav-link absolute top-[-50px] w-full`}
+                            to={subItem.link ? subItem.link : "#"}
+                          >
+                            {subItem.icon && <i className={`${subItem.icon} mr-[10px]`}></i>}
+                            <span className="iran-sans text-[18px] text-white my-[10px]">{subItem.title}</span>
+                          </Link>
+                        )}
+                        </div>
+                      </div>
+                    ))}  
+                    </div>
+                    {item.megaitem && <div className="bg-blue w-full flex justify-between mx-12">
+                      {datax.map((item) => {
+                        return <span className="text-white">testing</span>
+                      })}
+                      {/* <span className="text-white">testing</span>
+                      <span className="text-white">testing</span>
+                      <span className="text-white">testing</span>
+                      <span className="text-white">testing</span> */}
+                    </div>}
+                  </div>
+                </div>
+              )}
+
+              {/* Your existing megamenu handling stays the same */}
+              {item.megamenu && (
                 <div className="flex megamenu" ref={megamenu_ref}>
-                  {item.megamenu.map((item, i) => {
-                    return (
-                      <ul className={`${(item.dropdown.filter(item => item.img).length > 0) ? "!pr-[30px] img-wrapper inline-block last:!pr-[0px]" : "inline-block"}`} key={i}>
-                        {item.title && <li className="title text-md font-medium mb-[15px] whitespace-nowrap">
-                          {item.title}
-                        </li>}
-                        {item.dropdown &&
-                          item.dropdown.map((item, i) => {
-                            return (
-                              <li className="nav-item" key={i}>
-                                {item.title && <Link className="nav-link" to={item.link ? item.link : "#"} > {item.icon && (<i className={`${item.icon} mr-[10px]`} ></i>)}{" "}
-                                  {item.title}
-                                </Link>}
-                                {(item.img && item.link) && <Link to={item.link}><img height="235" alt="menu-banner" width="210" className="inline-block max-w-[210px]" src={item.img} /></Link>}
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    );
-                  })}
+                  {item.megamenu.map((megaItem, i) => (
+                    <ul
+                      className={`${
+                        megaItem.dropdown.filter((it) => it.img).length > 0
+                          ? "!pr-[30px] img-wrapper inline-block last:!pr-[0px]"
+                          : "inline-block"
+                      }`}
+                      key={i}
+                    >
+                      {megaItem.title && (
+                        <li className="title text-md font-medium mb-[15px] whitespace-nowrap">
+                          {megaItem.title}
+                        </li>
+                      )}
+                      {megaItem.dropdown &&
+                        megaItem.dropdown.map((ddItem, i) => (
+                          <li className="nav-item" key={i}>
+                            {ddItem.title && (
+                              <Link
+                                className="nav-link"
+                                to={ddItem.link ? ddItem.link : "#"}
+                              >
+                                {ddItem.icon && (
+                                  <i className={`${ddItem.icon} mr-[10px]`}></i>
+                                )}{" "}
+                                {ddItem.title}
+                              </Link>
+                            )}
+                            {ddItem.img && ddItem.link && (
+                              <Link to={ddItem.link}>
+                                <img
+                                  height="235"
+                                  alt="menu-banner"
+                                  width="210"
+                                  className="inline-block max-w-[210px]"
+                                  src={ddItem.img}
+                                />
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                    </ul>
+                  ))}
                 </div>
               )}
             </li>
@@ -318,7 +415,7 @@ export const Menu = memo((props) => {
     </div>
   );
 });
-/* Menu Component End */
+
 
 /* Mobile Menu Component Start */
 export const MobileMenu = (props) => {
@@ -410,7 +507,7 @@ export const MobileMenu = (props) => {
           <span className="navbar-toggler-line bg-white"></span>
         </Navbar.Toggle>
         <ReactCustomScrollbar className="pr-[15px]" theme="light" autoHide>
-          <div className="absolute top-10">
+          <div className="absolute top-20">
             <ul className="navbar-nav">
               {props.data.map((item, i) => {
                 return (
