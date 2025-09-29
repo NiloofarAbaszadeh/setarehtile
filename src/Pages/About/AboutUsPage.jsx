@@ -130,7 +130,7 @@ const AboutUsPage = (props) => {
       <section className=" pb-[80px] lg:pb-[50px] md:pb-[35px] xs:pb-[20px]">
         <Container fluid="md" className="sm:px-0">
           <Row className="lg:mx-[15px]">
-            <Overlap className="bg-white p-16 shadow-[0_0_15px_rgba(0,0,0,0.1)] mb-[130px] md:mb-[80px] sm:shadow-none sm:border-b sm:mb-[50px]">
+            <Overlap className="bg-lightgray p-16 shadow-[0_0_15px_rgba(0,0,0,0.1)] mb-[130px] md:mb-[80px] sm:shadow-none sm:border-b sm:mb-[50px]">
               <Counter
                 theme={`${language === "fa-IR" ? "counter-style-05" : language === "en" ? "counter-style-06" : ""}`}
                 grid="row-cols-1 row-cols-md-3 text-center gap-y-10"
@@ -141,8 +141,9 @@ const AboutUsPage = (props) => {
           </Row>
         </Container>
 
-        {data.attributes.people && <Container>
+        {data.attributes.people.length > 0 && <Container>
           <Row className="justify-center">
+            {console.log(data.attributes.people)}
             <m.div className="col-md-6  text-center mb-[2.5rem] sm:mb-8" {...fadeIn}>
             {language === "fa-IR" ? <>
               <span className="text-fastblue text-xxlg ">معرفی افراد</span>
