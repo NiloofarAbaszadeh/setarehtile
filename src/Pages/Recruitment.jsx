@@ -1446,7 +1446,7 @@ const Recruitment = () => {
                 <p className="text-[12px]"><span className="text-[#fb4f58]"> * </span>لطفا قبل از ارسال از درستی اطلاعات وارد شده اطمینان حاصل کنید. پش از ارسال امکان ویرایش وجود ندارد.</p>
                 {heightCheck ? <p className="text-[#fb4f58]">لطفا قد خود را با دقت و به سانتی‌متر وارد نمایید. </p> : <></>}
                 {state === false && <p className="text-[13px] text-red mt-8">مشکلی در ارسال فرم پیش آمد. لطفا پس از بررسی بخش های مورد نیاز، دوباره جهت ارسال اقدام کنید.</p>}
-                <input className="button-custom w-min mt-4" type="submit" value="ارسال" placeholder="ارسال"/>
+                <input className="button-custom w-min mt-4 text-white bg-[#ff0000]" type="submit" value="ارسال" placeholder="ارسال"/>
               </div>
             </form>
     </div>

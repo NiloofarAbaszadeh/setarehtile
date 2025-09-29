@@ -61,7 +61,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   color: #faf6f6;
-  background-color: #e3000f;
+  background-color: #ff0000;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 6px 11px  rgba(117, 117, 117, 0.5);
@@ -70,15 +70,14 @@
   }
 
 .button-custom:hover {
-  background-color: #e3000f;
+  background-color: #ff0000;
   box-shadow: 0px 8px 15px #464646;
-  color: #262626;
   transform: translateY(-7px);
   color: white;
 }
 
 .button-custom:active {
-  background-color: #BA0F30;
+  background-color: #ff0000;
   color: #fff;
 }
 
