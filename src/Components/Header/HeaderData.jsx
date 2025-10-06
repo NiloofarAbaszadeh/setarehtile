@@ -9,7 +9,7 @@ const HeaderData = [
         dropdown: [
             {
                 title: 'مقالات',
-                link: './research',
+                link: '/research',
                 img: "https://setarehtile.com/uploads/medium_images_4579ea2513.jfif"
             },
             {
@@ -52,39 +52,38 @@ const HeaderData = [
         dropdown: [
             {
                 title: 'نمایندگی های داخلی',
-                link: './agent/internal-agent',
+                link: '/agent/internal-agent',
                 img: "https://setarehtile.com/uploads/medium_images_d10f008d15.jpg"
             },
             {
                 title: 'نمایندگی های خارجی',
-                link: './agent/external-agent',
+                link: '/agent/external-agent',
                 img: "https://setarehtile.com/uploads/medium_globe_63ab8b93bb.webp"
             },
         ],
     },
     {
         title: 'محصولات',
-        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=',
+        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=',
         megaitem: true,
         dropdown: [
             {
                 title: 'کلکسیون ها',
-                link: './product-collection',
-                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
+                link: '/product-collection',
+                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
             {
                 title: 'گروه ها',
                 link: '/product-groups',
-                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
+                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
             {
                 title: 'کاشی ها',
                 link: '/product-tilse',
-                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
+                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
         ],
     },
-    
     {
         title: 'کاتالوگ',
         link: '/catalog',
@@ -156,74 +155,88 @@ const HeaderData = [
 
 const HeaderDataEn = [
     {
-        title: 'About Us',
-        link: '/about-us',
-    },
-    {
-        title: 'News & Articles',
+        title: 'Contact Us',
+        img: true,
         dropdown: [
             {
-                title: 'Researches',
-                link: './research',
+                title: "Contact Info",
+                link: "/contact-us",
+                img: "https://setarehtile.com/uploads/medium_Contact_Us_de03fb2cdd.jpg"
             },
-            {
-                title: 'News',
-                link: '/news',
-            },
-            {
-                title: 'Visits',
-                link: '/visits',
-            },
+            // {
+            //     title: 'درخواست استخدام',
+            //     link: '/recruitment',
+            //     img: "https://setarehtile.com/uploads/medium_3de3e449c0423b70cfdcba45ce657ed6_2b85f859fd.png"
+            // },
+            // {
+            //     title: "درخواست نمایندگی",
+            //     link: "/",
+            //     img: "https://setarehtile.com/uploads/medium_business_handshake_office_business_handshake_office_101469969_0a09903493.webp"
+            // }
         ],
     },
     {
-        title: 'Certificate',
+        title: 'Egents',
+        img: true,
         dropdown: [
             {
-                title: 'Internal CE',
-                link: './certificate/internal-ce',
+                title: 'Internal Egents',
+                link: '/agent/internal-agent',
+                img: "https://setarehtile.com/uploads/medium_images_d10f008d15.jpg"
             },
             {
-                title: 'External CE',
-                link: './certificate/external-ce',
-            },
-            {
-                title: 'Honors',
-                link: './certificate/honors',
+                title: 'External Egents',
+                link: '/agent/external-agent',
+                img: "https://setarehtile.com/uploads/medium_globe_63ab8b93bb.webp"
             },
         ],
     },
     {
         title: 'Product',
+        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=',
+        megaitem: true,
         dropdown: [
             {
                 title: 'Collections',
-                link: './product-collection',
+                link: '/product-collection',
+                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
             {
                 title: 'Groups',
                 link: '/product-groups',
+                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
             {
                 title: 'Tiles',
                 link: '/product-tilse',
+                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
             },
         ],
     },
+    
     {
         title: 'Catalogs',
         link: '/catalog',
     },
     {
-        title: 'Egents',
+        title: 'Certificate',
+        url: "/api/gwahy-dakhlies?populate=deep&locale=",
+        megaitem: true,
         dropdown: [
             {
-                title: 'Internal Egents',
-                link: './agent/internal-agent',
+                title: 'Internal CE',
+                link: '/certificate/internal-ce',
+                url: "/api/gwahy-dakhlies?populate=deep&locale="
             },
             {
-                title: 'External Egents',
-                link: './agent/external-agent',
+                title: 'External CE',
+                link: '/certificate/external-ce',
+                url: "/api/gwahy-kharjies?populate=deep&locale="
+            },
+            {
+                title: 'Honors',
+                link: '/certificate/honors',
+                url: "/api/aftkharats?populate=deep&locale="
             },
         ],
     },
@@ -232,14 +245,30 @@ const HeaderDataEn = [
     //     link: '/recruitment',
     // },
     {
-        title: 'Contact Us',
+        title: 'News & Articles',
+        img: true,
         dropdown: [
             {
-                title: "Contact Info",
-                link: "/contact-us",
+                title: 'Researches',
+                link: '/research',
+                img: "https://setarehtile.com/uploads/medium_images_4579ea2513.jfif"
+            },
+            {
+                title: 'News',
+                link: '/news',
+                img: "https://setarehtile.com/uploads/medium_istockphoto_813136942_612x612_c91ae7b299.jpg"
+            },
+            {
+                title: 'Visits',
+                link: '/visits',
+                img: "https://setarehtile.com/uploads/medium_P1010695_d142d72246.JPG"
             },
         ],
-    }
+    },
+    {
+        title: 'About Us',
+        link: '/about-us',
+    },
 ]
 
 export {HeaderDataEn};

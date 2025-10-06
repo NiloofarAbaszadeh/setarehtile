@@ -251,9 +251,9 @@ export const Menu = memo((props) => {
               return {
                 name: item.attributes.name,
 
-                image: item.attributes.image ? item.attributes.image.data.attributes.formats.xsmall.url :
-                item.attributes.profileImage ? item.attributes.profileImage.data.attributes.formats.xsmall.url :
-                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.formats.xsmall.url : "",
+                image: item.attributes.image ? item.attributes.image.data.attributes.formats.medium.url :
+                item.attributes.profileImage ? item.attributes.profileImage.data.attributes.formats.medium.url :
+                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.formats.medium.url : "",
               
                 link: item.attributes.image ? `/product-tilse/${item.attributes.name}`:
                 item.attributes.profileImage ? `/product-collection/${item.attributes.name}` :
@@ -338,7 +338,7 @@ export const Menu = memo((props) => {
               {/* Render mega menu instead when wide screen and dropdown exists */}
               {item.dropdown && isWideScreen && (
                 <div className={`flex megamenu ${!item.img ? "px-0 justify-start" : "justify-center"}`} ref={megamenu_ref}>
-                  <div className={`flex items-start justify-start ${!item.img ? " pt-8 px-4" : "justify-center"} pl-[50px] w-full`}>
+                  <div className={`flex items-start justify-start ${!item.img ? " pt-8 px-4" : "justify-center"} pl-[50px] w-full ${language === "en" && "flex-row-reverse"}`}>
                     <div className={`${item.img ? "flex" : "grid"} `}>
                       {item.dropdown.map((subItem, i) => (
                           <div
@@ -359,7 +359,7 @@ export const Menu = memo((props) => {
                         )}
                         {subItem.title && (
                           <Link
-                            className={`${item.img ? "bg-[#c60000aa] flex justify-center top-[-50px]" : "top-[0px]"} nav-link absolute w-full`}
+                            className={`${item.img ? "bg-[#c60000aa] flex justify-center items-center top-[-50px]" : "top-[0px]"} nav-link absolute w-full`}
                             to={subItem.link ? subItem.link : "#"}
                           >
                             {subItem.icon && <i className={`${subItem.icon} mr-[10px]`}></i>}
@@ -370,7 +370,7 @@ export const Menu = memo((props) => {
                       </div>
                     ))}  
                     </div>
-                    {item.megaitem && <div className="bg-blue w-full flex justify-start mx-24 mb-8">
+                    {item.megaitem && <div className={`bg-blue w-full flex ${language === "en" ? "justify-end" : "justify-start"} mx-24 mb-8`}>
                       {datax.map((item) => {
                         return <div className="mx-4 border-[1px] border-[#ffffff33]">
                           <Link to={item.link} target="_black">
