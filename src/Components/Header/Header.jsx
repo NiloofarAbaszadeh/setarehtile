@@ -186,7 +186,7 @@ export const Menu = memo((props) => {
   const language = useSelector(state => state.State.language)
   const token = useSelector(state => state.State.readToken)
   const host = useSelector(state => state.State.host)
-  const [hoveredId, setHoveredId] = useState(0)
+  const [hoveredId, setHoveredId] = useState()
   const [datax, setDatax] = useState([])
 
   const location = useLocation();
@@ -233,7 +233,7 @@ export const Menu = memo((props) => {
     let navItems = document
       .querySelector("header")
       .querySelectorAll(".navbar-nav > .nav-item");
-    navItems.forEach((nav) =>
+      navItems.forEach((nav) =>
       nav.addEventListener("mouseover", () => setIsHover(true))
     );
   }, []);
@@ -242,14 +242,39 @@ export const Menu = memo((props) => {
 
   useEffect(() => {
       const fetchData = async () => {
-        try {
+        if (hoveredId) {try {
           const response = await axios.get(`${host}${hoveredId}${language}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setDatax(response.data.data);
+          if (response.data.data.length > 1) {
+            setDatax(response.data.data.map((item) => {
+              return {
+                name: item.attributes.name,
+
+                image: item.attributes.image ? item.attributes.image.data.attributes.formats.xsmall.url :
+                item.attributes.profileImage ? item.attributes.profileImage.data.attributes.formats.xsmall.url :
+                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.formats.xsmall.url : "",
+              
+                link: item.attributes.image ? `/product-tilse/${item.attributes.name}`:
+                item.attributes.profileImage ? `/product-collection/${item.attributes.name}` :
+                item.attributes.GroupImage ? `/product-groups/${item.attributes.name}` : "",
+              }
+            }));
+          } else {
+            setDatax(response.data.data[0].attributes.reward.slice(0, 5).map(item => {
+              return {
+                name: "",
+                image: item.profileImage.data.attributes.formats.medium.url,
+                link: hoveredId.split("?")[0].split("/")[2] === "gwahy-kharjies" ? "/certificate/external-ce" :
+                hoveredId.split("?")[0].split("/")[2] === "aftkharats" ? "/certificate/honors" :
+                hoveredId.split("?")[0].split("/")[2] === "gwahy-dakhlies" ? "/certificate/internal-ce" : ""
+              }
+            }))
+          }
+          
         } catch (err) {
           console.error("Failed to fetch:", err);
-        }
+        }}
       };
 
       fetchData();
@@ -271,14 +296,14 @@ export const Menu = memo((props) => {
               key={i}
             >
               {item.link ? (
-                <Link className="nav-link" to={item.link}>
+                <Link className="nav-link" to={item.link} onMouseEnter={() => setHoveredId(item.url)}>
                   <span className="text-white md:text-[12px]">{item.title}</span>
                   <span
                     className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}
                   ></span>
                 </Link>
               ) : (
-                <div className="nav-link">
+                <div className="nav-link " onMouseEnter={() => setHoveredId(item.url)}>
                   <span className="text-white md:text-[12px]">{item.title}</span>
                   <span
                     className={`absolute left-0 top-[8px] md:top-[-10px] h-[64px] w-full bg-[#c50000] ${props.theme} max-w-0 group-hover:max-w-full -z-10`}
@@ -286,7 +311,7 @@ export const Menu = memo((props) => {
                 </div>
               )}
 
-              <i onClick={(e) => handleMenuClick(e, i)}  className="h-[50px]"/>
+              <i onClick={(e) => handleMenuClick(e, i)} className="h-[50px]"/>
 
               {/* Conditionally render dropdown or mega menu */}
               {item.dropdown && !isWideScreen && (
@@ -313,30 +338,28 @@ export const Menu = memo((props) => {
               {/* Render mega menu instead when wide screen and dropdown exists */}
               {item.dropdown && isWideScreen && (
                 <div className={`flex megamenu ${!item.img ? "px-0 justify-start" : "justify-center"}`} ref={megamenu_ref}>
-                  <div className={`flex items-start justify-start ${!item.img ? " pt-12 px-4" : "justify-center"} pl-[50px] w-full`}>
-                    <div className={`${item.img ? "flex flex-col" : "grid"} `}>
+                  <div className={`flex items-start justify-start ${!item.img ? " pt-8 px-4" : "justify-center"} pl-[50px] w-full`}>
+                    <div className={`${item.img ? "flex" : "grid"} `}>
                       {item.dropdown.map((subItem, i) => (
                           <div
-                        key={i} 
-                        id={i} 
-                        className={`nav-item mx-8 relative`}
-                        onMouseEnter={() => setHoveredId(subItem.url)}
-                        >
-                        <div>
-                          {(subItem.img && subItem.link) && (
-                          <Link to={subItem.link}>
-                            <img
-                              height="235"
-                              alt="menu-banner"
-                              width="210"
-                              className="inline-block max-w-[210px]"
-                              src={subItem.img}
-                            />
-                          </Link>
+                          key={i} 
+                            id={i} 
+                          className={`nav-item mx-4 relative ${item.img && "pt-12"}`}
+                          onMouseEnter={() => setHoveredId(subItem.url)}
+                          >
+                            <div>
+                              {(subItem.img && subItem.link) && (
+                              <Link to={subItem.link}>
+                                <img
+                                  alt="menu-banner"
+                                  className="inline-block w-[200px]"
+                                  src={subItem.img}
+                                />
+                              </Link>
                         )}
                         {subItem.title && (
                           <Link
-                            className={`${item.img && "bg-[#c60000aa] flex justify-center"} nav-link absolute top-[-50px] w-full`}
+                            className={`${item.img ? "bg-[#c60000aa] flex justify-center top-[-50px]" : "top-[0px]"} nav-link absolute w-full`}
                             to={subItem.link ? subItem.link : "#"}
                           >
                             {subItem.icon && <i className={`${subItem.icon} mr-[10px]`}></i>}
@@ -347,14 +370,17 @@ export const Menu = memo((props) => {
                       </div>
                     ))}  
                     </div>
-                    {item.megaitem && <div className="bg-blue w-full flex justify-between mx-12">
+                    {item.megaitem && <div className="bg-blue w-full flex justify-start mx-24 mb-8">
                       {datax.map((item) => {
-                        return <span className="text-white">testing</span>
+                        return <div className="mx-4 border-[1px] border-[#ffffff33]">
+                          <Link to={item.link} target="_black">
+                            <img className="h-[200px]" src={host + item.image} alt="item.name" />
+                            {item.name !== "" && <div className="bg-[#c60000aa] flex justify-center items-center h-[50px]">
+                              <span className="text-white text-[16px]">{item.name}</span>
+                            </div>}
+                          </Link>
+                        </div>
                       })}
-                      {/* <span className="text-white">testing</span>
-                      <span className="text-white">testing</span>
-                      <span className="text-white">testing</span>
-                      <span className="text-white">testing</span> */}
                     </div>}
                   </div>
                 </div>
@@ -803,9 +829,9 @@ export const HeaderLanguage = (props) => {
     }
   return (
     <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center cursor-pointer">
         {/* <Link className="items-center justify-center flex hover:text-red" to="#" aria-label="language" onClick={e => e.preventDefault()}> */}
-          <span className={`feather-globe px-0 inline-block py-0 pl-[20px] text-[15px] hover:text-red`} onClick={() => {setIsPopupOpen(true)}}></span>
+          <span className={`feather-globe px-0 inline-block py-0 pl-[20px] text-[15px] hover:text-red `} onClick={() => {setIsPopupOpen(true)}}></span>
         {/* </Link> */}
         {/* {isPopupOpen && <Popup setIsPopupOpen={setIsPopupOpen} />} */}
         {isPopupOpen && <div
@@ -829,13 +855,12 @@ export const HeaderLanguage = (props) => {
             background: "rgba(0,0,0,0.65)",
             borderRadius: "5px",
             width: "200px",
-            padding: "10px 10px",
             opacity: 1,
             transition: "opacity 1s linear"
           }}>
-            <div className="flex flex-col items-center justify-center px-6">
-              <ul className=" p-15px rounded-[6px] border-0 m-0 min-w-[140px] z-50 flex items-center justify-center flex-col">
-                <li className="pt-4 pb-2"> 
+            <div className="flex flex-col items-center justify-center">
+              <ul className=" p-15px rounded-[6px] border-0 m-0 min-w-[140px] z-50 flex items-center justify-center flex-col w-full">
+                <li className="pt-8 pb-3 hover:bg-[#ff0000] w-full flex items-center justify-center"> 
                   <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
                     <div className="icon-country block py-[2px] px-0 text-xs text-black">
                       <img
@@ -850,7 +875,7 @@ export const HeaderLanguage = (props) => {
                     </div>
                   </Link>
                 </li>
-                <li className="pb-4 pt-2">
+                <li className="pb-8 pt-3 hover:bg-[#ff0000] w-full flex items-center justify-center">
                   <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
                     <div className="icon-country block py-[2px] px-0 text-xs ">
                       <img
@@ -879,7 +904,7 @@ export const HeaderCart = (props) => {
   return (
     <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
       <Link to="/login" aria-label="account" target="-blank">
-        <li className="feather-user block text-[15px] hover:text-red"></li>
+        <li className="feather-user block text-[17px] hover:text-red"></li>
       </Link>
     </div>
   );

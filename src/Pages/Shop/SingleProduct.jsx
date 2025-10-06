@@ -201,7 +201,6 @@ const SingleProduct = (props) => {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         setLoading(false)
-        console.log(res.data.data)
         Set(res.data.data)
         setTimeout(() => {
           setLoading(true)
@@ -482,9 +481,9 @@ const SingleProduct = (props) => {
                   </div>
                   <div className="flex  mt-1 items-center">
                     <div className="flex-grow">
-                      <span className="uppercase text-xmd font-medium text-darkgray block">{language === "fa-IR" ? `تگ ها:` : language === "en" ? `Tags:` : ""} 
-                        <Link to="#" aria-label="product" className="font-normal text-[#828282] ml-[5px]">{language === "fa-IR" ? `فعلا محتوا ندارد` : language === "en" ? `No content yet` : ""}</Link>
-                      </span>
+                      {/* <span className="uppercase text-xmd font-medium text-darkgray block">{language === "fa-IR" ? `تگ ها:` : language === "en" ? `Tags:` : ""}  */}
+                        {/* <Link to="#" aria-label="product" className="font-normal text-[#828282] ml-[5px]">{language === "fa-IR" ? `فعلا محتوا ندارد` : language === "en" ? `No content yet` : ""}</Link> */}
+                      {/* </span> */}
                     </div>
                     {/* <SocialIcons theme="social-icon-style-01" className="justify-center" size="xs" iconColor="dark" data={SocialIconsData} /> */}
                   </div>

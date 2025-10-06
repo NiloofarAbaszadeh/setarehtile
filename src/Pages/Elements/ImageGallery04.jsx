@@ -24,11 +24,12 @@ const ImageGalleryPage04 = () => {
   
   useEffect(() => {
     const GetData = async () => {
-      await axios.get(`${host}/api/survays?populate=deep&locale=${language}&sort[0]=link:asc`, {
+      await axios.get(`${host}/api/survays?populate=deep&locale=${language}&sort[0]=order:asc`, {
           headers: { Authorization: `Bearer ${token}` }
         })
       .then(res => {
         setData(res.data.data)
+        console.log(res.data.data)
       })
       await axios.get(`${host}/api/survay-page?populate=deep&locale=${language}`, {
           headers: { Authorization: `Bearer ${token}` }

@@ -375,14 +375,14 @@ header {
       left: 50%;
       transform: translateX(-50%);
       box-sizing: border-box;
-      min-width: 60vw;
-      // width: 80vw;
+      min-width: 70vw;
+      width: fit-content;
       background-color: #000000aa;
       z-index: 10;
       position: absolute;
       opacity: 0;
       visibility: hidden;
-      padding: 40px 40px 0px 40px;
+      padding: 0px 40px 0px 40px;
       box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
       border: 1;
       transition: 0s;
