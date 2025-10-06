@@ -64,23 +64,23 @@ const HeaderData = [
     },
     {
         title: 'محصولات',
-        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=',
+        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=',
         megaitem: true,
         dropdown: [
             {
                 title: 'کلکسیون ها',
                 link: '/product-collection',
-                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'گروه ها',
                 link: '/product-groups',
-                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'کاشی ها',
                 link: '/product-tilse',
-                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
         ],
     },
@@ -193,23 +193,23 @@ const HeaderDataEn = [
     },
     {
         title: 'Product',
-        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale=',
+        url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=',
         megaitem: true,
         dropdown: [
             {
                 title: 'Collections',
                 link: '/product-collection',
-                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/collectionss?populate[profileImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'Groups',
                 link: '/product-groups',
-                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/groupss?populate[GroupImage][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
             {
                 title: 'Tiles',
                 link: '/product-tilse',
-                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=4&locale='
+                url: '/api/products?populate[image][populate][1]=formats&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale='
             },
         ],
     },
