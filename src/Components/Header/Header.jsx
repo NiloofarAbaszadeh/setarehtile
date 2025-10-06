@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { changeLanguage } from "../../Store/state";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
 
  
 /* Header Component Start */
@@ -819,81 +820,99 @@ export const SearchBar = memo((props) => {
 /* Search-bar Component End */
 
 /* HeaderLanguage Component Start */
+
 export const HeaderLanguage = (props) => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const dispatch = useDispatch()
-  const handelChange = (lan) => {
-    dispatch(changeLanguage(lan))
-    localStorage.setItem("language", lan)
-    window.location.reload()
-    }
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleChange = (lan) => {
+    dispatch(changeLanguage(lan));
+    localStorage.setItem("language", lan);
+    window.location.reload();
+  };
+
   return (
-    <div className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+    <div
+      className={`header-language dropdown inline-block align-middle px-[17px] text-[17px]${
+        props.className ? ` ${props.className}` : ""
+      }`}
+      style={props.style}
+    >
       <div className="flex items-center justify-center cursor-pointer">
-        {/* <Link className="items-center justify-center flex hover:text-red" to="#" aria-label="language" onClick={e => e.preventDefault()}> */}
-          <span className={`feather-globe px-0 inline-block py-0 pl-[20px] text-[15px] hover:text-red `} onClick={() => {setIsPopupOpen(true)}}></span>
-        {/* </Link> */}
-        {/* {isPopupOpen && <Popup setIsPopupOpen={setIsPopupOpen} />} */}
-        {isPopupOpen && <div
-        onClick={() =>{setIsPopupOpen(false)}}
-        className="z-20"
-        style={{
-          position: "fixed",
-          background: "rgba(0,0,0,0.1)",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        >
-          <div style={{
-            background: "rgba(0,0,0,0.65)",
-            borderRadius: "5px",
-            width: "200px",
-            opacity: 1,
-            transition: "opacity 1s linear"
-          }}>
-            <div className="flex flex-col items-center justify-center">
-              <ul className=" p-15px rounded-[6px] border-0 m-0 min-w-[140px] z-50 flex items-center justify-center flex-col w-full">
-                <li className="pt-8 pb-3 hover:bg-[#ff0000] w-full flex items-center justify-center"> 
-                  <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("fa-IR"))} to="#" title="English">
-                    <div className="icon-country block py-[2px] px-0 text-xs text-black">
-                      <img
-                        src="/assets/img/country-flag-16X16/Iran.png"
-                        alt="iran"
-                        width="20"
-                        height="20"
-                      />
-                    </div>
-                    <div className="mr-2 text-white">
-                      فارسی
-                    </div>
-                  </Link>
-                </li>
-                <li className="pb-8 pt-3 hover:bg-[#ff0000] w-full flex items-center justify-center">
-                  <Link className="flex items-center justify-start" aria-label="link" onClick={(() => handelChange("en"))} to="#" title="English">
-                    <div className="icon-country block py-[2px] px-0 text-xs ">
-                      <img
-                        src="/assets/img/country-flag-16X16/usa.png"
-                        alt="usa"
-                        width="20"
-                        height="20"
-                      />
-                    </div>
-                    <div className="mr-2 text-white">
-                    English
-                    </div>
-                  </Link>
-                </li>
-              </ul> 
-            </div>
-          </div>
-        </div>}
+        <span
+          className="feather-globe px-0 inline-block py-0 pl-[20px] text-[15px] hover:text-red"
+          onClick={() => setIsPopupOpen(true)}
+        ></span>
+
+        {/* AnimatePresence handles mounting/unmounting animations */}
+        <AnimatePresence>
+          {isPopupOpen && (
+            <motion.div
+              className="z-20 fixed top-0 left-0 right-0 bottom-0 w-screen h-screen flex items-center justify-center bg-[rgba(0,0,0,0.1)]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsPopupOpen(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  background: "rgba(0,0,0,0.65)",
+                  borderRadius: "5px",
+                  width: "200px",
+                }}
+                onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+              >
+                <div className="flex flex-col items-center justify-center">
+                  <ul className="p-[15px] rounded-[6px] m-0 min-w-[140px] z-50 flex flex-col items-center justify-center w-full">
+                    <li className="pt-8 pb-3 hover:bg-[#ff0000] w-full flex items-center justify-center">
+                      <Link
+                        className="flex items-center justify-start"
+                        aria-label="link"
+                        onClick={() => handleChange("fa-IR")}
+                        to="#"
+                        title="فارسی"
+                      >
+                        <div className="icon-country block py-[2px] px-0 text-xs">
+                          <img
+                            src="/assets/img/country-flag-16X16/Iran.png"
+                            alt="iran"
+                            width="20"
+                            height="20"
+                          />
+                        </div>
+                        <div className="mr-2 text-white">فارسی</div>
+                      </Link>
+                    </li>
+                    <li className="pb-8 pt-3 hover:bg-[#ff0000] w-full flex items-center justify-center">
+                      <Link
+                        className="flex items-center justify-start"
+                        aria-label="link"
+                        onClick={() => handleChange("en")}
+                        to="#"
+                        title="English"
+                      >
+                        <div className="icon-country block py-[2px] px-0 text-xs">
+                          <img
+                            src="/assets/img/country-flag-16X16/usa.png"
+                            alt="usa"
+                            width="20"
+                            height="20"
+                          />
+                        </div>
+                        <div className="mr-2 text-white">English</div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
