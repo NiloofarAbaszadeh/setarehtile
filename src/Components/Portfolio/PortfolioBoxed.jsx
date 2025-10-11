@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
  
 const PortfolioBoxed = (props) => {
     const host = useSelector(state => state.State.host)
-    const language = useSelector(state => state.State.language)
     return (
         <div className='custom-grid'>
             {props.data.map((item, i) => {
@@ -25,17 +24,10 @@ const PortfolioBoxed = (props) => {
                                         <div className="portfolio-image relative bg-white h-full w-full ">
                                             {item.attributes.profileImage.data && <img className="rounded-[2px] py-8" src={host + item.attributes.profileImage.data.attributes.formats.small.url} height={447} width={550} alt="portfolio-boxed" />}
                                             <div className="porfolio-hover absolute bg-white p-0 rounded-[3px]">
-                                                <div className="flex px-[10px] py-[4px] text-left self-end items-center w-full landscape:xl:px-[20px]">
-                                                    {(item.subtitle || item.attributes.name) && <div className="ml-auto">
-                                                        {item.attributes.name && <div className="font-medium text-darkgray uppercase">{item.attributes.name}</div>}
+                                                <div className="flex px-[10px] py-2 text-left self-end items-center w-full landscape:xl:px-[20px] bg-[#ff0000] rounded-[2px] box-shadow justify-center">
+                                                    {(item.subtitle || item.attributes.name) && <div className="flex items-center justify-center">
+                                                        {item.attributes.name && <div className="font-medium text-white uppercase">{item.attributes.name}</div>}
                                                     </div>}
-                                                    {language === "fa-IR" ? <>
-                                                        <div className="mr-auto"><i className="line-icon-Arrow-OutLeft text-fastblue font-semibold text-[32px] inline-block top-[3px] relative"></i></div>
-                                                    </> : language === "en" ? <>
-                                                        <div className="ml-auto"><i className="line-icon-Arrow-OutRight text-fastblue font-semibold text-[32px] inline-block top-[3px] relative"></i></div>
-                                                    </> : <>
-                                                        <div className="mr-auto"><i className="line-icon-Arrow-OutLeft text-fastblue font-semibold text-[32px] inline-block top-[3px] relative"></i></div>
-                                                    </>}
                                                 </div>
                                             </div>
                                         </div>
