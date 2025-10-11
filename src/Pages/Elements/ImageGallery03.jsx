@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { fadeIn } from '../../Functions/GlobalAnimations'
-import ImageGallery from '../../Components/ImageGallery/ImageGallery'
+import ImageGallery05 from '../../Components/ImageGallery/ImageGallery05'
 import Seo from '../../Seo'
 import { Helmet } from 'react-helmet-async'; 
 import { Parallax } from 'react-scroll-parallax'
@@ -61,7 +61,7 @@ const ImageGalleryPage03 = () => {
       {tempData && <section className="border-bottom bg-[#f7f7f7] border-color-extra-light-gray px-[10%] lg:px-0 py-[80px] lg:py-[50px] md:py-[35px] sm:py-[20px]">
         <Container fluid>
           <Row>
-            <ImageGallery theme="image-gallery-01" data={tempData.reverse()} overlay={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]} className="" animation={fadeIn} />
+            <ImageGallery05 theme="image-gallery-01" data={tempData.reverse()} overlay={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]} className="" animation={fadeIn} />
           </Row>
         </Container>
       </section>}

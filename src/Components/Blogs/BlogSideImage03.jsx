@@ -63,7 +63,7 @@ const BlogSideImage03 = (props) => {
                 data.attributes.catalog.reverse().map((item, i) => {
                   const date = item.file.data.attributes.createdAt.split("T")
                   return (
-                    <m.div key={i} className={`blog-sideimage p-0 m-5 `} {...props.animation}>
+                    <m.div key={i} className={`blog-sideimage p-0 m-5 box-shadow`} {...props.animation}>
                       <div className=" h-[400px]">
                           <img loading="lazy" src={host + item.image.data.attributes.formats.custom.url} className="h-full" alt="custom" />
                       </div>

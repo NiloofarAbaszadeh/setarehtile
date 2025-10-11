@@ -16,6 +16,7 @@ const ImageGalleryPage = () => {
 
   const [data, setData] = useState(null)
   const [tempData, setTempData] = useState(null)
+  const url = "internal-ce/"
   
   useEffect(() => {
     const GetData = async () => {
@@ -23,14 +24,13 @@ const ImageGalleryPage = () => {
           headers: { Authorization: `Bearer ${token}` }
         })
       .then(res => {
-        const temp = res.data.data[0].attributes.reward.map(item => {
-          return {
-            title: item.title,
-            src: host + item.profileImage.data.attributes.formats.xsmall.url
-          }
-        })
-        setTempData(temp)
         setData(res.data.data)
+      })
+      await axios.get(`${host}/api/internal-certificates?populate=deep&locale=${language}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      .then(res => {
+        setTempData(res.data.data)
       })
     }
     GetData()
@@ -64,7 +64,7 @@ const ImageGalleryPage = () => {
       {tempData && <section className="border-bottom border-color-extra-light-gray px-[10%] lg:px-0 py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
         <Container fluid>
           <Row>
-            <ImageGallery theme="image-gallery-01" data={tempData.reverse()} overlay={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]} className="" animation={fadeIn} />
+            <ImageGallery theme="image-gallery-01" url={url} data={tempData.reverse()} overlay={["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]} className="" animation={fadeIn} />
           </Row>
         </Container>
       </section>}

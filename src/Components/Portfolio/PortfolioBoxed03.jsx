@@ -7,7 +7,6 @@ import { ScaleLoader } from 'react-spinners';
 
 const PortfolioBoxed03 = (props) => {
     const host = useSelector(state => state.State.host)
-    const language = useSelector(state => state.State.language)
     
     return (<>
     {!props.data && <div className='flex justify-center items-center bg-white w-full h-[100vh] fixed top-0 fix z-50'>
@@ -20,10 +19,6 @@ const PortfolioBoxed03 = (props) => {
       />
       </div>}
         <div className='custom-grid'>
-            {/* {props.data.map(item => {
-                console.log(item.id)
-                console.log(item.attributes.baseInfo.bodyColor.data.attributes.color)
-            })} */}
             {props.data.map((item, i) => {
                 return (
                     <div key={i}>

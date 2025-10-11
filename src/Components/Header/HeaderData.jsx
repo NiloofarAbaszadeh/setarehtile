@@ -26,23 +26,23 @@ const HeaderData = [
     },
     {
         title: 'گواهی و افتخارات',
-        url: "/api/gwahy-dakhlies?populate=deep&locale=",
+        url: "/api/internal-certificates?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=",
         megaitem: true,
         dropdown: [
             {
                 title: 'گواهی نامه داخلی',
                 link: '/certificate/internal-ce',
-                url: "/api/gwahy-dakhlies?populate=deep&locale="
+                url: "/api/internal-certificates?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale="
             },
             {
                 title: 'گواهی نامه خارجی',
                 link: '/certificate/external-ce',
-                url: "/api/gwahy-kharjies?populate=deep&locale="
+                url: "/api/international-certificates?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale="
             },
             {
                 title: 'افتخارات',
                 link: '/certificate/honors',
-                url: "/api/aftkharats?populate=deep&locale="
+                url: "/api/aftkharats?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale="
             },
         ],
     },

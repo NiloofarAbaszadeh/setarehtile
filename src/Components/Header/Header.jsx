@@ -254,11 +254,16 @@ export const Menu = memo((props) => {
 
                 image: item.attributes.image ? item.attributes.image.data.attributes.url :
                 item.attributes.profileImage ? item.attributes.profileImage.data.attributes.url :
-                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.url : "",
+                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.url : 
+                item.attributes.banner ? item.attributes.banner.data.attributes.url : "",
               
                 link: item.attributes.image ? `/product-tilse/${item.attributes.name}`:
                 item.attributes.profileImage ? `/product-collection/${item.attributes.name}` :
-                item.attributes.GroupImage ? `/product-groups/${item.attributes.name}` : "",
+                item.attributes.GroupImage ? `/product-groups/${item.attributes.name}` : 
+                item.attributes.banner  ? `${hoveredId === "/api/internal-certificates?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=" ? 
+                  "/certificate/internal-ce/" : hoveredId === "/api/international-certificates?populate=deep&sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=3&locale=" ? 
+                  "/certificate/external-ce/" : "/certificate/honors"
+                }${item.id}` : "",
               }
             }));
           } else {
@@ -376,7 +381,7 @@ export const Menu = memo((props) => {
                         return <div className="mx-4 border-[1px] border-[#ffffff33]">
                           <Link to={item.link} target="_black">
                             <img className="h-[200px]" src={host + item.image} alt="item.name" />
-                            {item.name !== "" && <div className="bg-[#c60000aa] flex justify-center items-center h-[50px]">
+                            {item.name && item.name !== "" && <div className="bg-[#c60000aa] flex justify-center items-center h-[50px]">
                               <span className="text-white text-[16px]">{item.name}</span>
                             </div>}
                           </Link>
