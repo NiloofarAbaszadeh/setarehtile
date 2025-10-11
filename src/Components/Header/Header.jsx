@@ -252,9 +252,9 @@ export const Menu = memo((props) => {
               return {
                 name: item.attributes.name,
 
-                image: item.attributes.image ? item.attributes.image.data.attributes.formats.medium.url :
-                item.attributes.profileImage ? item.attributes.profileImage.data.attributes.formats.medium.url :
-                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.formats.medium.url : "",
+                image: item.attributes.image ? item.attributes.image.data.attributes.url :
+                item.attributes.profileImage ? item.attributes.profileImage.data.attributes.url :
+                item.attributes.GroupImage ? item.attributes.GroupImage.data.attributes.url : "",
               
                 link: item.attributes.image ? `/product-tilse/${item.attributes.name}`:
                 item.attributes.profileImage ? `/product-collection/${item.attributes.name}` :
@@ -265,7 +265,7 @@ export const Menu = memo((props) => {
             setDatax(response.data.data[0].attributes.reward.slice(0, 5).map(item => {
               return {
                 name: "",
-                image: item.profileImage.data.attributes.formats.medium.url,
+                image: item.profileImage.data.attributes.url,
                 link: hoveredId.split("?")[0].split("/")[2] === "gwahy-kharjies" ? "/certificate/external-ce" :
                 hoveredId.split("?")[0].split("/")[2] === "aftkharats" ? "/certificate/honors" :
                 hoveredId.split("?")[0].split("/")[2] === "gwahy-dakhlies" ? "/certificate/internal-ce" : ""
