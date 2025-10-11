@@ -115,7 +115,7 @@ const Tiles = (props) => {
         var temp = null
         if (filterSize.length !== 0){
             filterSize.map(size => {
-                temp = data.filter(item => item.attributes.baseInfo.size.data && item.attributes.baseInfo.size.data.attributes.size === size)
+                temp = data.filter(item => item?.attributes?.baseInfo?.size?.data?.attributes?.size === size)
                 return size
             })
             return temp
@@ -128,7 +128,7 @@ const Tiles = (props) => {
         var temp = null
         if (filterDesign.length !== 0){
             filterDesign.map(design => {
-                temp = data.filter(item => item.attributes.baseInfo.design.data.attributes.design === design)
+                temp = data.filter(item => item?.attributes?.baseInfo?.design?.data?.attributes?.design === design)
                 return design
             })
             return temp
@@ -141,7 +141,7 @@ const Tiles = (props) => {
         var temp = null
         if (filterShape.length !== 0){
             filterShape.map(shape => {
-                temp = data.filter(item => item.attributes.baseInfo.shape.data.attributes.shape === shape)
+                temp = data.filter(item => item?.attributes?.baseInfo?.shape?.data?.attributes?.shape === shape)
                 return shape
             })
             return temp
@@ -154,7 +154,7 @@ const Tiles = (props) => {
         var temp = null
         if (colorTheme.length !== 0){
             colorTheme.map(color => {
-                temp = data.filter(item => item.attributes.baseInfo.color.data.map(item => item.attributes.color).includes(color))
+                temp = data.filter(item => item?.attributes?.baseInfo?.color?.data?.map(item => item?.attributes?.color).includes(color))
                 return color
             })
             return temp
@@ -167,7 +167,7 @@ const Tiles = (props) => {
         var temp = null
         if (specialTypes.length !== 0){
             specialTypes.map(feature => {
-                temp = data.filter(item => item.attributes.baseInfo.special_types.data.map(item => item.attributes.feature).includes(feature))
+                temp = data.filter(item => item?.attributes?.baseInfo?.special_types?.data?.map(item => item?.attributes?.feature).includes(feature))
                 return feature
             })
             return temp
@@ -180,7 +180,7 @@ const Tiles = (props) => {
         var temp = null
         if (usePlaces.length !== 0){
             usePlaces.map(place => {
-                temp = data.filter(item => item.attributes.baseInfo.use_places.data.map(item => item.attributes.place).includes(place))
+                temp = data.filter(item => item?.attributes?.baseInfo?.use_places?.data?.map(item => item?.attributes?.place).includes(place))
                 return place
             })
             return temp
@@ -193,7 +193,7 @@ const Tiles = (props) => {
         var temp = null
         if (glazeType.length !== 0){
             glazeType.map(glaze => {
-                temp = data.filter(item => item.attributes.baseInfo.glazeType.data.attributes.glaze === glaze)
+                temp = data.filter(item => item?.attributes?.baseInfo?.glazeType?.data?.attributes?.glaze === glaze)
                 return glaze
             })
             return temp
@@ -206,7 +206,7 @@ const Tiles = (props) => {
         var temp = null
         if (bakeType.length !== 0){
             bakeType.map(bake => {
-                temp = data.filter(item => item.attributes.baseInfo.bakeType.data.attributes.bakeType === bake)
+                temp = data.filter(item => item?.attributes?.baseInfo?.bakeType?.data?.attributes?.bakeType === bake)
                 return bake
             })
             return temp
@@ -367,7 +367,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                     {tileType.length !== 0 && tileType.map((item,i) => {
                                         return (<>
-                                            {item !== null && <li key={item + i}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id='تم رنگی' name="active" value={item} onClick={handelChange}></button><span className='absolute p-[5px] bg-red rounded-full top-[7px] left-[2.5px]'></span></div></li>} 
+                                            {item !== null && <li key={item + i}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id='تم رنگی' name="active" value={item} onClick={handelChange}></button><span className='absolute p-[6px] bg-red rounded-full top-[6px] left-[2.5px]'></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -377,7 +377,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileSize && tileSize.length !== 0 && tileSize.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.size}><div className='flex items-center justify-between relative'><p className='text-black text-xmd '>{item.attributes.size}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.size} name="active" value='ابعاد' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.size}><div className='flex items-center justify-between relative'><p className='text-black text-xmd '>{item.attributes.size}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.size} name="active" value='ابعاد' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -387,7 +387,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileDesign && tileDesign.length !== 0 && tileDesign.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.design}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.design}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.design} name="active" value='نوع طراحی' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.design}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.design}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.design} name="active" value='نوع طراحی' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -397,7 +397,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileShape && tileShape.length !== 0 && tileShape.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.shape}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.shape}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.shape} name="active" value='نوع شکل' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.shape}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.shape}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.shape} name="active" value='نوع شکل' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -407,7 +407,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileColor && tileColor.length !== 0 && tileColor.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.color}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.color}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.color} name="active" value='تم رنگی' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.color}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.color}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.color} name="active" value='تم رنگی' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -417,7 +417,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileBakeType && tileBakeType.length !== 0 && tileBakeType.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.bakeType}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.bakeType}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.bakeType} name="active" value='نوع پخت' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.bakeType}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.bakeType}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.bakeType} name="active" value='نوع پخت' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -427,7 +427,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileGlazeType && tileGlazeType.length !== 0 && tileGlazeType.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.glaze}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.glaze}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.glaze} name="active" value='نوع لعاب' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.glaze}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.glaze}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.glaze} name="active" value='نوع لعاب' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -437,7 +437,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tilespecial && tilespecial.length !== 0 && tilespecial.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.feature}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.feature}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.feature} name="active" value='ویژگی های خاص' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.feature}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.feature}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.feature} name="active" value='ویژگی های خاص' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -447,7 +447,7 @@ const Tiles = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileUsePlace && tileUsePlace.length !== 0 && tileUsePlace.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.place}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.place}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.place} name="active" value='مکان استفاده' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.place}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.place}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.place} name="active" value='مکان استفاده' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>

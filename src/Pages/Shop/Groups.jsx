@@ -48,7 +48,7 @@ const Groups = (props) => {
         var temp = null
         if (filterColor.length !== 0){
             filterColor.map(color => {
-                temp = data.filter(item => item.attributes.tiles.data[0].attributes.baseInfo.color_themes.data.map(item => item.attributes.color).includes(color))
+                temp = data.filter(item => item?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.color_themes?.data?.map(item => item?.attributes?.color).includes(color))
                 return color
             })
             return temp
@@ -61,7 +61,7 @@ const Groups = (props) => {
         var temp = null
         if (filterSize.length !== 0){
             filterSize.map(size => {
-                temp = data.filter(item => item.attributes.tiles.data[0].attributes.baseInfo.size.data && item.attributes.tiles.data[0].attributes.baseInfo.size.data.attributes.size === size)
+                temp = data.filter(item => item?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.size?.data?.attributes?.size === size)
                 return size
             })
             return temp
@@ -160,7 +160,7 @@ const Groups = (props) => {
                                 <ul className="list-style filter-category">
                                     {tileColor && tileColor.length !== 0 && tileColor.map((item) => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.color}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.color}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.color} name="active" value='Color' onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.color}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item.attributes.color}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.color} name="active" value='Color' onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -170,7 +170,7 @@ const Groups = (props) => {
                                 <ul className="list-style filter-category">
                                 {tileSize && tileSize.length !== 0 && tileSize.map(item => {
                                         return (<>
-                                            {item !== null && <li key={item.attributes.size}><div className='flex items-center justify-between relative'><p className='text-black text-xmd '>{item.attributes.size}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.size} name="active" value="Size" onClick={handelChange}></button><span className={`absolute p-[5px] bg-red rounded-full top-[7px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
+                                            {item !== null && <li key={item.attributes.size}><div className='flex items-center justify-between relative'><p className='text-black text-xmd '>{item.attributes.size}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id={item.attributes.size} name="active" value="Size" onClick={handelChange}></button><span className={`absolute p-[6px] bg-red rounded-full top-[6px] ${language === "fa-IR" ? "left-[2.5px]" : language === "en" ? "right-[2.5px]" : "left-[2.5px]"}`}></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>

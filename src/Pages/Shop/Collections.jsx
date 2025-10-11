@@ -52,7 +52,7 @@ const Collections = (props) => {
         var temp = null
         if (filterType.length !== 0){
             filterType.map(type => {
-                temp = data.filter(item => item.attributes.tiles.data[0].attributes.baseInfo.type.data.map(item => item.attributes.type).includes(type))
+                temp = data.filter(item => item?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.type?.data.map(item => item?.attributes?.type).includes(type))
                 return type
             })
             return temp
@@ -65,7 +65,7 @@ const Collections = (props) => {
         var temp = null
         if (filterSize.length !== 0){
             filterSize.map(size => {
-                temp = data.filter(item => item.attributes.groups.data[0].attributes.tiles.data[0].attributes.baseInfo.size.data && item.attributes.groups.data[0].attributes.tiles.data[0].attributes.baseInfo.size.data.attributes.size === size)
+                temp = data.filter(item => item?.attributes?.groups?.data[0]?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.size?.data?.attributes?.size === size)
                 return size
             })
             return temp
@@ -78,7 +78,7 @@ const Collections = (props) => {
         var temp = null
         if (filterDesign.length !== 0){
             filterDesign.map(design => {
-                temp = data.filter(item => item.attributes.groups.data[0].attributes.tiles.data[0].attributes.baseInfo.design.data.attributes.design === design)
+                temp = data.filter(item => item?.attributes?.groups?.data[0]?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.design?.data?.attributes?.design === design)
                 return design
             })
             return temp
@@ -91,7 +91,7 @@ const Collections = (props) => {
         var temp = null
         if (filterShape.length !== 0){
             filterShape.map(shape => {
-                temp = data.filter(item => item.attributes.groups.data[0].attributes.tiles.data[0].attributes.baseInfo.shape.data.attributes.shape === shape)
+                temp = data.filter(item => item?.attributes?.groups?.data[0]?.attributes?.tiles?.data[0]?.attributes?.baseInfo?.shape?.data?.attributes?.shape === shape)
                 return shape
             })
             return temp
@@ -248,7 +248,7 @@ const Collections = (props) => {
                                 <ul className="list-style filter-category">
                                     {tileType.length !== 0 && tileType.map((item,i) => {
                                         return (<>
-                                            {item !== null && <li key={item + i}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id='نوع محصول' name="active" value={item} onClick={handelChange}></button><span className='absolute p-[5px] bg-red rounded-full top-[7px] left-[2.5px]'></span></div></li>} 
+                                            {item !== null && <li key={item + i}><div className='flex items-center justify-between relative'><p className='text-black text-xmd'>{item}</p><button className='p-2 border-[1px] bg-white rounded-full relative border-gray-500 z-10' id='نوع محصول' name="active" value={item} onClick={handelChange}></button><span className='absolute p-[6px] bg-red rounded-full top-[6px] left-[2.5px]'></span></div></li>} 
                                         </>)
                                     })}
                                 </ul>
@@ -281,7 +281,7 @@ const Collections = (props) => {
                                       onClick={handelChange}
                                     ></button>
                                     <span
-                                      className={`absolute p-[5px] bg-red rounded-full top-[7px] ${
+                                      className={`absolute p-[6px] bg-red rounded-full top-[6px] ${
                                         language === "fa-IR"
                                           ? "left-[2.5px]"
                                           : language === "en"
@@ -325,7 +325,7 @@ const Collections = (props) => {
                                       onClick={handelChange}
                                     ></button>
                                     <span
-                                      className={`absolute p-[5px] bg-red rounded-full top-[7px] ${
+                                      className={`absolute p-[6px] bg-red rounded-full top-[6px] ${
                                         language === "fa-IR"
                                           ? "left-[2.5px]"
                                           : language === "en"
@@ -369,7 +369,7 @@ const Collections = (props) => {
                                       onClick={handelChange}
                                     ></button>
                                     <span
-                                      className={`absolute p-[5px] bg-red rounded-full top-[7px] ${
+                                      className={`absolute p-[6px] bg-red rounded-full top-[6px] ${
                                         language === "fa-IR"
                                           ? "left-[2.5px]"
                                           : language === "en"
